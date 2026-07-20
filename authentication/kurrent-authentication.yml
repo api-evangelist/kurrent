@@ -1,0 +1,71 @@
+generated: '2026-07-19'
+method: searched
+source: openapi/kurrent-kurrentdb-http-api-openapi.yml
+docs: https://docs.kurrent.io/server/v26.1/http-api/security.html
+notes: >-
+  Kurrent has two distinct authentication surfaces. The KurrentDB database itself authenticates
+  with HTTP Basic credentials (or X.509 client certificates in the commercial editions) and
+  authorizes with per-stream access control lists plus, since 24.10, policy-based authorization.
+  Kurrent Cloud — the managed control plane and console — authenticates with OpenID Connect
+  against identity.eventstore.com. The derived spec profile covers only the first; the docs pass
+  added the rest.
+summary:
+  types:
+  - http
+  - mutualTLS
+  - openIdConnect
+  http_schemes:
+  - basic
+  api_key_in: []
+  oauth2_flows:
+  - authorizationCode
+  - clientCredentials
+  - deviceCode
+schemes:
+- name: basicAuth
+  type: http
+  scheme: basic
+  surface: KurrentDB HTTP API
+  description: >-
+    KurrentDB supports HTTP Basic authentication for the HTTP API. Credentials are supplied per
+    request; the default administrative user is created at first start. Authorization is enforced
+    by access control lists set on stream metadata ($acl with $r/$w/$d/$mr/$mw entries) and by the
+    default ACL on the $settings stream.
+  docs: https://docs.kurrent.io/server/v26.1/http-api/security.html
+  sources:
+  - openapi/kurrent-kurrentdb-http-api-openapi.yml
+- name: clientCertificate
+  type: mutualTLS
+  surface: KurrentDB server (commercial editions)
+  description: >-
+    X.509 client-certificate authentication, introduced with EventStoreDB 24.2, lets clients and
+    nodes authenticate with certificates instead of a username and password.
+  docs: https://docs.kurrent.io/server/v26.1/security/
+  sources:
+  - https://www.kurrent.io/releases
+- name: KurrentCloudOIDC
+  type: openIdConnect
+  surface: Kurrent Cloud console and control plane
+  issuer: https://identity.eventstore.com/
+  openIdConnectUrl: https://identity.eventstore.com/.well-known/openid-configuration
+  description: >-
+    Kurrent Cloud authenticates users and machine clients through its OpenID Connect provider,
+    which supports the authorization code flow with PKCE, client credentials, the device
+    authorization grant, refresh tokens and multi-factor challenges.
+  scopes: scopes/kurrent-scopes.yml
+  sources:
+  - well-known/kurrent-openid-configuration.json
+  - well-known/kurrent-oauth-authorization-server.json
+authorization:
+  model: access-control-lists
+  description: >-
+    Per-stream ACLs are written into stream metadata; a default ACL applies from the $settings
+    stream. KurrentDB 24.10 added policy-based authorization as a commercial feature for
+    expressing access rules centrally rather than per stream.
+  docs: https://docs.kurrent.io/server/v26.1/http-api/security.html
+sdk_authentication:
+  description: >-
+    Client SDKs carry credentials in the connection string (for example
+    kurrentdb://user:password@host:2113) or per call. Each SDK has a dedicated authentication page
+    in the client documentation.
+  docs: https://docs.kurrent.io/clients/
