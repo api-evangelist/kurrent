@@ -1,0 +1,270 @@
+openapi: 3.1.0
+info:
+  title: KurrentDB HTTP Admin Users API
+  version: v26.1
+  summary: AtomPub-over-HTTP interface to KurrentDB streams, subscriptions, projections, users and node administration.
+  description: KurrentDB (formerly EventStoreDB) exposes a native AtomPub-over-HTTP interface alongside its primary gRPC protocol. This OpenAPI description is an API Evangelist transcription of the provider's published HTTP API Reference at https://docs.kurrent.io/server/v26.1/http-api/api.html — Kurrent does not publish an OpenAPI document of its own. Paths, methods, custom headers, media types and status codes are taken from that reference; nothing has been invented. The base URL is the address of your own KurrentDB node or Kurrent Cloud cluster (the same URL you use for the admin UI), which listens on port 2113 by default.
+  contact:
+    name: Kurrent
+    url: https://www.kurrent.io/
+  license:
+    name: Kurrent License
+    url: https://www.kurrent.io/terms-of-use
+  x-apievangelist-provenance:
+    generated: '2026-07-19'
+    method: generated
+    source: https://docs.kurrent.io/server/v26.1/http-api/api.html
+    note: Faithful transcription of the provider's published HTTP API reference table. Operation summaries mirror the reference; request/response schemas are intentionally left open where the provider does not publish them.
+servers:
+- url: https://{host}:{port}
+  description: Your KurrentDB node or Kurrent Cloud cluster
+  variables:
+    host:
+      default: localhost
+      description: Hostname of the KurrentDB node (the same host you use for the admin UI)
+    port:
+      default: '2113'
+      description: KurrentDB HTTP port
+security:
+- basicAuth: []
+tags:
+- name: Users
+  description: User account management
+paths:
+  /users/:
+    get:
+      tags:
+      - Users
+      operationId: listUsers
+      summary: List all users
+      responses:
+        '200':
+          $ref: '#/components/responses/JsonOk'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      tags:
+      - Users
+      operationId: createUser
+      summary: Create a user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewUser'
+      responses:
+        '201':
+          $ref: '#/components/responses/Created'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /users/{login}:
+    parameters:
+    - $ref: '#/components/parameters/Login'
+    get:
+      tags:
+      - Users
+      operationId: getUser
+      summary: Get the details of a user
+      responses:
+        '200':
+          $ref: '#/components/responses/JsonOk'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      tags:
+      - Users
+      operationId: updateUser
+      summary: Update a user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserUpdate'
+      responses:
+        '200':
+          $ref: '#/components/responses/JsonOk'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    delete:
+      tags:
+      - Users
+      operationId: deleteUser
+      summary: Delete a user
+      responses:
+        '204':
+          description: No Content — the user was deleted
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /users/{login}/command/enable:
+    parameters:
+    - $ref: '#/components/parameters/Login'
+    put:
+      tags:
+      - Users
+      operationId: enableUser
+      summary: Enable a user account
+      responses:
+        '200':
+          $ref: '#/components/responses/JsonOk'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /users/{login}/command/disable:
+    parameters:
+    - $ref: '#/components/parameters/Login'
+    put:
+      tags:
+      - Users
+      operationId: disableUser
+      summary: Disable a user account
+      responses:
+        '200':
+          $ref: '#/components/responses/JsonOk'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /users/{login}/command/reset-password:
+    parameters:
+    - $ref: '#/components/parameters/Login'
+    post:
+      tags:
+      - Users
+      operationId: resetUserPassword
+      summary: Reset the password of a user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                newPassword:
+                  type: string
+              required:
+              - newPassword
+      responses:
+        '200':
+          $ref: '#/components/responses/JsonOk'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /users/{login}/command/change-password:
+    parameters:
+    - $ref: '#/components/parameters/Login'
+    post:
+      tags:
+      - Users
+      operationId: changeUserPassword
+      summary: Change the password of a user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                currentPassword:
+                  type: string
+                newPassword:
+                  type: string
+              required:
+              - currentPassword
+              - newPassword
+      responses:
+        '200':
+          $ref: '#/components/responses/JsonOk'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  responses:
+    Created:
+      description: Created
+      headers:
+        Location:
+          description: URI of the created resource
+          schema:
+            type: string
+    NotFound:
+      description: Not Found — the stream, event, projection, subscription or user does not exist
+      content:
+        text/plain:
+          schema:
+            type: string
+    BadRequest:
+      description: Bad Request — the request was malformed or violated an expected version
+      content:
+        text/plain:
+          schema:
+            type: string
+    Unauthorized:
+      description: Unauthorized — credentials were missing, invalid, or lacked ACL permission
+      content:
+        text/plain:
+          schema:
+            type: string
+    JsonOk:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+  schemas:
+    UserUpdate:
+      type: object
+      description: Updated details of a user account
+      properties:
+        fullName:
+          type: string
+        groups:
+          type: array
+          items:
+            type: string
+    NewUser:
+      type: object
+      description: A user account to create
+      properties:
+        loginName:
+          type: string
+        fullName:
+          type: string
+        password:
+          type: string
+        groups:
+          type: array
+          items:
+            type: string
+      required:
+      - loginName
+      - fullName
+      - password
+  parameters:
+    Login:
+      name: login
+      in: path
+      required: true
+      description: Login name of the user
+      schema:
+        type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: KurrentDB supports HTTP Basic authentication for the HTTP API, with access control lists (ACLs) applied per stream. See https://docs.kurrent.io/server/v26.1/http-api/security.html
+externalDocs:
+  description: KurrentDB HTTP API documentation
+  url: https://docs.kurrent.io/server/v26.1/http-api/introduction.html

@@ -1,0 +1,128 @@
+openapi: 3.1.0
+info:
+  title: KurrentDB HTTP Admin API
+  version: v26.1
+  summary: AtomPub-over-HTTP interface to KurrentDB streams, subscriptions, projections, users and node administration.
+  description: KurrentDB (formerly EventStoreDB) exposes a native AtomPub-over-HTTP interface alongside its primary gRPC protocol. This OpenAPI description is an API Evangelist transcription of the provider's published HTTP API Reference at https://docs.kurrent.io/server/v26.1/http-api/api.html — Kurrent does not publish an OpenAPI document of its own. Paths, methods, custom headers, media types and status codes are taken from that reference; nothing has been invented. The base URL is the address of your own KurrentDB node or Kurrent Cloud cluster (the same URL you use for the admin UI), which listens on port 2113 by default.
+  contact:
+    name: Kurrent
+    url: https://www.kurrent.io/
+  license:
+    name: Kurrent License
+    url: https://www.kurrent.io/terms-of-use
+  x-apievangelist-provenance:
+    generated: '2026-07-19'
+    method: generated
+    source: https://docs.kurrent.io/server/v26.1/http-api/api.html
+    note: Faithful transcription of the provider's published HTTP API reference table. Operation summaries mirror the reference; request/response schemas are intentionally left open where the provider does not publish them.
+servers:
+- url: https://{host}:{port}
+  description: Your KurrentDB node or Kurrent Cloud cluster
+  variables:
+    host:
+      default: localhost
+      description: Hostname of the KurrentDB node (the same host you use for the admin UI)
+    port:
+      default: '2113'
+      description: KurrentDB HTTP port
+security:
+- basicAuth: []
+tags:
+- name: Admin
+  description: Node administration operations
+paths:
+  /admin/shutdown:
+    post:
+      tags:
+      - Admin
+      operationId: shutdownNode
+      summary: Shut down the node
+      responses:
+        '200':
+          description: OK — shutdown initiated
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /admin/node/resign:
+    post:
+      tags:
+      - Admin
+      operationId: resignNode
+      summary: Resign leadership of the node
+      responses:
+        '200':
+          description: OK — the node resigned leadership
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /admin/scavenge:
+    post:
+      tags:
+      - Admin
+      operationId: startScavenge
+      summary: Start a scavenge operation
+      parameters:
+      - name: startFromChunk
+        in: query
+        description: Chunk number to start scavenging from
+        schema:
+          type: integer
+      - name: threads
+        in: query
+        description: Number of threads to use for the scavenge
+        schema:
+          type: integer
+      responses:
+        '200':
+          $ref: '#/components/responses/JsonOk'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /admin/scavenge/{scavengeId}:
+    parameters:
+    - name: scavengeId
+      in: path
+      required: true
+      description: Identifier of the running scavenge operation
+      schema:
+        type: string
+    delete:
+      tags:
+      - Admin
+      operationId: stopScavenge
+      summary: Stop a running scavenge operation
+      responses:
+        '200':
+          $ref: '#/components/responses/JsonOk'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /admin/mergeindexes:
+    post:
+      tags:
+      - Admin
+      operationId: mergeIndexes
+      summary: Merge the node indexes
+      responses:
+        '200':
+          $ref: '#/components/responses/JsonOk'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  responses:
+    Unauthorized:
+      description: Unauthorized — credentials were missing, invalid, or lacked ACL permission
+      content:
+        text/plain:
+          schema:
+            type: string
+    JsonOk:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: KurrentDB supports HTTP Basic authentication for the HTTP API, with access control lists (ACLs) applied per stream. See https://docs.kurrent.io/server/v26.1/http-api/security.html
+externalDocs:
+  description: KurrentDB HTTP API documentation
+  url: https://docs.kurrent.io/server/v26.1/http-api/introduction.html

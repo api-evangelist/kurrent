@@ -1,0 +1,444 @@
+openapi: 3.1.0
+info:
+  title: KurrentDB HTTP Admin Projections API
+  version: v26.1
+  summary: AtomPub-over-HTTP interface to KurrentDB streams, subscriptions, projections, users and node administration.
+  description: KurrentDB (formerly EventStoreDB) exposes a native AtomPub-over-HTTP interface alongside its primary gRPC protocol. This OpenAPI description is an API Evangelist transcription of the provider's published HTTP API Reference at https://docs.kurrent.io/server/v26.1/http-api/api.html — Kurrent does not publish an OpenAPI document of its own. Paths, methods, custom headers, media types and status codes are taken from that reference; nothing has been invented. The base URL is the address of your own KurrentDB node or Kurrent Cloud cluster (the same URL you use for the admin UI), which listens on port 2113 by default.
+  contact:
+    name: Kurrent
+    url: https://www.kurrent.io/
+  license:
+    name: Kurrent License
+    url: https://www.kurrent.io/terms-of-use
+  x-apievangelist-provenance:
+    generated: '2026-07-19'
+    method: generated
+    source: https://docs.kurrent.io/server/v26.1/http-api/api.html
+    note: Faithful transcription of the provider's published HTTP API reference table. Operation summaries mirror the reference; request/response schemas are intentionally left open where the provider does not publish them.
+servers:
+- url: https://{host}:{port}
+  description: Your KurrentDB node or Kurrent Cloud cluster
+  variables:
+    host:
+      default: localhost
+      description: Hostname of the KurrentDB node (the same host you use for the admin UI)
+    port:
+      default: '2113'
+      description: KurrentDB HTTP port
+security:
+- basicAuth: []
+tags:
+- name: Projections
+  description: Create, manage and query projections
+paths:
+  /projections/any:
+    get:
+      tags:
+      - Projections
+      operationId: listAllProjections
+      summary: List all projections
+      responses:
+        '200':
+          $ref: '#/components/responses/JsonOk'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /projections/all-non-transient:
+    get:
+      tags:
+      - Projections
+      operationId: listNonTransientProjections
+      summary: List all non-transient projections
+      responses:
+        '200':
+          $ref: '#/components/responses/JsonOk'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /projections/transient:
+    get:
+      tags:
+      - Projections
+      operationId: listTransientProjections
+      summary: List all transient projections
+      responses:
+        '200':
+          $ref: '#/components/responses/JsonOk'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      tags:
+      - Projections
+      operationId: createTransientProjection
+      summary: Create a transient projection
+      parameters:
+      - $ref: '#/components/parameters/ProjectionName'
+      requestBody:
+        $ref: '#/components/requestBodies/ProjectionQuery'
+      responses:
+        '201':
+          $ref: '#/components/responses/Created'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /projections/onetime:
+    get:
+      tags:
+      - Projections
+      operationId: listOneTimeProjections
+      summary: List all one-time projections (queries)
+      responses:
+        '200':
+          $ref: '#/components/responses/JsonOk'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      tags:
+      - Projections
+      operationId: createOneTimeProjection
+      summary: Create a one-time projection
+      requestBody:
+        $ref: '#/components/requestBodies/ProjectionQuery'
+      responses:
+        '201':
+          $ref: '#/components/responses/Created'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /projections/continuous:
+    get:
+      tags:
+      - Projections
+      operationId: listContinuousProjections
+      summary: List all continuous projections
+      responses:
+        '200':
+          $ref: '#/components/responses/JsonOk'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      tags:
+      - Projections
+      operationId: createContinuousProjection
+      summary: Create a continuous projection
+      parameters:
+      - $ref: '#/components/parameters/ProjectionName'
+      - name: emit
+        in: query
+        description: Whether the projection is allowed to emit events
+        schema:
+          type: boolean
+      requestBody:
+        $ref: '#/components/requestBodies/ProjectionQuery'
+      responses:
+        '201':
+          $ref: '#/components/responses/Created'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /projections/read-events:
+    post:
+      tags:
+      - Projections
+      operationId: readProjectionEvents
+      summary: Query the events of a projection
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          $ref: '#/components/responses/JsonOk'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /projection/{name}:
+    parameters:
+    - $ref: '#/components/parameters/Name'
+    get:
+      tags:
+      - Projections
+      operationId: getProjection
+      summary: Get the details of a projection
+      responses:
+        '200':
+          $ref: '#/components/responses/JsonOk'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      tags:
+      - Projections
+      operationId: deleteProjection
+      summary: Delete a projection
+      responses:
+        '204':
+          description: No Content — the projection was deleted
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /projection/{name}/query:
+    parameters:
+    - $ref: '#/components/parameters/Name'
+    get:
+      tags:
+      - Projections
+      operationId: getProjectionQuery
+      summary: Get the definition of a projection
+      responses:
+        '200':
+          $ref: '#/components/responses/JsonOk'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      tags:
+      - Projections
+      operationId: updateProjectionQuery
+      summary: Update the definition of a projection
+      requestBody:
+        $ref: '#/components/requestBodies/ProjectionQuery'
+      responses:
+        '200':
+          $ref: '#/components/responses/JsonOk'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /projection/{name}/state:
+    parameters:
+    - $ref: '#/components/parameters/Name'
+    get:
+      tags:
+      - Projections
+      operationId: getProjectionState
+      summary: Get the state of a projection
+      parameters:
+      - $ref: '#/components/parameters/Partition'
+      responses:
+        '200':
+          $ref: '#/components/responses/JsonOk'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /projection/{name}/result:
+    parameters:
+    - $ref: '#/components/parameters/Name'
+    get:
+      tags:
+      - Projections
+      operationId: getProjectionResult
+      summary: Get the result of a projection
+      parameters:
+      - $ref: '#/components/parameters/Partition'
+      responses:
+        '200':
+          $ref: '#/components/responses/JsonOk'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /projection/{name}/statistics:
+    parameters:
+    - $ref: '#/components/parameters/Name'
+    get:
+      tags:
+      - Projections
+      operationId: getProjectionStatistics
+      summary: Get the statistics of a projection
+      responses:
+        '200':
+          $ref: '#/components/responses/JsonOk'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /projection/{name}/config:
+    parameters:
+    - $ref: '#/components/parameters/Name'
+    get:
+      tags:
+      - Projections
+      operationId: getProjectionConfig
+      summary: Get the configuration of a projection
+      responses:
+        '200':
+          $ref: '#/components/responses/JsonOk'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      tags:
+      - Projections
+      operationId: updateProjectionConfig
+      summary: Update the configuration of a projection
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectionConfig'
+      responses:
+        '200':
+          $ref: '#/components/responses/JsonOk'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /projection/{name}/command/enable:
+    parameters:
+    - $ref: '#/components/parameters/Name'
+    post:
+      tags:
+      - Projections
+      operationId: enableProjection
+      summary: Enable a projection
+      responses:
+        '200':
+          $ref: '#/components/responses/JsonOk'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /projection/{name}/command/disable:
+    parameters:
+    - $ref: '#/components/parameters/Name'
+    post:
+      tags:
+      - Projections
+      operationId: disableProjection
+      summary: Disable a projection
+      responses:
+        '200':
+          $ref: '#/components/responses/JsonOk'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /projection/{name}/command/reset:
+    parameters:
+    - $ref: '#/components/parameters/Name'
+    post:
+      tags:
+      - Projections
+      operationId: resetProjection
+      summary: Reset a projection
+      responses:
+        '200':
+          $ref: '#/components/responses/JsonOk'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /projection/{name}/command/abort:
+    parameters:
+    - $ref: '#/components/parameters/Name'
+    post:
+      tags:
+      - Projections
+      operationId: abortProjection
+      summary: Abort a projection
+      responses:
+        '200':
+          $ref: '#/components/responses/JsonOk'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  responses:
+    Created:
+      description: Created
+      headers:
+        Location:
+          description: URI of the created resource
+          schema:
+            type: string
+    NotFound:
+      description: Not Found — the stream, event, projection, subscription or user does not exist
+      content:
+        text/plain:
+          schema:
+            type: string
+    BadRequest:
+      description: Bad Request — the request was malformed or violated an expected version
+      content:
+        text/plain:
+          schema:
+            type: string
+    Unauthorized:
+      description: Unauthorized — credentials were missing, invalid, or lacked ACL permission
+      content:
+        text/plain:
+          schema:
+            type: string
+    JsonOk:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+  parameters:
+    Name:
+      name: name
+      in: path
+      required: true
+      description: Name of the projection
+      schema:
+        type: string
+    ProjectionName:
+      name: name
+      in: query
+      description: Name to give the projection
+      schema:
+        type: string
+    Partition:
+      name: partition
+      in: query
+      description: Partition of a partitioned projection to read
+      schema:
+        type: string
+  schemas:
+    ProjectionConfig:
+      type: object
+      description: Runtime configuration of a projection
+      properties:
+        emitEnabled:
+          type: boolean
+        trackEmittedStreams:
+          type: boolean
+        checkpointAfterMs:
+          type: integer
+        checkpointHandledThreshold:
+          type: integer
+        checkpointUnhandledBytesThreshold:
+          type: integer
+        pendingEventsThreshold:
+          type: integer
+        maxWriteBatchLength:
+          type: integer
+  requestBodies:
+    ProjectionQuery:
+      required: true
+      description: The projection definition, as JavaScript
+      content:
+        application/json:
+          schema:
+            type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: KurrentDB supports HTTP Basic authentication for the HTTP API, with access control lists (ACLs) applied per stream. See https://docs.kurrent.io/server/v26.1/http-api/security.html
+externalDocs:
+  description: KurrentDB HTTP API documentation
+  url: https://docs.kurrent.io/server/v26.1/http-api/introduction.html

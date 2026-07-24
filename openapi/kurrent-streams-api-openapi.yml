@@ -1,0 +1,473 @@
+openapi: 3.1.0
+info:
+  title: KurrentDB HTTP Admin Streams API
+  version: v26.1
+  summary: AtomPub-over-HTTP interface to KurrentDB streams, subscriptions, projections, users and node administration.
+  description: KurrentDB (formerly EventStoreDB) exposes a native AtomPub-over-HTTP interface alongside its primary gRPC protocol. This OpenAPI description is an API Evangelist transcription of the provider's published HTTP API Reference at https://docs.kurrent.io/server/v26.1/http-api/api.html — Kurrent does not publish an OpenAPI document of its own. Paths, methods, custom headers, media types and status codes are taken from that reference; nothing has been invented. The base URL is the address of your own KurrentDB node or Kurrent Cloud cluster (the same URL you use for the admin UI), which listens on port 2113 by default.
+  contact:
+    name: Kurrent
+    url: https://www.kurrent.io/
+  license:
+    name: Kurrent License
+    url: https://www.kurrent.io/terms-of-use
+  x-apievangelist-provenance:
+    generated: '2026-07-19'
+    method: generated
+    source: https://docs.kurrent.io/server/v26.1/http-api/api.html
+    note: Faithful transcription of the provider's published HTTP API reference table. Operation summaries mirror the reference; request/response schemas are intentionally left open where the provider does not publish them.
+servers:
+- url: https://{host}:{port}
+  description: Your KurrentDB node or Kurrent Cloud cluster
+  variables:
+    host:
+      default: localhost
+      description: Hostname of the KurrentDB node (the same host you use for the admin UI)
+    port:
+      default: '2113'
+      description: KurrentDB HTTP port
+security:
+- basicAuth: []
+tags:
+- name: Streams
+  description: Append to, read from and manage event streams
+paths:
+  /streams/{stream}:
+    parameters:
+    - $ref: '#/components/parameters/Stream'
+    get:
+      tags:
+      - Streams
+      operationId: readStream
+      summary: Read events from a stream
+      parameters:
+      - $ref: '#/components/parameters/RequireLeader'
+      responses:
+        '200':
+          $ref: '#/components/responses/StreamFeed'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      tags:
+      - Streams
+      operationId: appendToStream
+      summary: Append one or more events to a stream
+      parameters:
+      - $ref: '#/components/parameters/ExpectedVersion'
+      - $ref: '#/components/parameters/EventType'
+      - $ref: '#/components/parameters/EventId'
+      - $ref: '#/components/parameters/RequireLeader'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventBatch'
+          application/vnd.kurrent.events+json:
+            schema:
+              $ref: '#/components/schemas/EventBatch'
+      responses:
+        '201':
+          $ref: '#/components/responses/Created'
+        '307':
+          description: Temporary Redirect — the request must be forwarded to the leader node
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    delete:
+      tags:
+      - Streams
+      operationId: deleteStream
+      summary: Delete a stream
+      parameters:
+      - $ref: '#/components/parameters/ExpectedVersion'
+      - $ref: '#/components/parameters/RequireLeader'
+      responses:
+        '204':
+          description: No Content — the stream was deleted
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /streams/{stream}/incoming/{guid}:
+    parameters:
+    - $ref: '#/components/parameters/Stream'
+    - name: guid
+      in: path
+      required: true
+      description: Client-generated event id, used as the idempotency key for this append
+      schema:
+        type: string
+        format: uuid
+    post:
+      tags:
+      - Streams
+      operationId: appendEventToStreamIdempotent
+      summary: Append a single event using a client-supplied event id (idempotent append URL)
+      parameters:
+      - $ref: '#/components/parameters/ExpectedVersion'
+      - $ref: '#/components/parameters/EventType'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: The event body
+      responses:
+        '201':
+          $ref: '#/components/responses/Created'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /streams/{stream}/metadata:
+    parameters:
+    - $ref: '#/components/parameters/Stream'
+    get:
+      tags:
+      - Streams
+      operationId: readStreamMetadata
+      summary: Read the metadata of a stream
+      responses:
+        '200':
+          $ref: '#/components/responses/JsonOk'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      tags:
+      - Streams
+      operationId: updateStreamMetadata
+      summary: Update the metadata of a stream
+      parameters:
+      - $ref: '#/components/parameters/ExpectedVersion'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StreamMetadata'
+      responses:
+        '201':
+          $ref: '#/components/responses/Created'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /streams/{stream}/{event}:
+    parameters:
+    - $ref: '#/components/parameters/Stream'
+    - $ref: '#/components/parameters/EventNumber'
+    get:
+      tags:
+      - Streams
+      operationId: readEvent
+      summary: Read a single event from a stream
+      responses:
+        '200':
+          $ref: '#/components/responses/JsonOk'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /streams/{stream}/{event}/{count}:
+    parameters:
+    - $ref: '#/components/parameters/Stream'
+    - $ref: '#/components/parameters/EventNumber'
+    - $ref: '#/components/parameters/Count'
+    get:
+      tags:
+      - Streams
+      operationId: readEvents
+      summary: Read a page of events from a stream starting at an event number
+      responses:
+        '200':
+          $ref: '#/components/responses/StreamFeed'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /streams/{stream}/{event}/backward/{count}:
+    parameters:
+    - $ref: '#/components/parameters/Stream'
+    - $ref: '#/components/parameters/EventNumber'
+    - $ref: '#/components/parameters/Count'
+    get:
+      tags:
+      - Streams
+      operationId: readEventsBackward
+      summary: Page backward through a stream from an event number
+      responses:
+        '200':
+          $ref: '#/components/responses/StreamFeed'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /streams/{stream}/{event}/forward/{count}:
+    parameters:
+    - $ref: '#/components/parameters/Stream'
+    - $ref: '#/components/parameters/EventNumber'
+    - $ref: '#/components/parameters/Count'
+    get:
+      tags:
+      - Streams
+      operationId: readEventsForward
+      summary: Page forward through a stream from an event number
+      responses:
+        '200':
+          $ref: '#/components/responses/StreamFeed'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /streams/$all:
+    get:
+      tags:
+      - Streams
+      operationId: readAllStream
+      summary: Read events from the $all stream
+      parameters:
+      - $ref: '#/components/parameters/RequireLeader'
+      responses:
+        '200':
+          $ref: '#/components/responses/StreamFeed'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    AtomFeed:
+      type: object
+      description: An AtomPub feed of events from a stream
+      properties:
+        title:
+          type: string
+        id:
+          type: string
+        updated:
+          type: string
+          format: date-time
+        streamId:
+          type: string
+        author:
+          type: object
+          properties:
+            name:
+              type: string
+        headOfStream:
+          type: boolean
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/AtomLink'
+        entries:
+          type: array
+          items:
+            $ref: '#/components/schemas/AtomEntry'
+    AtomEntry:
+      type: object
+      description: A single event entry in an AtomPub feed
+      properties:
+        eventId:
+          type: string
+          format: uuid
+        eventType:
+          type: string
+        eventNumber:
+          type: integer
+        streamId:
+          type: string
+        isJson:
+          type: boolean
+        isMetaData:
+          type: boolean
+        isLinkMetaData:
+          type: boolean
+        positionEventNumber:
+          type: integer
+        positionStreamId:
+          type: string
+        title:
+          type: string
+        id:
+          type: string
+        updated:
+          type: string
+          format: date-time
+        data:
+          description: The event payload
+        metaData:
+          description: The event metadata
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/AtomLink'
+    StreamAcl:
+      type: object
+      description: Access control list applied to a stream
+      properties:
+        $r:
+          description: Users or groups allowed to read
+        $w:
+          description: Users or groups allowed to write
+        $d:
+          description: Users or groups allowed to delete
+        $mr:
+          description: Users or groups allowed to read metadata
+        $mw:
+          description: Users or groups allowed to write metadata
+    Event:
+      type: object
+      description: A single event written to a KurrentDB stream
+      properties:
+        eventId:
+          type: string
+          format: uuid
+          description: Client-generated unique identifier for the event; makes the append idempotent
+        eventType:
+          type: string
+          description: The type name of the event
+        data:
+          description: The event payload
+        metadata:
+          description: Optional event metadata
+      required:
+      - eventId
+      - eventType
+      - data
+    EventBatch:
+      type: array
+      description: One or more events to append to a stream
+      items:
+        $ref: '#/components/schemas/Event'
+    AtomLink:
+      type: object
+      description: A navigation link in an AtomPub feed (first, last, previous, next, metadata)
+      properties:
+        uri:
+          type: string
+        relation:
+          type: string
+    StreamMetadata:
+      type: object
+      description: Metadata controlling the retention and access of a stream
+      properties:
+        $maxCount:
+          type: integer
+          description: Maximum number of events retained in the stream
+        $maxAge:
+          type: integer
+          description: Maximum age in seconds of events retained in the stream
+        $cacheControl:
+          type: integer
+          description: Cache control in seconds for the stream head
+        $tb:
+          type: integer
+          description: Truncate-before event number
+        $acl:
+          $ref: '#/components/schemas/StreamAcl'
+  responses:
+    BadRequest:
+      description: Bad Request — the request was malformed or violated an expected version
+      content:
+        text/plain:
+          schema:
+            type: string
+    NotFound:
+      description: Not Found — the stream, event, projection, subscription or user does not exist
+      content:
+        text/plain:
+          schema:
+            type: string
+    StreamFeed:
+      description: OK — an AtomPub feed of events
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AtomFeed'
+        application/atom+xml:
+          schema:
+            type: string
+        application/xml:
+          schema:
+            type: string
+    JsonOk:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+    Created:
+      description: Created
+      headers:
+        Location:
+          description: URI of the created resource
+          schema:
+            type: string
+    Unauthorized:
+      description: Unauthorized — credentials were missing, invalid, or lacked ACL permission
+      content:
+        text/plain:
+          schema:
+            type: string
+  parameters:
+    ExpectedVersion:
+      name: Kurrent-ExpectedVersion
+      in: header
+      description: The version the stream is expected to be at, used for optimistic concurrency control
+      schema:
+        type: integer
+    RequireLeader:
+      name: Kurrent-RequireLeader
+      in: header
+      description: Require that the request is served by the leader node rather than a follower
+      schema:
+        type: boolean
+    Stream:
+      name: stream
+      in: path
+      required: true
+      description: Name of the event stream
+      schema:
+        type: string
+    Count:
+      name: count
+      in: path
+      required: true
+      description: Number of events to return
+      schema:
+        type: integer
+    EventType:
+      name: Kurrent-EventType
+      in: header
+      description: The event type of the posted body
+      schema:
+        type: string
+    EventNumber:
+      name: event
+      in: path
+      required: true
+      description: Event number within the stream, or "head" for the latest event
+      schema:
+        type: string
+    EventId:
+      name: Kurrent-EventId
+      in: header
+      description: The unique identifier of the posted event. Supplying it makes the append idempotent — a repeated append with the same id is not written twice.
+      schema:
+        type: string
+        format: uuid
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: KurrentDB supports HTTP Basic authentication for the HTTP API, with access control lists (ACLs) applied per stream. See https://docs.kurrent.io/server/v26.1/http-api/security.html
+externalDocs:
+  description: KurrentDB HTTP API documentation
+  url: https://docs.kurrent.io/server/v26.1/http-api/introduction.html

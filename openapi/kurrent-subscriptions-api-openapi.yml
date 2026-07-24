@@ -1,0 +1,342 @@
+openapi: 3.1.0
+info:
+  title: KurrentDB HTTP Admin Subscriptions API
+  version: v26.1
+  summary: AtomPub-over-HTTP interface to KurrentDB streams, subscriptions, projections, users and node administration.
+  description: KurrentDB (formerly EventStoreDB) exposes a native AtomPub-over-HTTP interface alongside its primary gRPC protocol. This OpenAPI description is an API Evangelist transcription of the provider's published HTTP API Reference at https://docs.kurrent.io/server/v26.1/http-api/api.html — Kurrent does not publish an OpenAPI document of its own. Paths, methods, custom headers, media types and status codes are taken from that reference; nothing has been invented. The base URL is the address of your own KurrentDB node or Kurrent Cloud cluster (the same URL you use for the admin UI), which listens on port 2113 by default.
+  contact:
+    name: Kurrent
+    url: https://www.kurrent.io/
+  license:
+    name: Kurrent License
+    url: https://www.kurrent.io/terms-of-use
+  x-apievangelist-provenance:
+    generated: '2026-07-19'
+    method: generated
+    source: https://docs.kurrent.io/server/v26.1/http-api/api.html
+    note: Faithful transcription of the provider's published HTTP API reference table. Operation summaries mirror the reference; request/response schemas are intentionally left open where the provider does not publish them.
+servers:
+- url: https://{host}:{port}
+  description: Your KurrentDB node or Kurrent Cloud cluster
+  variables:
+    host:
+      default: localhost
+      description: Hostname of the KurrentDB node (the same host you use for the admin UI)
+    port:
+      default: '2113'
+      description: KurrentDB HTTP port
+security:
+- basicAuth: []
+tags:
+- name: Subscriptions
+  description: Persistent (competing consumer) subscription management and consumption
+paths:
+  /subscriptions:
+    get:
+      tags:
+      - Subscriptions
+      operationId: listSubscriptions
+      summary: List all persistent subscriptions
+      responses:
+        '200':
+          $ref: '#/components/responses/JsonOk'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /subscriptions/{stream}:
+    parameters:
+    - $ref: '#/components/parameters/Stream'
+    get:
+      tags:
+      - Subscriptions
+      operationId: listSubscriptionsForStream
+      summary: List the persistent subscriptions on a stream
+      responses:
+        '200':
+          $ref: '#/components/responses/JsonOk'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /subscriptions/{stream}/{subscription}:
+    parameters:
+    - $ref: '#/components/parameters/Stream'
+    - $ref: '#/components/parameters/Subscription'
+    get:
+      tags:
+      - Subscriptions
+      operationId: readSubscription
+      summary: Read events from a persistent subscription
+      responses:
+        '200':
+          $ref: '#/components/responses/JsonOk'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    put:
+      tags:
+      - Subscriptions
+      operationId: createSubscription
+      summary: Create a persistent subscription
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PersistentSubscriptionSettings'
+      responses:
+        '201':
+          $ref: '#/components/responses/Created'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      tags:
+      - Subscriptions
+      operationId: updateSubscription
+      summary: Update a persistent subscription
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PersistentSubscriptionSettings'
+      responses:
+        '200':
+          $ref: '#/components/responses/JsonOk'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    delete:
+      tags:
+      - Subscriptions
+      operationId: deleteSubscription
+      summary: Delete a persistent subscription
+      responses:
+        '200':
+          $ref: '#/components/responses/JsonOk'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /subscriptions/{stream}/{subscription}/info:
+    parameters:
+    - $ref: '#/components/parameters/Stream'
+    - $ref: '#/components/parameters/Subscription'
+    get:
+      tags:
+      - Subscriptions
+      operationId: getSubscriptionInfo
+      summary: Get details of a persistent subscription
+      responses:
+        '200':
+          $ref: '#/components/responses/JsonOk'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /subscriptions/{stream}/{subscription}/{count}:
+    parameters:
+    - $ref: '#/components/parameters/Stream'
+    - $ref: '#/components/parameters/Subscription'
+    - $ref: '#/components/parameters/Count'
+    get:
+      tags:
+      - Subscriptions
+      operationId: readSubscriptionEvents
+      summary: Read a number of events from a persistent subscription
+      responses:
+        '200':
+          $ref: '#/components/responses/JsonOk'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /subscriptions/{stream}/{subscription}/ack:
+    parameters:
+    - $ref: '#/components/parameters/Stream'
+    - $ref: '#/components/parameters/Subscription'
+    post:
+      tags:
+      - Subscriptions
+      operationId: ackMessages
+      summary: Acknowledge a set of messages
+      parameters:
+      - name: ids
+        in: query
+        required: true
+        description: Comma-separated list of message ids to acknowledge
+        schema:
+          type: string
+      responses:
+        '200':
+          $ref: '#/components/responses/JsonOk'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /subscriptions/{stream}/{subscription}/ack/{messageid}:
+    parameters:
+    - $ref: '#/components/parameters/Stream'
+    - $ref: '#/components/parameters/Subscription'
+    - $ref: '#/components/parameters/MessageId'
+    post:
+      tags:
+      - Subscriptions
+      operationId: ackMessage
+      summary: Acknowledge a single message
+      responses:
+        '200':
+          $ref: '#/components/responses/JsonOk'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /subscriptions/{stream}/{subscription}/nack:
+    parameters:
+    - $ref: '#/components/parameters/Stream'
+    - $ref: '#/components/parameters/Subscription'
+    post:
+      tags:
+      - Subscriptions
+      operationId: nackMessages
+      summary: Negatively acknowledge a set of messages
+      parameters:
+      - name: ids
+        in: query
+        required: true
+        description: Comma-separated list of message ids to negatively acknowledge
+        schema:
+          type: string
+      - $ref: '#/components/parameters/NackAction'
+      responses:
+        '200':
+          $ref: '#/components/responses/JsonOk'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /subscriptions/{stream}/{subscription}/nack/{messageid}:
+    parameters:
+    - $ref: '#/components/parameters/Stream'
+    - $ref: '#/components/parameters/Subscription'
+    - $ref: '#/components/parameters/MessageId'
+    post:
+      tags:
+      - Subscriptions
+      operationId: nackMessage
+      summary: Negatively acknowledge a single message
+      parameters:
+      - $ref: '#/components/parameters/NackAction'
+      responses:
+        '200':
+          $ref: '#/components/responses/JsonOk'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /subscriptions/{stream}/{subscription}/replayParked:
+    parameters:
+    - $ref: '#/components/parameters/Stream'
+    - $ref: '#/components/parameters/Subscription'
+    post:
+      tags:
+      - Subscriptions
+      operationId: replayParkedMessages
+      summary: Replay the parked messages of a persistent subscription
+      responses:
+        '200':
+          $ref: '#/components/responses/JsonOk'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  responses:
+    Created:
+      description: Created
+      headers:
+        Location:
+          description: URI of the created resource
+          schema:
+            type: string
+    BadRequest:
+      description: Bad Request — the request was malformed or violated an expected version
+      content:
+        text/plain:
+          schema:
+            type: string
+    Unauthorized:
+      description: Unauthorized — credentials were missing, invalid, or lacked ACL permission
+      content:
+        text/plain:
+          schema:
+            type: string
+    JsonOk:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+  parameters:
+    NackAction:
+      name: action
+      in: query
+      description: What the server should do with the negatively acknowledged message
+      schema:
+        type: string
+        enum:
+        - Park
+        - Retry
+        - Skip
+        - Stop
+    Subscription:
+      name: subscription
+      in: path
+      required: true
+      description: Name of the persistent subscription group
+      schema:
+        type: string
+    MessageId:
+      name: messageid
+      in: path
+      required: true
+      description: Identifier of the message to acknowledge
+      schema:
+        type: string
+        format: uuid
+    Stream:
+      name: stream
+      in: path
+      required: true
+      description: Name of the event stream
+      schema:
+        type: string
+    Count:
+      name: count
+      in: path
+      required: true
+      description: Number of events to return
+      schema:
+        type: integer
+  schemas:
+    PersistentSubscriptionSettings:
+      type: object
+      description: Settings of a persistent (competing consumer) subscription
+      properties:
+        resolveLinktos:
+          type: boolean
+        startFrom:
+          type: integer
+        extraStatistics:
+          type: boolean
+        checkPointAfterMilliseconds:
+          type: integer
+        liveBufferSize:
+          type: integer
+        readBatchSize:
+          type: integer
+        bufferSize:
+          type: integer
+        maxCheckPointCount:
+          type: integer
+        maxRetryCount:
+          type: integer
+        maxSubscriberCount:
+          type: integer
+        messageTimeoutMilliseconds:
+          type: integer
+        minCheckPointCount:
+          type: integer
+        namedConsumerStrategy:
+          type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: KurrentDB supports HTTP Basic authentication for the HTTP API, with access control lists (ACLs) applied per stream. See https://docs.kurrent.io/server/v26.1/http-api/security.html
+externalDocs:
+  description: KurrentDB HTTP API documentation
+  url: https://docs.kurrent.io/server/v26.1/http-api/introduction.html
