@@ -1,26 +1,305 @@
 aid: kurrent
 name: Kurrent
-description: 'Kurrent is a company surfaced as a portfolio company of creandum and added to the API Evangelist
-  network as a stub for enrichment. Sector: other. This profile is a lead awaiting the enrichment pipeline.'
+description: >-
+  Kurrent — formerly Event Store Ltd — builds KurrentDB, an event-native database purpose-built to
+  store, process and deliver application state changes as an immutable, append-only log of events.
+  Where a traditional CRUD database overwrites rows and discards the history that produced them,
+  KurrentDB retains every state change as a first-class event, giving applications a complete audit
+  trail, temporal queries and the ability to replay history to rebuild state or seed new read
+  models. The product line spans KurrentDB (open-source and commercial, self-hosted), Kurrent Cloud
+  (managed clusters on AWS, Azure and Google Cloud), Kurrent Enterprise, and Capacitor, a shared
+  memory layer for agentic coding. Developers integrate over a primary gRPC protocol with official
+  client SDKs for .NET, Java, Node.js, Python, Go and Rust, or over the native AtomPub-style HTTP
+  API. Connectors move events in and out of Kafka, MongoDB, Elasticsearch, RabbitMQ, Pulsar, SQL and
+  HTTP endpoints. KurrentDB is widely used for event sourcing, CQRS, event-driven microservices,
+  change data capture and, increasingly, as durable memory for AI agents.
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://www.kurrent.io/favicon.ico
 url: https://raw.githubusercontent.com/api-evangelist/kurrent/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - creandum
-x-tier: stub
-x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
 tags:
 - Company
-- Other
-apis: []
+- Database
+- Event Sourcing
+- Event Streaming
+- Event Driven Architecture
+- CQRS
+- Data Infrastructure
+- Developer Tools
+- Cloud
+- Open Source
+- gRPC
+- Agentic AI
+apis:
+- aid: kurrent:kurrentdb-grpc-api
+  name: KurrentDB gRPC API
+  description: >-
+    The primary protocol for KurrentDB. The published protocol buffer definitions cover the v2 streams
+    service (multi-stream appends, reads), the schema registry service, the secondary index service, and
+    the shared RPC error model. Every official client SDK — .NET, Java, Node.js, Python, Go and Rust —
+    is generated against these contracts.
+  humanURL: https://docs.kurrent.io/clients/
+  baseURL: https://github.com/kurrent-io/KurrentDB/tree/master/proto
+  tags:
+  - gRPC
+  - Protobuf
+  - Streams
+  - Schema Registry
+  - Database
+  properties:
+  - type: Protobuf
+    url: grpc/kurrent-streams.proto
+  - type: Protobuf
+    url: grpc/kurrent-rpc.proto
+  - type: Documentation
+    url: https://docs.kurrent.io/clients/
+- aid: kurrent:kurrent-admin-api
+  name: Kurrent Admin API
+  description: Node administration operations
+  humanURL: https://docs.kurrent.io/server/v26.1/http-api/introduction.html
+  baseURL: https://docs.kurrent.io/server/v26.1/http-api/api.html
+  tags:
+  - Admin
+  properties:
+  - type: OpenAPI
+    url: openapi/kurrent-admin-api-openapi.yml
+  - type: Documentation
+    url: https://docs.kurrent.io/server/v26.1/http-api/introduction.html
+  - type: APIReference
+    url: https://docs.kurrent.io/server/v26.1/http-api/api.html
+  - type: Authentication
+    url: https://docs.kurrent.io/server/v26.1/http-api/security.html
+- aid: kurrent:kurrent-gossip-api
+  name: Kurrent Gossip API
+  description: Cluster gossip
+  humanURL: https://docs.kurrent.io/server/v26.1/http-api/introduction.html
+  baseURL: https://docs.kurrent.io/server/v26.1/http-api/api.html
+  tags:
+  - Gossip
+  properties:
+  - type: OpenAPI
+    url: openapi/kurrent-gossip-api-openapi.yml
+  - type: Documentation
+    url: https://docs.kurrent.io/server/v26.1/http-api/introduction.html
+  - type: APIReference
+    url: https://docs.kurrent.io/server/v26.1/http-api/api.html
+  - type: Authentication
+    url: https://docs.kurrent.io/server/v26.1/http-api/security.html
+- aid: kurrent:kurrent-info-api
+  name: Kurrent Info API
+  description: Node information and configuration
+  humanURL: https://docs.kurrent.io/server/v26.1/http-api/introduction.html
+  baseURL: https://docs.kurrent.io/server/v26.1/http-api/api.html
+  tags:
+  - Info
+  properties:
+  - type: OpenAPI
+    url: openapi/kurrent-info-api-openapi.yml
+  - type: Documentation
+    url: https://docs.kurrent.io/server/v26.1/http-api/introduction.html
+  - type: APIReference
+    url: https://docs.kurrent.io/server/v26.1/http-api/api.html
+  - type: Authentication
+    url: https://docs.kurrent.io/server/v26.1/http-api/security.html
+- aid: kurrent:kurrent-projections-api
+  name: Kurrent Projections API
+  description: Create, manage and query projections
+  humanURL: https://docs.kurrent.io/server/v26.1/http-api/introduction.html
+  baseURL: https://docs.kurrent.io/server/v26.1/http-api/api.html
+  tags:
+  - Projections
+  properties:
+  - type: OpenAPI
+    url: openapi/kurrent-projections-api-openapi.yml
+  - type: Documentation
+    url: https://docs.kurrent.io/server/v26.1/http-api/introduction.html
+  - type: APIReference
+    url: https://docs.kurrent.io/server/v26.1/http-api/api.html
+  - type: Authentication
+    url: https://docs.kurrent.io/server/v26.1/http-api/security.html
+- aid: kurrent:kurrent-statistics-api
+  name: Kurrent Statistics API
+  description: Node statistics
+  humanURL: https://docs.kurrent.io/server/v26.1/http-api/introduction.html
+  baseURL: https://docs.kurrent.io/server/v26.1/http-api/api.html
+  tags:
+  - Statistics
+  properties:
+  - type: OpenAPI
+    url: openapi/kurrent-statistics-api-openapi.yml
+  - type: Documentation
+    url: https://docs.kurrent.io/server/v26.1/http-api/introduction.html
+  - type: APIReference
+    url: https://docs.kurrent.io/server/v26.1/http-api/api.html
+  - type: Authentication
+    url: https://docs.kurrent.io/server/v26.1/http-api/security.html
+- aid: kurrent:kurrent-streams-api
+  name: Kurrent Streams API
+  description: Append to, read from and manage event streams
+  humanURL: https://docs.kurrent.io/server/v26.1/http-api/introduction.html
+  baseURL: https://docs.kurrent.io/server/v26.1/http-api/api.html
+  tags:
+  - Streams
+  properties:
+  - type: OpenAPI
+    url: openapi/kurrent-streams-api-openapi.yml
+  - type: Documentation
+    url: https://docs.kurrent.io/server/v26.1/http-api/introduction.html
+  - type: APIReference
+    url: https://docs.kurrent.io/server/v26.1/http-api/api.html
+  - type: Authentication
+    url: https://docs.kurrent.io/server/v26.1/http-api/security.html
+- aid: kurrent:kurrent-subscriptions-api
+  name: Kurrent Subscriptions API
+  description: Persistent (competing consumer) subscription management and consumption
+  humanURL: https://docs.kurrent.io/server/v26.1/http-api/introduction.html
+  baseURL: https://docs.kurrent.io/server/v26.1/http-api/api.html
+  tags:
+  - Subscriptions
+  properties:
+  - type: OpenAPI
+    url: openapi/kurrent-subscriptions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.kurrent.io/server/v26.1/http-api/introduction.html
+  - type: APIReference
+    url: https://docs.kurrent.io/server/v26.1/http-api/api.html
+  - type: Authentication
+    url: https://docs.kurrent.io/server/v26.1/http-api/security.html
+- aid: kurrent:kurrent-users-api
+  name: Kurrent Users API
+  description: User account management
+  humanURL: https://docs.kurrent.io/server/v26.1/http-api/introduction.html
+  baseURL: https://docs.kurrent.io/server/v26.1/http-api/api.html
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/kurrent-users-api-openapi.yml
+  - type: Documentation
+    url: https://docs.kurrent.io/server/v26.1/http-api/introduction.html
+  - type: APIReference
+    url: https://docs.kurrent.io/server/v26.1/http-api/api.html
+  - type: Authentication
+    url: https://docs.kurrent.io/server/v26.1/http-api/security.html
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/kurrent/overview
 - type: Website
   url: https://www.kurrent.io/
+- type: DeveloperPortal
+  url: https://docs.kurrent.io/dev-center/
+- type: Documentation
+  url: https://docs.kurrent.io/
+- type: APIReference
+  url: https://docs.kurrent.io/server/v26.1/http-api/api.html
+- type: GettingStarted
+  url: https://docs.kurrent.io/getting-started/quickstart/
+- type: Support
+  url: https://eventstore.freshdesk.com/support/login
+- type: HelpCenter
+  url: https://discuss.kurrent.io/
+- type: Blog
+  url: https://www.kurrent.io/blog
+- type: BlogRSS
+  url: https://www.kurrent.io/rss.xml
+- type: GitHubOrganization
+  url: https://github.com/kurrent-io
+- type: Pricing
+  url: https://www.kurrent.io/pricing
+- type: SignUp
+  url: https://identity.eventstore.com/login
+- type: Login
+  url: https://console.kurrent.cloud/
+- type: TermsOfService
+  url: https://www.kurrent.io/terms-of-use
+- type: PrivacyPolicy
+  url: https://www.kurrent.io/privacy-policy
+- type: StatusPage
+  url: https://status.eventstore.cloud/
+- type: ChangeLog
+  url: https://www.kurrent.io/releases
+- type: Discord
+  url: https://discord.gg/Phn9pmCw3t
+- type: YouTube
+  url: https://www.youtube.com/@Kurrent_io
+- type: Training
+  url: https://academy.kurrent.io
+- type: Packages
+  url: packages/kurrent-packages.yml
+- type: SDKs
+  url: packages/kurrent-packages.yml
+- type: CLI
+  url: cli/kurrent-cli.yml
+- type: MCPServer
+  url: mcp/kurrent-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: LLMsTxt
+  url: llms/kurrent-llms.txt
+- type: WellKnown
+  url: well-known/kurrent-well-known.yml
+- type: Authentication
+  url: authentication/kurrent-authentication.yml
+- type: OAuthScopes
+  url: scopes/kurrent-scopes.yml
+- type: Conventions
+  url: conventions/kurrent-conventions.yml
+- type: Idempotency
+  url: conventions/kurrent-conventions.yml
+- type: ErrorCatalog
+  url: errors/kurrent-problem-types.yml
+- type: ErrorCatalog
+  url: errors/kurrent-error-codes.yml
+- type: Sandbox
+  url: sandbox/kurrent-sandbox.yml
+- type: Conformance
+  url: conformance/kurrent-conformance.yml
+- type: Lifecycle
+  url: lifecycle/kurrent-lifecycle.yml
+- type: Deprecation
+  url: lifecycle/kurrent-lifecycle.yml
+- type: ChangeLog
+  url: changelog/kurrent-changelog.yml
+- type: DataModel
+  url: data-model/kurrent-data-model.yml
+- type: Webhooks
+  url: asyncapi/kurrent-connectors-webhooks.yml
+- type: TrustCenter
+  url: https://trust.kurrent.io/
+- type: TrustCenter
+  url: security/kurrent-trust-center.yml
+- type: DomainSecurity
+  url: security/kurrent-domain-security.yml
+- type: Protobuf
+  url: grpc/kurrent-streams.proto
+- type: Overlay
+  url: overlays/kurrent-kurrentdb-http-api-overlay.yaml
+- type: OpenAPI
+  url: openapi/kurrent-kurrentdb-http-api-openapi.yml
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence
