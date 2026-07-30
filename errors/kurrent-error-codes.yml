@@ -1,0 +1,82 @@
+generated: '2026-07-19'
+method: derived
+source: grpc/kurrent-rpc-errors.proto, grpc/kurrent-streams-errors.proto
+searched: https://github.com/kurrent-io/KurrentDB/tree/master/proto
+notes: >-
+  KurrentDB's primary protocol is gRPC, and it is on the gRPC side that Kurrent publishes a real,
+  typed error registry rather than bare HTTP status codes. Every error is returned as a gRPC status
+  carrying a strongly-typed details message, so a client can branch on the specific condition — a
+  revision conflict, a tombstoned stream, an oversized append — instead of parsing prose. The
+  entries below are derived verbatim from the published protobuf definitions captured in grpc/.
+envelope:
+  transport: grpc-status-details
+  detail: >-
+    Errors are returned as a gRPC status whose details carry one of the ErrorDetails messages
+    below. Server-level conditions additionally carry a ServerError enum value.
+server_errors:
+- code: SERVER_ERROR_ACCESS_DENIED
+  value: 1
+  meaning: The caller is not authorized for the requested operation.
+  details_message: AccessDeniedErrorDetails
+  action: Check the credentials and the stream ACL or authorization policy.
+- code: SERVER_ERROR_BAD_REQUEST
+  value: 2
+  meaning: The request was malformed or invalid.
+  action: Correct the request before retrying; retrying unchanged will not succeed.
+- code: SERVER_ERROR_NOT_LEADER_NODE
+  value: 5
+  meaning: The operation requires the cluster leader and this node is not it.
+  details_message: NotLeaderNodeErrorDetails
+  action: Reconnect to the leader indicated in the NodeInfo details, or set node preference to leader.
+- code: SERVER_ERROR_OPERATION_TIMEOUT
+  value: 6
+  meaning: The operation did not complete within the server's timeout.
+  action: Retry. Appends are safe to retry because the client-supplied event id makes them idempotent.
+- code: SERVER_ERROR_SERVER_NOT_READY
+  value: 7
+  meaning: The node is starting up and cannot yet serve the request.
+  action: Back off and retry.
+- code: SERVER_ERROR_SERVER_OVERLOADED
+  value: 8
+  meaning: The node is shedding load.
+  action: Back off with jitter and retry; consider resizing the cluster if persistent.
+- code: SERVER_ERROR_SERVER_MALFUNCTION
+  value: 9
+  meaning: An unexpected server-side fault occurred.
+  action: Retry, then escalate to Kurrent support with the node logs.
+- code: SERVER_ERROR_SERVER_SHUTTING_DOWN
+  value: 10
+  meaning: The node is shutting down.
+  action: Reconnect; in a cluster, discovery routes to a surviving node.
+stream_errors:
+- code: StreamNotFoundErrorDetails
+  meaning: The requested stream does not exist.
+  action: Verify the stream name, or treat as an empty stream if reading optimistically.
+- code: StreamAlreadyExistsErrorDetails
+  meaning: The stream already exists where the operation required it not to.
+  action: Re-evaluate the expected stream state before appending.
+- code: StreamDeletedErrorDetails
+  meaning: The stream has been soft-deleted.
+  action: A soft-deleted stream can be appended to again, which recreates it.
+- code: StreamTombstonedErrorDetails
+  meaning: The stream has been hard-deleted (tombstoned) and can never be reused.
+  action: Write to a new stream name; a tombstoned stream is permanent.
+- code: StreamRevisionConflictErrorDetails
+  meaning: The stream's actual revision did not match the expected revision supplied by the client.
+  action: >-
+    This is the optimistic-concurrency failure. Re-read the stream from the expected revision,
+    re-apply the business decision to the newer events, and retry.
+- code: AppendRecordSizeExceededErrorDetails
+  meaning: A single record in the append exceeded the maximum permitted size.
+  action: Reduce the event payload, or store the payload externally and event a reference to it.
+- code: AppendTransactionSizeExceededErrorDetails
+  meaning: The append transaction as a whole exceeded the maximum permitted size.
+  action: Split the append into smaller batches.
+- code: StreamAlreadyInAppendSessionErrorDetails
+  meaning: The stream is already participating in an open append session.
+  action: Complete or abandon the existing session before starting another.
+- code: AppendConsistencyViolationErrorDetails
+  meaning: >-
+    A multi-stream append violated a consistency constraint. Carries ConsistencyViolation and
+    StreamStateViolation detail messages identifying which stream and which constraint failed.
+  action: Inspect the violation details and correct the expected state for the offending stream.

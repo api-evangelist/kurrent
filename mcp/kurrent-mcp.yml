@@ -1,0 +1,61 @@
+generated: '2026-07-19'
+method: searched
+status: published
+source: https://github.com/kurrent-io/mcp-server
+server:
+  name: KurrentDB
+  description: >-
+    Official Kurrent MCP server that lets an agent explore data in KurrentDB by reading streams,
+    writing events, and building, creating, updating and testing projections.
+  transport: stdio
+  repository: https://github.com/kurrent-io/mcp-server
+  license: MIT
+  runtime: python
+  entrypoint: server.py
+  launcher: uv
+  configuration:
+  - name: KURRENTDB_CONNECTION_STRING
+    required: true
+    description: KurrentDB connection string the server connects with.
+  requirements:
+  - >-
+    KurrentDB must be started with --run-projections=all and --start-standard-projections; the
+    $streams stream is used to discover available streams.
+  - uv must be installed on the host running the server.
+  clients:
+  - Claude Desktop
+  - VS Code
+  - Cursor
+  - Windsurf
+tools:
+- name: read_stream
+  description: Read events from a named stream, forwards or backwards, up to a limit.
+  source: server.py
+- name: list_streams
+  description: List the streams available in the database, via the $streams projection.
+  source: server.py
+- name: build_projection
+  description: Build a projection definition from a natural-language prompt.
+  source: server.py
+- name: create_projection
+  description: Create a named projection from projection code.
+  source: server.py
+- name: update_projection
+  description: Update the code of an existing named projection.
+  source: server.py
+- name: test_projection
+  description: Test a named projection.
+  source: server.py
+- name: write_events_to_stream
+  description: Write an event with data, event type and metadata to a stream.
+  source: server.py
+- name: get_projections_status
+  description: Get the status of a named projection.
+  source: server.py
+related:
+- name: Kurrent Agent Skills
+  url: https://github.com/kurrent-io/skills
+  description: >-
+    Kurrent also publishes an Agent Skills plugin (Claude Code, Codex and Cursor plugin manifests)
+    covering the docs, the Capacitor CLI, connection tuning, upgrades and client/server detection.
+    Captured in skills/.

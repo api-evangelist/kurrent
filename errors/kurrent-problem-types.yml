@@ -1,0 +1,68 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/kurrent-kurrentdb-http-api-openapi.yml
+searched: https://github.com/kurrent-io/KurrentDB/tree/master/proto
+format: http-status
+notes: >-
+  KurrentDB's HTTP API does not emit RFC 9457 problem+json. Failures are carried by the HTTP status
+  code with a short plain-text body, so the catalogue below is keyed on status rather than on a
+  problem type URI. The richer, typed error model lives on the gRPC side, in the published
+  protobuf error definitions captured under grpc/ — those are listed separately at the bottom.
+problems:
+- status: 400
+  title: Bad Request
+  detail: >-
+    The request was malformed, or the append violated the version asserted in
+    Kurrent-ExpectedVersion (a write concurrency conflict).
+  remediation: >-
+    Re-read the current stream version, rebuild the decision from the newer events, and retry the
+    append with the updated expected version.
+  source_operations:
+  - openapi/kurrent-kurrentdb-http-api-openapi.yml#appendToStream
+  - openapi/kurrent-kurrentdb-http-api-openapi.yml#deleteStream
+  - openapi/kurrent-kurrentdb-http-api-openapi.yml#updateStreamMetadata
+  - openapi/kurrent-kurrentdb-http-api-openapi.yml#createSubscription
+  - openapi/kurrent-kurrentdb-http-api-openapi.yml#createContinuousProjection
+  - openapi/kurrent-kurrentdb-http-api-openapi.yml#createUser
+- status: 401
+  title: Unauthorized
+  detail: >-
+    Credentials were absent or invalid, or the authenticated user is not granted the required
+    operation by the stream ACL or the default ACL on $settings.
+  remediation: >-
+    Supply valid HTTP Basic credentials and confirm the user or group appears in the relevant $acl
+    entry ($r to read, $w to write, $d to delete, $mr/$mw for metadata).
+  applies_to: all operations
+- status: 404
+  title: Not Found
+  detail: >-
+    The stream, event, projection, persistent subscription, user or statistic path does not exist,
+    or the stream was hard-deleted.
+  remediation: >-
+    Verify the resource name. A soft-deleted stream can be written to again; a hard-deleted
+    (tombstoned) stream cannot be recreated.
+  source_operations:
+  - openapi/kurrent-kurrentdb-http-api-openapi.yml#readStream
+  - openapi/kurrent-kurrentdb-http-api-openapi.yml#readEvent
+  - openapi/kurrent-kurrentdb-http-api-openapi.yml#getProjection
+  - openapi/kurrent-kurrentdb-http-api-openapi.yml#getUser
+  - openapi/kurrent-kurrentdb-http-api-openapi.yml#getStatByPath
+- status: 307
+  title: Temporary Redirect
+  detail: >-
+    The request reached a follower node but must be served by the cluster leader.
+  remediation: >-
+    Follow the Location header, or set Kurrent-RequireLeader on the request so the node routes it
+    for you.
+  source_operations:
+  - openapi/kurrent-kurrentdb-http-api-openapi.yml#appendToStream
+grpc_error_model:
+  description: >-
+    The gRPC protocol carries structured, typed errors rather than bare status codes. The
+    definitions are published as protobuf and captured verbatim in grpc/.
+  files:
+  - file: grpc/kurrent-rpc-errors.proto
+    scope: Shared RPC error model across services
+  - file: grpc/kurrent-streams-errors.proto
+    scope: Streams service errors (append, read, delete, expected-version conflicts)
+  source: https://github.com/kurrent-io/KurrentDB/tree/master/proto

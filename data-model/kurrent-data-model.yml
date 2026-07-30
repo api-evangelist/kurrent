@@ -1,0 +1,149 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/kurrent-kurrentdb-http-api-openapi.yml
+searched: https://docs.kurrent.io/getting-started/concepts.html
+notes: >-
+  KurrentDB's data model is deliberately small. There is no rich object graph of business
+  resources; there is an append-only log of events, streams that group them, and a handful of
+  server-side constructs that read from or manage those streams. The relationships below are
+  derived from the OpenAPI schema $refs and the path structure, and named against the concepts
+  documented at https://docs.kurrent.io/getting-started/concepts.html.
+entities:
+- name: Event
+  schema: '#/components/schemas/Event'
+  description: >-
+    A factual occurrence from the past — the atomic unit of storage. Immutable once written.
+  identifier: eventId (client-generated UUID, also the idempotency key)
+  fields:
+  - eventId
+  - eventType
+  - data
+  - metadata
+  key_properties:
+  - immutable
+  - append-only
+  - typed by name, not by schema inference
+- name: Stream
+  description: >-
+    An ordered, named sequence of events, normally one per aggregate or entity instance. Streams
+    are created implicitly by the first append. System streams are prefixed with $.
+  identifier: stream name (path parameter)
+  operations:
+  - readStream
+  - appendToStream
+  - deleteStream
+  - readAllStream
+- name: StreamMetadata
+  schema: '#/components/schemas/StreamMetadata'
+  description: >-
+    Retention, caching and access configuration attached to a stream — $maxCount, $maxAge,
+    $cacheControl, $tb and $acl.
+  operations:
+  - readStreamMetadata
+  - updateStreamMetadata
+- name: StreamAcl
+  schema: '#/components/schemas/StreamAcl'
+  description: Read, write, delete and metadata permissions granted to users or groups on a stream.
+- name: AtomFeed
+  schema: '#/components/schemas/AtomFeed'
+  description: A paginated read projection of a stream, returned as an AtomPub feed.
+- name: AtomEntry
+  schema: '#/components/schemas/AtomEntry'
+  description: A single event as rendered inside an Atom feed, carrying its position and payload.
+- name: PersistentSubscription
+  schema: '#/components/schemas/PersistentSubscriptionSettings'
+  description: >-
+    A server-managed competing-consumer subscription group bound to a stream, with checkpointing,
+    retry limits, message timeouts and a consumer strategy.
+  identifier: (stream, subscription) pair
+- name: Projection
+  description: >-
+    A JavaScript query that reads events from one or more streams and maintains derived state, a
+    result, or emits events to new streams. Transient, one-time or continuous.
+  identifier: projection name
+  operations:
+  - createContinuousProjection
+  - getProjectionState
+  - getProjectionResult
+- name: ProjectionConfig
+  schema: '#/components/schemas/ProjectionConfig'
+  description: Runtime configuration of a projection — emit behaviour, checkpointing thresholds, batch sizes.
+- name: User
+  schema: '#/components/schemas/NewUser'
+  description: A database user account, optionally a member of groups, used for HTTP Basic authentication.
+  identifier: login
+- name: Node
+  description: A KurrentDB server instance; a cluster is a set of nodes with one elected leader.
+relationships:
+- from: Stream
+  to: Event
+  type: has_many
+  via: ordered append position (event number)
+- from: Event
+  to: Stream
+  type: belongs_to
+  via: streamId
+- from: Stream
+  to: StreamMetadata
+  type: has_one
+  via: /streams/{stream}/metadata
+- from: StreamMetadata
+  to: StreamAcl
+  type: has_one
+  via: $acl
+- from: Stream
+  to: AtomFeed
+  type: has_many
+  via: paginated read (event number + count + direction)
+- from: AtomFeed
+  to: AtomEntry
+  type: has_many
+  via: entries
+- from: AtomEntry
+  to: Event
+  type: has_one
+  via: eventId
+- from: Stream
+  to: PersistentSubscription
+  type: has_many
+  via: /subscriptions/{stream}/{subscription}
+- from: PersistentSubscription
+  to: PersistentSubscriptionSettings
+  type: has_one
+  via: settings body
+- from: Projection
+  to: Stream
+  type: has_many
+  via: streams read by the projection query
+- from: Projection
+  to: Stream
+  type: has_many
+  via: emitted streams (when emit is enabled)
+- from: Projection
+  to: ProjectionConfig
+  type: has_one
+  via: /projection/{name}/config
+- from: User
+  to: StreamAcl
+  type: has_many
+  via: membership in $r/$w/$d/$mr/$mw entries
+- from: Node
+  to: Stream
+  type: has_many
+  via: the node's log
+system_streams:
+- name: $all
+  description: The global stream of every event in the database, in commit order.
+- name: $streams
+  description: >-
+    Index of stream names, maintained by the standard projections. Used by the Kurrent MCP server
+    to enumerate available streams.
+- name: $settings
+  description: Holds the default ACL applied where a stream has none of its own.
+identifier_conventions:
+  event_id: Client-generated UUID; doubles as the idempotency key for appends.
+  stream_name: >-
+    Free-form string, conventionally category-dash-identifier (for example order-1234), which the
+    standard by-category projection splits on.
+  reserved_prefix: >-
+    Names beginning with $ are reserved for system streams, system events and system projections.

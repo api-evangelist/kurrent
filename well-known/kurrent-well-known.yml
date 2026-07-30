@@ -1,0 +1,40 @@
+generated: '2026-07-19'
+method: searched
+source: live probes of the Kurrent web, docs and identity hosts
+notes: >-
+  www.kurrent.io sits behind a CDN that answers every /.well-known/ path with an HTTP 522, so no
+  discovery documents are served from the marketing host. docs.kurrent.io serves no /.well-known/
+  documents but does publish an llms.txt (captured in llms/). The Kurrent Cloud identity provider
+  at identity.eventstore.com serves full OpenID Connect and OAuth 2.0 authorization-server
+  metadata; that is the only live discovery surface Kurrent exposes.
+hosts:
+- host: https://identity.eventstore.com
+  role: Kurrent Cloud identity provider
+  documents:
+  - path: /.well-known/openid-configuration
+    status: 200
+    file: kurrent-openid-configuration.json
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: kurrent-oauth-authorization-server.json
+- host: https://www.kurrent.io
+  role: marketing and product site
+  documents:
+  - path: /.well-known/security.txt
+    status: 522
+  - path: /.well-known/openid-configuration
+    status: 522
+  - path: /.well-known/oauth-authorization-server
+    status: 522
+  - path: /.well-known/api-catalog
+    status: 522
+  - path: /.well-known/ai-plugin.json
+    status: 522
+- host: https://docs.kurrent.io
+  role: documentation
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /llms.txt
+    status: 200
+    file: ../llms/kurrent-llms.txt

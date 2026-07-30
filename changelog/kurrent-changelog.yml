@@ -1,0 +1,96 @@
+generated: '2026-07-19'
+method: searched
+source: https://www.kurrent.io/releases
+scheme: calendar-major-minor
+current_version: '26.1'
+url: https://www.kurrent.io/releases
+notes: >-
+  Kurrent publishes a dated release feed covering KurrentDB and, before the March 2025 rebrand,
+  EventStoreDB. The recent window is captured below; the live feed remains the source of truth.
+entries:
+- version: '26.1'
+  product: KurrentDB
+  date: '2026-05-04'
+  title: 'KurrentDB 26.1: SQL access, rock-solid persistent subscriptions, a webhook source connector'
+  breaking: false
+  highlights:
+  - SQL access over event data via Apache Arrow Flight SQL
+  - Reliability work on persistent subscriptions
+  - A webhook source connector for ingesting events over HTTP
+- version: '26.0'
+  product: KurrentDB
+  date: '2026-01-26'
+  title: 'KurrentDB 26.0: Simpler integrations, faster streams, better together with RedPanda'
+  breaking: false
+  highlights:
+  - Simplified integration surface
+  - Stream performance improvements
+  - RedPanda interoperability
+- version: '25.1'
+  product: KurrentDB
+  date: '2025-10-21'
+  title: 'KurrentDB 25.1: Secondary Indexes and Multi-Stream Appends'
+  breaking: false
+  highlights:
+  - Secondary indexes for querying and filtering by payload field
+  - Multi-stream appends written atomically
+- version: '25.0'
+  product: KurrentDB
+  date: '2025-03-13'
+  title: 'KurrentDB 25.0: First release of KurrentDB under the new name'
+  breaking: true
+  breaking_detail: >-
+    The EventStoreDB to KurrentDB rebrand renamed the product, the client packages and the
+    connection-string scheme (esdb:// becomes kurrentdb://). Existing applications keep working on
+    the legacy packages but should migrate.
+  highlights:
+  - Rebrand from EventStoreDB to KurrentDB
+  - Archiving feature introduced
+- version: '24.10'
+  product: EventStoreDB
+  date: '2024-12-19'
+  title: 'EventStoreDB 24.10: Connectors, Auto-Scavenge, Policy-Based Authorization, Encryption-at-Rest'
+  breaking: false
+  lts: true
+  highlights:
+  - Connectors for moving events in and out of external systems
+  - Auto-scavenge
+  - Policy-based authorization
+  - Encryption at rest
+- version: '24.6'
+  product: EventStoreDB
+  date: '2024-06-28'
+  title: 'EventStoreDB 24.6: TCP Client API, ARM64, New Metrics'
+  breaking: false
+  highlights:
+  - Legacy TCP client API available as a plugin
+  - ARM64 support
+  - New metrics
+- version: '24.2'
+  product: EventStoreDB
+  date: '2024-03-05'
+  title: 'EventStoreDB 24.2: HTTP Sink, X.509 Authentication, Download Logs, OpenTelemetry Exporter'
+  breaking: false
+  highlights:
+  - HTTP sink connector
+  - X.509 client-certificate authentication
+  - Log download
+  - OpenTelemetry exporter
+- version: security-release
+  product: EventStoreDB
+  date: '2024-02-21'
+  title: EventStoreDB Security Release
+  breaking: false
+  security: true
+  highlights:
+  - Addresses CVE-2024-26133 across the 23.10, 22.10, 21.10 and 20.10 lines
+- version: '23.10'
+  product: EventStoreDB
+  date: '2023-12-02'
+  title: 'EventStoreDB 23.10 LTS: Database Telemetry, Prometheus Metrics, Security Updates, FIPS Compliance'
+  breaking: false
+  lts: true
+  highlights:
+  - Database telemetry
+  - Prometheus metrics
+  - FIPS compliance

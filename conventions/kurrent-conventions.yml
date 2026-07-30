@@ -1,0 +1,132 @@
+generated: '2026-07-19'
+method: searched
+source: >-
+  https://docs.kurrent.io/server/v26.1/http-api/optional-http-headers.html and
+  https://docs.kurrent.io/server/v26.1/http-api/api.html
+derived_from: openapi/kurrent-kurrentdb-http-api-openapi.yml
+summary: >-
+  KurrentDB's cross-cutting semantics are unusual for an HTTP API because the resource model is an
+  append-only log rather than a set of mutable records. Concurrency is controlled with an expected
+  stream version rather than an ETag, idempotency is achieved by supplying the event id rather than
+  a separate idempotency key, and pagination is AtomPub link-relation navigation rather than cursor
+  or offset parameters.
+authentication:
+  style: http-basic
+  header: Authorization
+  detail: >-
+    HTTP Basic credentials per request, with per-stream ACL authorization. Kurrent Cloud's control
+    plane uses OpenID Connect instead.
+  artifact: authentication/kurrent-authentication.yml
+idempotency:
+  supported: true
+  mechanism: client-supplied-event-id
+  header: Kurrent-EventId
+  alternate_form: POST /streams/{stream}/incoming/{guid}
+  body_field: eventId
+  scope: per-stream
+  retention: >-
+    For the lifetime of the stream. KurrentDB deduplicates on the event id within the target
+    stream, so replaying an append with an id already written to that stream does not write a
+    second event.
+  detail: >-
+    Every event written to KurrentDB carries a client-generated UUID. Supplying that id — either
+    in the Kurrent-EventId header, in the eventId field of the posted event, or as the {guid}
+    path segment of the /streams/{stream}/incoming/{guid} form — makes the append idempotent, so a
+    client that times out can safely retry without writing the event twice. Combining the event id
+    with Kurrent-ExpectedVersion gives both idempotent retries and optimistic concurrency.
+  docs: https://docs.kurrent.io/server/v26.1/http-api/optional-http-headers.html
+concurrency:
+  mechanism: expected-version
+  header: Kurrent-ExpectedVersion
+  detail: >-
+    Optimistic concurrency control. The client asserts the event number the stream is expected to
+    be at; the append is rejected with 400 Bad Request if the stream has moved on. Special values
+    cover "any version", "no stream" and "stream exists".
+  docs: https://docs.kurrent.io/server/v26.1/http-api/optional-http-headers.html
+pagination:
+  style: atompub-link-relations
+  parameters:
+  - name: event
+    in: path
+    description: Event number to start from, or "head" for the latest event
+  - name: count
+    in: path
+    description: Number of events in the page
+  - name: direction
+    in: path
+    description: forward or backward path segment
+  response_fields:
+  - links[].relation (first, last, previous, next, self, metadata)
+  - links[].uri
+  - headOfStream
+  detail: >-
+    Reads return an AtomPub feed whose links carry the navigation relations. Clients follow the
+    "previous" relation to walk forward in time from an older page and "next" to walk backward.
+    Feed pages other than the head are permanently cacheable because the log is immutable.
+  docs: https://docs.kurrent.io/server/v26.1/http-api/introduction.html
+routing:
+  header: Kurrent-RequireLeader
+  detail: >-
+    Requires the request be served by the cluster leader rather than a follower. Without it a
+    follower may answer, or a write may be answered with 307 Temporary Redirect pointing at the
+    leader.
+  docs: https://docs.kurrent.io/server/v26.1/http-api/optional-http-headers.html
+event_typing:
+  header: Kurrent-EventType
+  detail: >-
+    The event type name is transported out of band in a header (or in the eventType field of the
+    posted event body), not inferred from the payload. Event types beginning with $ are reserved
+    for system events.
+metadata:
+  detail: >-
+    Events carry optional arbitrary metadata alongside their payload. Stream-level metadata
+    ($maxCount, $maxAge, $cacheControl, $tb, $acl) controls retention, cacheability and access and
+    is read and written at /streams/{stream}/metadata.
+  docs: https://docs.kurrent.io/server/v26.1/http-api/api.html
+content_negotiation:
+  request_media_types:
+  - application/json
+  - application/vnd.kurrent.events+json
+  - application/xml
+  response_media_types:
+  - application/json
+  - application/atom+xml
+  - application/xml
+  detail: >-
+    The HTTP API is content-negotiated. AtomPub over HTTP must be explicitly enabled on the server
+    with --enable-atom-pub-over-http; it is off by default in recent versions.
+versioning:
+  scheme: server-version-in-docs
+  current: v26.1
+  detail: >-
+    The HTTP API is not URI-versioned. It is versioned with the KurrentDB server release, and the
+    documentation is published per server version (for example /server/v26.1/). Client SDKs are
+    versioned independently.
+  artifact: lifecycle/kurrent-lifecycle.yml
+error_envelope:
+  format: plain-text-status-line
+  problem_json: false
+  detail: >-
+    The HTTP API does not use RFC 9457 problem+json. Failures are signalled by the HTTP status code
+    with a short plain-text reason phrase or body — 400 for a version conflict or malformed
+    request, 401 for missing or insufficient credentials, 404 for an absent stream, event,
+    projection, subscription or user. The gRPC protocol carries a much richer typed error model in
+    kurrent/rpc/errors.proto and the per-service errors.proto files.
+  artifact: errors/kurrent-problem-types.yml
+rate_limiting:
+  supported: false
+  detail: >-
+    KurrentDB is deployed as your own database node or dedicated Kurrent Cloud cluster rather than
+    a shared multi-tenant API, so it publishes no request quota or rate-limit response headers.
+    Throughput is bounded by cluster sizing.
+tracing:
+  detail: >-
+    Observability is provided through OpenTelemetry exporters and Prometheus metrics at /metrics
+    rather than a per-request correlation header. Several client SDKs document an observability
+    integration.
+  docs: https://docs.kurrent.io/server/v26.1/diagnostics/
+cross_references:
+  errors: errors/kurrent-problem-types.yml
+  lifecycle: lifecycle/kurrent-lifecycle.yml
+  authentication: authentication/kurrent-authentication.yml
+  data_model: data-model/kurrent-data-model.yml

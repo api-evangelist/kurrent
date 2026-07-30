@@ -1,0 +1,322 @@
+{
+  "info": {
+    "_postman_id": "8c2835d6-7a0d-452f-ac13-56d486c0e494",
+    "name": "KurrentDB HTTP Admin Gossip API",
+    "description": "KurrentDB (formerly EventStoreDB) exposes a native AtomPub-over-HTTP interface alongside its primary gRPC protocol. This OpenAPI description is an API Evangelist transcription of the provider's published HTTP API Reference at https://docs.kurrent.io/server/v26.1/http-api/api.html \u2014 Kurrent does not publish an OpenAPI document of its own. Paths, methods, custom headers, media types and status codes are taken from that reference; nothing has been invented. The base URL is the address of your own KurrentDB node or Kurrent Cloud cluster (the same URL you use for the admin UI), which listens on port 2113 by default.\n\nContact Support:\n Name: Kurrent",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:01:28.000Z",
+    "updatedAt": "2026-07-28T02:01:28.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-8c2835d6-7a0d-452f-ac13-56d486c0e494"
+  },
+  "item": [
+    {
+      "name": "gossip",
+      "item": [
+        {
+          "name": "Get the gossip details of the cluster",
+          "id": "72a070a3-d460-4c15-9a18-597bf24b8716",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/gossip",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "gossip"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ab1634e3-1ad1-4a19-adfa-5bb561c9cae4",
+              "name": "OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/gossip",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "gossip"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{}",
+              "createdAt": "2026-07-28T02:01:28.000Z",
+              "updatedAt": "2026-07-28T02:01:28.000Z",
+              "uid": "35240-ab1634e3-1ad1-4a19-adfa-5bb561c9cae4"
+            },
+            {
+              "id": "3a85ece3-7e1e-4010-8144-612f1aee8e25",
+              "name": "Not Found \u2014 the stream, event, projection, subscription or user does not exist",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/gossip",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "gossip"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "text",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<string>",
+              "createdAt": "2026-07-28T02:01:28.000Z",
+              "updatedAt": "2026-07-28T02:01:28.000Z",
+              "uid": "35240-3a85ece3-7e1e-4010-8144-612f1aee8e25"
+            }
+          ],
+          "createdAt": "2026-07-28T02:01:28.000Z",
+          "updatedAt": "2026-07-28T02:01:28.000Z",
+          "uid": "35240-72a070a3-d460-4c15-9a18-597bf24b8716"
+        },
+        {
+          "name": "Update the gossip details of the cluster",
+          "id": "cb959897-0274-4f87-900b-37e0ea879aef",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/gossip",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "gossip"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "717a70ef-5d78-4fd6-af55-9350fa96767b",
+              "name": "OK",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/gossip",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "gossip"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{}",
+              "createdAt": "2026-07-28T02:01:28.000Z",
+              "updatedAt": "2026-07-28T02:01:28.000Z",
+              "uid": "35240-717a70ef-5d78-4fd6-af55-9350fa96767b"
+            },
+            {
+              "id": "541bf10d-eff3-436b-a122-d19c967a64a3",
+              "name": "Not Found \u2014 the stream, event, projection, subscription or user does not exist",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/gossip",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "gossip"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "text",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<string>",
+              "createdAt": "2026-07-28T02:01:28.000Z",
+              "updatedAt": "2026-07-28T02:01:28.000Z",
+              "uid": "35240-541bf10d-eff3-436b-a122-d19c967a64a3"
+            }
+          ],
+          "createdAt": "2026-07-28T02:01:28.000Z",
+          "updatedAt": "2026-07-28T02:01:28.000Z",
+          "uid": "35240-cb959897-0274-4f87-900b-37e0ea879aef"
+        }
+      ],
+      "id": "a7ba3d50-10c0-4913-b8d7-43c475b181e3",
+      "createdAt": "2026-07-28T02:01:28.000Z",
+      "updatedAt": "2026-07-28T02:01:28.000Z",
+      "uid": "35240-a7ba3d50-10c0-4913-b8d7-43c475b181e3"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "host",
+      "value": "localhost"
+    },
+    {
+      "key": "port",
+      "value": "2113"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{host}}:{{port}}"
+    }
+  ]
+}

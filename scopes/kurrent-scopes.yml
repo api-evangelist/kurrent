@@ -1,0 +1,68 @@
+generated: '2026-07-19'
+method: searched
+source: https://identity.eventstore.com/.well-known/openid-configuration
+docs: https://docs.kurrent.io/cloud/ops/account-security.html
+notes: >-
+  The KurrentDB HTTP API itself is not OAuth-protected — it uses HTTP Basic authentication with
+  per-stream access control lists, so it declares no oauth2 security scheme and therefore no
+  scopes. The OAuth surface Kurrent operates belongs to Kurrent Cloud, whose identity provider at
+  identity.eventstore.com publishes OpenID Connect discovery and RFC 8414 authorization-server
+  metadata. The scopes below are the scopes_supported advertised by that discovery document; they
+  are the standard OpenID Connect and profile-claim scopes rather than a Kurrent-specific
+  permission taxonomy. Kurrent does not publish a product-level scope reference.
+schemes:
+- name: KurrentCloudOIDC
+  type: openIdConnect
+  issuer: https://identity.eventstore.com/
+  source: well-known/kurrent-openid-configuration.json
+  discovery:
+  - https://identity.eventstore.com/.well-known/openid-configuration
+  - https://identity.eventstore.com/.well-known/oauth-authorization-server
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://identity.eventstore.com/authorize
+    tokenUrl: https://identity.eventstore.com/oauth/token
+  - flow: clientCredentials
+    tokenUrl: https://identity.eventstore.com/oauth/token
+  - flow: deviceCode
+    deviceAuthorizationUrl: https://identity.eventstore.com/oauth/device/code
+    tokenUrl: https://identity.eventstore.com/oauth/token
+  endpoints:
+    userinfo: https://identity.eventstore.com/userinfo
+    jwks: https://identity.eventstore.com/.well-known/jwks.json
+    revocation: https://identity.eventstore.com/oauth/revoke
+    registration: https://identity.eventstore.com/oidc/register
+  pkce_methods: [S256, plain]
+scopes:
+- scope: openid
+  description: Request an ID token and authenticate the end user via OpenID Connect.
+  standard: openid-connect
+- scope: profile
+  description: Access the end user's default profile claims.
+  standard: openid-connect
+- scope: offline_access
+  description: Request a refresh token so the client can obtain new access tokens without the user present.
+  standard: openid-connect
+- scope: email
+  description: Access the end user's email address claim.
+  standard: openid-connect
+- scope: email_verified
+  description: Access whether the end user's email address has been verified.
+- scope: name
+  description: Access the end user's full name claim.
+- scope: given_name
+  description: Access the end user's given name claim.
+- scope: family_name
+  description: Access the end user's family name claim.
+- scope: nickname
+  description: Access the end user's nickname claim.
+- scope: picture
+  description: Access the end user's profile picture claim.
+- scope: created_at
+  description: Access the timestamp at which the end user's account was created.
+- scope: identities
+  description: Access the linked identity providers associated with the end user's account.
+- scope: phone
+  description: Access the end user's phone number claim.
+- scope: address
+  description: Access the end user's address claim.

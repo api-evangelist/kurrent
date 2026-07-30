@@ -1,0 +1,21 @@
+{
+  "repo": "kurrent",
+  "feeds": [
+    {
+      "source": "https://discuss.kurrent.io/",
+      "feed_url": "https://discuss.kurrent.io/",
+      "title": "",
+      "saved": 0,
+      "method": "none"
+    },
+    {
+      "source": "https://www.kurrent.io/blog",
+      "feed_url": "https://www.kurrent.io/blog",
+      "title": "",
+      "saved": 0,
+      "method": "none"
+    }
+  ],
+  "post_count": 0,
+  "fetched": "2026-07-25T15:00:33Z"
+}

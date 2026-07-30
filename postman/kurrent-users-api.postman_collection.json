@@ -1,0 +1,1912 @@
+{
+  "info": {
+    "_postman_id": "c9c841ff-3b4c-4d2e-8995-b72029865521",
+    "name": "KurrentDB HTTP Admin Users API",
+    "description": "KurrentDB (formerly EventStoreDB) exposes a native AtomPub-over-HTTP interface alongside its primary gRPC protocol. This OpenAPI description is an API Evangelist transcription of the provider's published HTTP API Reference at https://docs.kurrent.io/server/v26.1/http-api/api.html \u2014 Kurrent does not publish an OpenAPI document of its own. Paths, methods, custom headers, media types and status codes are taken from that reference; nothing has been invented. The base URL is the address of your own KurrentDB node or Kurrent Cloud cluster (the same URL you use for the admin UI), which listens on port 2113 by default.\n\nContact Support:\n Name: Kurrent",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:01:36.000Z",
+    "updatedAt": "2026-07-28T02:01:36.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-c9c841ff-3b4c-4d2e-8995-b72029865521"
+  },
+  "item": [
+    {
+      "name": "users",
+      "item": [
+        {
+          "name": "{login}",
+          "item": [
+            {
+              "name": "command",
+              "item": [
+                {
+                  "name": "enable",
+                  "item": [
+                    {
+                      "name": "Enable a user account",
+                      "id": "8cda7a19-7f34-4199-a842-949dbbb678a6",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:login/command/enable",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":login",
+                            "command",
+                            "enable"
+                          ],
+                          "variable": [
+                            {
+                              "id": "f64d0b2a-7f09-484b-b9d4-853c7fe1af10",
+                              "key": "login",
+                              "value": "<string>",
+                              "description": "(Required) Login name of the user"
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "4452039f-9e88-455c-a361-9f7977adb97b",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/users/:login/command/enable",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "users",
+                                ":login",
+                                "command",
+                                "enable"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "login"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{}",
+                          "createdAt": "2026-07-28T02:01:36.000Z",
+                          "updatedAt": "2026-07-28T02:01:36.000Z",
+                          "uid": "35240-4452039f-9e88-455c-a361-9f7977adb97b"
+                        },
+                        {
+                          "id": "9123ac7c-4b00-4a85-a700-afe0323e153a",
+                          "name": "Unauthorized \u2014 credentials were missing, invalid, or lacked ACL permission",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "text/plain"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/users/:login/command/enable",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "users",
+                                ":login",
+                                "command",
+                                "enable"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "login"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "text/plain"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<string>",
+                          "createdAt": "2026-07-28T02:01:36.000Z",
+                          "updatedAt": "2026-07-28T02:01:36.000Z",
+                          "uid": "35240-9123ac7c-4b00-4a85-a700-afe0323e153a"
+                        },
+                        {
+                          "id": "37e507f2-62a1-4b42-9d9f-7af36745f9f3",
+                          "name": "Not Found \u2014 the stream, event, projection, subscription or user does not exist",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "text/plain"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/users/:login/command/enable",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "users",
+                                ":login",
+                                "command",
+                                "enable"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "login"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "text/plain"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<string>",
+                          "createdAt": "2026-07-28T02:01:36.000Z",
+                          "updatedAt": "2026-07-28T02:01:36.000Z",
+                          "uid": "35240-37e507f2-62a1-4b42-9d9f-7af36745f9f3"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:01:36.000Z",
+                      "updatedAt": "2026-07-28T02:01:36.000Z",
+                      "uid": "35240-8cda7a19-7f34-4199-a842-949dbbb678a6"
+                    }
+                  ],
+                  "id": "314b9492-7c65-463c-830e-d0fbbb795c67",
+                  "createdAt": "2026-07-28T02:01:36.000Z",
+                  "updatedAt": "2026-07-28T02:01:36.000Z",
+                  "uid": "35240-314b9492-7c65-463c-830e-d0fbbb795c67"
+                },
+                {
+                  "name": "disable",
+                  "item": [
+                    {
+                      "name": "Disable a user account",
+                      "id": "edaf4b23-33f1-4976-8f55-28318f789104",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:login/command/disable",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":login",
+                            "command",
+                            "disable"
+                          ],
+                          "variable": [
+                            {
+                              "id": "31858aa5-2b3e-4551-a0ec-80a9e213d223",
+                              "key": "login",
+                              "value": "<string>",
+                              "description": "(Required) Login name of the user"
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "2df2b1d0-3f3a-4c13-86d1-9b9e7c7ee2b8",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/users/:login/command/disable",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "users",
+                                ":login",
+                                "command",
+                                "disable"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "login"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{}",
+                          "createdAt": "2026-07-28T02:01:36.000Z",
+                          "updatedAt": "2026-07-28T02:01:36.000Z",
+                          "uid": "35240-2df2b1d0-3f3a-4c13-86d1-9b9e7c7ee2b8"
+                        },
+                        {
+                          "id": "7e764f36-5c24-439c-aa45-da591a99cc38",
+                          "name": "Unauthorized \u2014 credentials were missing, invalid, or lacked ACL permission",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "text/plain"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/users/:login/command/disable",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "users",
+                                ":login",
+                                "command",
+                                "disable"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "login"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "text/plain"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<string>",
+                          "createdAt": "2026-07-28T02:01:36.000Z",
+                          "updatedAt": "2026-07-28T02:01:36.000Z",
+                          "uid": "35240-7e764f36-5c24-439c-aa45-da591a99cc38"
+                        },
+                        {
+                          "id": "fc24354f-10ba-46ac-a358-68294c8c3726",
+                          "name": "Not Found \u2014 the stream, event, projection, subscription or user does not exist",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "text/plain"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/users/:login/command/disable",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "users",
+                                ":login",
+                                "command",
+                                "disable"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "login"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "text/plain"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<string>",
+                          "createdAt": "2026-07-28T02:01:36.000Z",
+                          "updatedAt": "2026-07-28T02:01:36.000Z",
+                          "uid": "35240-fc24354f-10ba-46ac-a358-68294c8c3726"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:01:36.000Z",
+                      "updatedAt": "2026-07-28T02:01:36.000Z",
+                      "uid": "35240-edaf4b23-33f1-4976-8f55-28318f789104"
+                    }
+                  ],
+                  "id": "5653b4e4-9007-4d48-935a-f796a9d5d3a2",
+                  "createdAt": "2026-07-28T02:01:36.000Z",
+                  "updatedAt": "2026-07-28T02:01:36.000Z",
+                  "uid": "35240-5653b4e4-9007-4d48-935a-f796a9d5d3a2"
+                },
+                {
+                  "name": "reset-password",
+                  "item": [
+                    {
+                      "name": "Reset the password of a user",
+                      "id": "c89e78c1-7af5-4ec3-976b-c1bceec862e3",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"newPassword\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:login/command/reset-password",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":login",
+                            "command",
+                            "reset-password"
+                          ],
+                          "variable": [
+                            {
+                              "id": "dc935279-3782-43ef-aa28-a16d7033b691",
+                              "key": "login",
+                              "value": "<string>",
+                              "description": "(Required) Login name of the user"
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "a6234b9c-79af-4da9-85f7-e7c2e6aa45ad",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"newPassword\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/users/:login/command/reset-password",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "users",
+                                ":login",
+                                "command",
+                                "reset-password"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "login"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{}",
+                          "createdAt": "2026-07-28T02:01:36.000Z",
+                          "updatedAt": "2026-07-28T02:01:36.000Z",
+                          "uid": "35240-a6234b9c-79af-4da9-85f7-e7c2e6aa45ad"
+                        },
+                        {
+                          "id": "1834ea06-1f8b-49be-ae5b-dae588cf0a5b",
+                          "name": "Bad Request \u2014 the request was malformed or violated an expected version",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "text/plain"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"newPassword\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/users/:login/command/reset-password",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "users",
+                                ":login",
+                                "command",
+                                "reset-password"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "login"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "text/plain"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<string>",
+                          "createdAt": "2026-07-28T02:01:36.000Z",
+                          "updatedAt": "2026-07-28T02:01:36.000Z",
+                          "uid": "35240-1834ea06-1f8b-49be-ae5b-dae588cf0a5b"
+                        },
+                        {
+                          "id": "ebb1a767-3936-4ade-b3fd-d374a41dfe4f",
+                          "name": "Unauthorized \u2014 credentials were missing, invalid, or lacked ACL permission",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "text/plain"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"newPassword\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/users/:login/command/reset-password",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "users",
+                                ":login",
+                                "command",
+                                "reset-password"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "login"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "text/plain"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<string>",
+                          "createdAt": "2026-07-28T02:01:36.000Z",
+                          "updatedAt": "2026-07-28T02:01:36.000Z",
+                          "uid": "35240-ebb1a767-3936-4ade-b3fd-d374a41dfe4f"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:01:36.000Z",
+                      "updatedAt": "2026-07-28T02:01:36.000Z",
+                      "uid": "35240-c89e78c1-7af5-4ec3-976b-c1bceec862e3"
+                    }
+                  ],
+                  "id": "5a26da1f-8cab-4d1e-b8bd-e718e56bd566",
+                  "createdAt": "2026-07-28T02:01:36.000Z",
+                  "updatedAt": "2026-07-28T02:01:36.000Z",
+                  "uid": "35240-5a26da1f-8cab-4d1e-b8bd-e718e56bd566"
+                },
+                {
+                  "name": "change-password",
+                  "item": [
+                    {
+                      "name": "Change the password of a user",
+                      "id": "0ad4f3ec-9d2d-488a-b4ca-7a4022ba7998",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"currentPassword\": \"<string>\",\n  \"newPassword\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:login/command/change-password",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":login",
+                            "command",
+                            "change-password"
+                          ],
+                          "variable": [
+                            {
+                              "id": "9a24f8c4-fe97-43ef-b0c1-69eb0498d735",
+                              "key": "login",
+                              "value": "<string>",
+                              "description": "(Required) Login name of the user"
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "40ff32a7-95ee-4aac-bf4f-c7f01d56ca5b",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"currentPassword\": \"<string>\",\n  \"newPassword\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/users/:login/command/change-password",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "users",
+                                ":login",
+                                "command",
+                                "change-password"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "login"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{}",
+                          "createdAt": "2026-07-28T02:01:36.000Z",
+                          "updatedAt": "2026-07-28T02:01:36.000Z",
+                          "uid": "35240-40ff32a7-95ee-4aac-bf4f-c7f01d56ca5b"
+                        },
+                        {
+                          "id": "7ec3f1a5-6682-44fa-8ea2-7af537a40fcc",
+                          "name": "Bad Request \u2014 the request was malformed or violated an expected version",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "text/plain"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"currentPassword\": \"<string>\",\n  \"newPassword\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/users/:login/command/change-password",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "users",
+                                ":login",
+                                "command",
+                                "change-password"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "login"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "text/plain"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<string>",
+                          "createdAt": "2026-07-28T02:01:36.000Z",
+                          "updatedAt": "2026-07-28T02:01:36.000Z",
+                          "uid": "35240-7ec3f1a5-6682-44fa-8ea2-7af537a40fcc"
+                        },
+                        {
+                          "id": "192a8a22-24c6-4348-b4d7-670e48738a20",
+                          "name": "Unauthorized \u2014 credentials were missing, invalid, or lacked ACL permission",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "text/plain"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"currentPassword\": \"<string>\",\n  \"newPassword\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/users/:login/command/change-password",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "users",
+                                ":login",
+                                "command",
+                                "change-password"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "login"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "text/plain"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<string>",
+                          "createdAt": "2026-07-28T02:01:36.000Z",
+                          "updatedAt": "2026-07-28T02:01:36.000Z",
+                          "uid": "35240-192a8a22-24c6-4348-b4d7-670e48738a20"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:01:36.000Z",
+                      "updatedAt": "2026-07-28T02:01:36.000Z",
+                      "uid": "35240-0ad4f3ec-9d2d-488a-b4ca-7a4022ba7998"
+                    }
+                  ],
+                  "id": "b460d5a3-b0b4-480d-b261-664aa99f4d5e",
+                  "createdAt": "2026-07-28T02:01:36.000Z",
+                  "updatedAt": "2026-07-28T02:01:36.000Z",
+                  "uid": "35240-b460d5a3-b0b4-480d-b261-664aa99f4d5e"
+                }
+              ],
+              "id": "17d60c4f-e59e-4bc6-a3f6-3357a7e0a351",
+              "createdAt": "2026-07-28T02:01:36.000Z",
+              "updatedAt": "2026-07-28T02:01:36.000Z",
+              "uid": "35240-17d60c4f-e59e-4bc6-a3f6-3357a7e0a351"
+            },
+            {
+              "name": "Get the details of a user",
+              "id": "234c1202-a855-4cc5-a13a-7229881ebdfc",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/users/:login",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users",
+                    ":login"
+                  ],
+                  "variable": [
+                    {
+                      "id": "36c70bed-fe0f-4d14-b4f6-46b0a3168c79",
+                      "key": "login",
+                      "value": "<string>",
+                      "description": "(Required) Login name of the user"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "3da28d72-af44-4736-b8d5-f4ca219ef5d8",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:login",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":login"
+                      ],
+                      "variable": [
+                        {
+                          "key": "login"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T02:01:36.000Z",
+                  "updatedAt": "2026-07-28T02:01:36.000Z",
+                  "uid": "35240-3da28d72-af44-4736-b8d5-f4ca219ef5d8"
+                },
+                {
+                  "id": "bd4a278f-2edb-40fc-bfe0-3a40ce3c5baf",
+                  "name": "Unauthorized \u2014 credentials were missing, invalid, or lacked ACL permission",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "text/plain"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:login",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":login"
+                      ],
+                      "variable": [
+                        {
+                          "key": "login"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "<string>",
+                  "createdAt": "2026-07-28T02:01:36.000Z",
+                  "updatedAt": "2026-07-28T02:01:36.000Z",
+                  "uid": "35240-bd4a278f-2edb-40fc-bfe0-3a40ce3c5baf"
+                },
+                {
+                  "id": "4bddf4b5-8b81-4906-ae35-e50770b2080c",
+                  "name": "Not Found \u2014 the stream, event, projection, subscription or user does not exist",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "text/plain"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:login",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":login"
+                      ],
+                      "variable": [
+                        {
+                          "key": "login"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "<string>",
+                  "createdAt": "2026-07-28T02:01:36.000Z",
+                  "updatedAt": "2026-07-28T02:01:36.000Z",
+                  "uid": "35240-4bddf4b5-8b81-4906-ae35-e50770b2080c"
+                }
+              ],
+              "createdAt": "2026-07-28T02:01:36.000Z",
+              "updatedAt": "2026-07-28T02:01:36.000Z",
+              "uid": "35240-234c1202-a855-4cc5-a13a-7229881ebdfc"
+            },
+            {
+              "name": "Update a user",
+              "id": "0ab4e7ce-33f9-4027-8f4b-69871892ad9a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fullName\": \"<string>\",\n  \"groups\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/users/:login",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users",
+                    ":login"
+                  ],
+                  "variable": [
+                    {
+                      "id": "b55ec524-a297-4f0f-8020-82804ca7b033",
+                      "key": "login",
+                      "value": "<string>",
+                      "description": "(Required) Login name of the user"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "7f48a671-2851-45c1-914f-0aa07d7ed4f6",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"fullName\": \"<string>\",\n  \"groups\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:login",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":login"
+                      ],
+                      "variable": [
+                        {
+                          "key": "login"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T02:01:36.000Z",
+                  "updatedAt": "2026-07-28T02:01:36.000Z",
+                  "uid": "35240-7f48a671-2851-45c1-914f-0aa07d7ed4f6"
+                },
+                {
+                  "id": "689eda74-9e70-4528-8d5f-0532acdc9cb3",
+                  "name": "Bad Request \u2014 the request was malformed or violated an expected version",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "text/plain"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"fullName\": \"<string>\",\n  \"groups\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:login",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":login"
+                      ],
+                      "variable": [
+                        {
+                          "key": "login"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "<string>",
+                  "createdAt": "2026-07-28T02:01:36.000Z",
+                  "updatedAt": "2026-07-28T02:01:36.000Z",
+                  "uid": "35240-689eda74-9e70-4528-8d5f-0532acdc9cb3"
+                },
+                {
+                  "id": "b1d2dcd9-0694-4b40-88ea-691a7df0e10b",
+                  "name": "Unauthorized \u2014 credentials were missing, invalid, or lacked ACL permission",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "text/plain"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"fullName\": \"<string>\",\n  \"groups\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:login",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":login"
+                      ],
+                      "variable": [
+                        {
+                          "key": "login"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "<string>",
+                  "createdAt": "2026-07-28T02:01:36.000Z",
+                  "updatedAt": "2026-07-28T02:01:36.000Z",
+                  "uid": "35240-b1d2dcd9-0694-4b40-88ea-691a7df0e10b"
+                }
+              ],
+              "createdAt": "2026-07-28T02:01:36.000Z",
+              "updatedAt": "2026-07-28T02:01:36.000Z",
+              "uid": "35240-0ab4e7ce-33f9-4027-8f4b-69871892ad9a"
+            },
+            {
+              "name": "Delete a user",
+              "id": "a2cabdcf-df15-4f1b-8da2-741db76e96ed",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/users/:login",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users",
+                    ":login"
+                  ],
+                  "variable": [
+                    {
+                      "id": "ba8cbb09-4c32-4a99-9473-de22db3ac577",
+                      "key": "login",
+                      "value": "<string>",
+                      "description": "(Required) Login name of the user"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "1ca14072-ee66-4510-b377-70e8f2b25b71",
+                  "name": "No Content \u2014 the user was deleted",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:login",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":login"
+                      ],
+                      "variable": [
+                        {
+                          "key": "login"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:01:36.000Z",
+                  "updatedAt": "2026-07-28T02:01:36.000Z",
+                  "uid": "35240-1ca14072-ee66-4510-b377-70e8f2b25b71"
+                },
+                {
+                  "id": "7f540184-0ef9-4447-bd53-bde6ff511db7",
+                  "name": "Unauthorized \u2014 credentials were missing, invalid, or lacked ACL permission",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "text/plain"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:login",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":login"
+                      ],
+                      "variable": [
+                        {
+                          "key": "login"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "<string>",
+                  "createdAt": "2026-07-28T02:01:36.000Z",
+                  "updatedAt": "2026-07-28T02:01:36.000Z",
+                  "uid": "35240-7f540184-0ef9-4447-bd53-bde6ff511db7"
+                },
+                {
+                  "id": "71f8eeae-1878-4604-8b3d-6f3b88fc326e",
+                  "name": "Not Found \u2014 the stream, event, projection, subscription or user does not exist",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "text/plain"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:login",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":login"
+                      ],
+                      "variable": [
+                        {
+                          "key": "login"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "<string>",
+                  "createdAt": "2026-07-28T02:01:36.000Z",
+                  "updatedAt": "2026-07-28T02:01:36.000Z",
+                  "uid": "35240-71f8eeae-1878-4604-8b3d-6f3b88fc326e"
+                }
+              ],
+              "createdAt": "2026-07-28T02:01:36.000Z",
+              "updatedAt": "2026-07-28T02:01:36.000Z",
+              "uid": "35240-a2cabdcf-df15-4f1b-8da2-741db76e96ed"
+            }
+          ],
+          "id": "feae2d58-3bcf-45c7-b69c-e0f56d781f34",
+          "createdAt": "2026-07-28T02:01:36.000Z",
+          "updatedAt": "2026-07-28T02:01:36.000Z",
+          "uid": "35240-feae2d58-3bcf-45c7-b69c-e0f56d781f34"
+        },
+        {
+          "name": "List all users",
+          "id": "a8fb3508-120f-46ba-bc4a-50fd6985e7cc",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/users/",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users",
+                ""
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "fe536050-25ae-4709-afcf-8854b09d87db",
+              "name": "OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/users/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users",
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{}",
+              "createdAt": "2026-07-28T02:01:36.000Z",
+              "updatedAt": "2026-07-28T02:01:36.000Z",
+              "uid": "35240-fe536050-25ae-4709-afcf-8854b09d87db"
+            },
+            {
+              "id": "043bdb18-5edf-4cf2-9a15-8b3261ad7417",
+              "name": "Unauthorized \u2014 credentials were missing, invalid, or lacked ACL permission",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/users/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users",
+                    ""
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<string>",
+              "createdAt": "2026-07-28T02:01:36.000Z",
+              "updatedAt": "2026-07-28T02:01:36.000Z",
+              "uid": "35240-043bdb18-5edf-4cf2-9a15-8b3261ad7417"
+            }
+          ],
+          "createdAt": "2026-07-28T02:01:36.000Z",
+          "updatedAt": "2026-07-28T02:01:36.000Z",
+          "uid": "35240-a8fb3508-120f-46ba-bc4a-50fd6985e7cc"
+        },
+        {
+          "name": "Create a user",
+          "id": "b0dd7623-742f-4f52-a696-b3a51ca561f7",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"loginName\": \"<string>\",\n  \"fullName\": \"<string>\",\n  \"password\": \"<string>\",\n  \"groups\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/users/",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users",
+                ""
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "49125a50-9322-4093-9c97-733d381ec3a2",
+              "name": "Created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"loginName\": \"<string>\",\n  \"fullName\": \"<string>\",\n  \"password\": \"<string>\",\n  \"groups\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/users/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users",
+                    ""
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "text",
+              "header": [
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "URI of the created resource",
+                    "type": "text/plain"
+                  },
+                  "key": "Location",
+                  "value": "<string>"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T02:01:36.000Z",
+              "updatedAt": "2026-07-28T02:01:36.000Z",
+              "uid": "35240-49125a50-9322-4093-9c97-733d381ec3a2"
+            },
+            {
+              "id": "b48fba04-a549-4084-a157-13bf52dafa30",
+              "name": "Bad Request \u2014 the request was malformed or violated an expected version",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"loginName\": \"<string>\",\n  \"fullName\": \"<string>\",\n  \"password\": \"<string>\",\n  \"groups\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/users/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users",
+                    ""
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "text",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<string>",
+              "createdAt": "2026-07-28T02:01:36.000Z",
+              "updatedAt": "2026-07-28T02:01:36.000Z",
+              "uid": "35240-b48fba04-a549-4084-a157-13bf52dafa30"
+            },
+            {
+              "id": "2c46bf48-60c0-4574-9ecb-072f019cecc0",
+              "name": "Unauthorized \u2014 credentials were missing, invalid, or lacked ACL permission",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"loginName\": \"<string>\",\n  \"fullName\": \"<string>\",\n  \"password\": \"<string>\",\n  \"groups\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/users/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users",
+                    ""
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<string>",
+              "createdAt": "2026-07-28T02:01:36.000Z",
+              "updatedAt": "2026-07-28T02:01:36.000Z",
+              "uid": "35240-2c46bf48-60c0-4574-9ecb-072f019cecc0"
+            }
+          ],
+          "createdAt": "2026-07-28T02:01:36.000Z",
+          "updatedAt": "2026-07-28T02:01:36.000Z",
+          "uid": "35240-b0dd7623-742f-4f52-a696-b3a51ca561f7"
+        }
+      ],
+      "id": "8f725e98-a5de-41ce-b120-863946af7f9a",
+      "createdAt": "2026-07-28T02:01:36.000Z",
+      "updatedAt": "2026-07-28T02:01:36.000Z",
+      "uid": "35240-8f725e98-a5de-41ce-b120-863946af7f9a"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "host",
+      "value": "localhost"
+    },
+    {
+      "key": "port",
+      "value": "2113"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{host}}:{{port}}"
+    }
+  ]
+}

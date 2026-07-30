@@ -1,0 +1,98 @@
+generated: '2026-07-19'
+method: searched
+source: >-
+  https://docs.kurrent.io/server/v26.1/features/connectors/ and https://www.kurrent.io/releases
+type: Webhooks
+spec_type: none
+notes: >-
+  Kurrent publishes no AsyncAPI document, so none is captured here — this is a deliberate absence,
+  not a gap to be filled with a fabricated spec. KurrentDB nevertheless has a genuine HTTP event
+  surface in both directions, delivered through its Connectors feature: a webhook SOURCE connector
+  (added in KurrentDB 26.1) ingests events pushed to KurrentDB over HTTP, and an HTTP SINK
+  connector (added in EventStoreDB 24.2) pushes events out of KurrentDB to an HTTP endpoint. That
+  is the webhook catalogue recorded below. Note the direction is inverted relative to a typical
+  SaaS API: KurrentDB is the event store, and the connectors are configured by the operator rather
+  than registered per tenant.
+delivery:
+  model: connectors
+  detail: >-
+    Connectors are configured and managed on the KurrentDB cluster itself, through the Connectors
+    management surface, rather than by registering a callback URL in a developer dashboard.
+  docs: https://docs.kurrent.io/server/v26.1/features/connectors/
+  management: https://docs.kurrent.io/server/v26.1/features/connectors/manage.html
+  settings: https://docs.kurrent.io/server/v26.1/features/connectors/settings.html
+  metrics: https://docs.kurrent.io/server/v26.1/features/connectors/metrics.html
+sources:
+- name: webhook
+  direction: inbound
+  transport: http
+  description: >-
+    Accepts events pushed to KurrentDB over HTTP and appends them to streams. Introduced in
+    KurrentDB 26.1.
+  docs: https://docs.kurrent.io/server/v26.1/features/connectors/sources/webhook.html
+  since: '26.1'
+- name: kafka
+  direction: inbound
+  transport: kafka
+  description: Consumes records from Kafka topics into KurrentDB streams.
+  docs: https://docs.kurrent.io/server/v26.1/features/connectors/sources/kafka.html
+sinks:
+- name: http
+  direction: outbound
+  transport: http
+  description: >-
+    Pushes events from KurrentDB streams to an HTTP endpoint — the closest equivalent to a
+    conventional outbound webhook. Introduced in EventStoreDB 24.2.
+  docs: https://docs.kurrent.io/server/v26.1/features/connectors/sinks/http.html
+  since: '24.2'
+- name: kafka
+  direction: outbound
+  transport: kafka
+  docs: https://docs.kurrent.io/server/v26.1/features/connectors/sinks/kafka.html
+- name: rabbitmq
+  direction: outbound
+  transport: amqp
+  docs: https://docs.kurrent.io/server/v26.1/features/connectors/sinks/rabbitmq.html
+- name: pulsar
+  direction: outbound
+  transport: pulsar
+  docs: https://docs.kurrent.io/server/v26.1/features/connectors/sinks/pulsar.html
+- name: mongo
+  direction: outbound
+  transport: mongodb
+  docs: https://docs.kurrent.io/server/v26.1/features/connectors/sinks/mongo.html
+- name: elasticsearch
+  direction: outbound
+  transport: elasticsearch
+  docs: https://docs.kurrent.io/server/v26.1/features/connectors/sinks/elasticsearch.html
+- name: sql
+  direction: outbound
+  transport: sql
+  docs: https://docs.kurrent.io/server/v26.1/features/connectors/sinks/sql.html
+- name: serilog
+  direction: outbound
+  transport: logging
+  docs: https://docs.kurrent.io/server/v26.1/features/connectors/sinks/serilog.html
+subscription_surfaces:
+- name: catch-up subscriptions
+  description: >-
+    Clients subscribe to a stream or to $all and receive events as they are written, from any
+    chosen position. Delivered over gRPC via the client SDKs.
+  docs: https://docs.kurrent.io/clients/
+- name: persistent subscriptions
+  description: >-
+    Server-managed competing-consumer subscriptions with acknowledgement, negative acknowledgement
+    (Park, Retry, Skip, Stop), parked-message replay and checkpointing. Available over both gRPC
+    and the HTTP API.
+  docs: https://docs.kurrent.io/server/v26.1/features/persistent-subscriptions.html
+  http_operations:
+  - openapi/kurrent-kurrentdb-http-api-openapi.yml#createSubscription
+  - openapi/kurrent-kurrentdb-http-api-openapi.yml#readSubscription
+  - openapi/kurrent-kurrentdb-http-api-openapi.yml#ackMessage
+  - openapi/kurrent-kurrentdb-http-api-openapi.yml#nackMessage
+  - openapi/kurrent-kurrentdb-http-api-openapi.yml#replayParkedMessages
+cloud_notifications:
+- name: Kurrent Cloud integrations
+  description: >-
+    Kurrent Cloud forwards operational events to Slack, Opsgenie and AWS CloudWatch.
+  docs: https://docs.kurrent.io/cloud/integrations/

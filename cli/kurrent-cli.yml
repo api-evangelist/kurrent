@@ -1,0 +1,62 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.kurrent.io/commercial-tools/cli-tool.html
+notes: >-
+  Kurrent ships three distinct command-line tools: es-cli for administering KurrentDB nodes,
+  esc for driving Kurrent Cloud, and kcap for the Capacitor agentic-coding product. The binaries
+  themselves are catalogued in packages/.
+clis:
+- name: es-cli
+  title: KurrentDB Admin CLI
+  description: Command line interface for administering KurrentDB nodes.
+  docs: https://docs.kurrent.io/commercial-tools/cli-tool.html
+  availability: commercial
+  install:
+  - method: download
+    detail: Downloadable binaries for Linux, Windows and macOS from the Kurrent customer portal.
+  commands:
+  - name: admin
+    description: >-
+      Database operations — scavenge, shutdown, backup and restore, and stream management.
+  - name: user
+    description: >-
+      User account management — add, delete, enable, disable and change passwords.
+  - name: projections
+    description: >-
+      Projection management — create, enable, disable, and query results and state.
+  - name: competing
+    description: >-
+      Competing-consumer subscription group operations — create, list and update.
+  - name: config_generator
+    description: Generates KurrentDB configuration files with recommended settings.
+- name: esc
+  title: Kurrent Cloud CLI
+  description: Command line interface for Kurrent Cloud.
+  repository: https://github.com/kurrent-io/esc
+  homepage: https://www.kurrent.io/kurrent-cloud
+  language: rust
+  install:
+  - method: source
+    detail: Built and released from the kurrent-io/esc repository.
+- name: kcap
+  title: Kurrent Capacitor CLI
+  description: >-
+    CLI companion for Kurrent Capacitor — records and visualizes agentic coding sessions, manages
+    the recording daemon, profiles, plugins and imports, and supports MCP review.
+  repository: https://github.com/kurrent-io/kcap-cli
+  package: '@kurrent/kcap'
+  registry: npm
+  install:
+  - method: npm
+    command: npm install -g @kurrent/kcap
+  skill: skills/kurrent-capacitor-cli.md
+related_tooling:
+- name: es-gencert-cli
+  description: Certificate generation CLI for KurrentDB clusters.
+  repository: https://github.com/kurrent-io/es-gencert-cli
+- name: gaffer
+  description: >-
+    Developer toolkit for KurrentDB projections — local development, testing, debugging and
+    deployment.
+  repository: https://github.com/kurrent-io/gaffer
+  homepage: https://gaffer.kurrent.io

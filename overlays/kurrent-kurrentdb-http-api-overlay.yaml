@@ -1,0 +1,105 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the KurrentDB HTTP API
+  version: 1.0.0
+extends: openapi/kurrent-kurrentdb-http-api-openapi.yml
+x-apievangelist-provenance:
+  generated: '2026-07-19'
+  method: generated
+  source: >-
+    API Evangelist enrichment pass over the KurrentDB HTTP API, drawing on
+    conventions/kurrent-conventions.yml, errors/kurrent-problem-types.yml and
+    lifecycle/kurrent-lifecycle.yml
+actions:
+- target: $.info
+  description: Record the API Evangelist provenance and the source of the description.
+  update:
+    x-apievangelist-slug: kurrent
+    x-apievangelist-artifacts:
+      conventions: conventions/kurrent-conventions.yml
+      errors: errors/kurrent-problem-types.yml
+      error_codes: errors/kurrent-error-codes.yml
+      lifecycle: lifecycle/kurrent-lifecycle.yml
+      authentication: authentication/kurrent-authentication.yml
+      data_model: data-model/kurrent-data-model.yml
+      packages: packages/kurrent-packages.yml
+      mcp: mcp/kurrent-mcp.yml
+      skills: skills/_index.yml
+    x-source-of-truth: https://docs.kurrent.io/server/v26.1/http-api/api.html
+- target: $.info
+  description: Declare the idempotency contract at the document level so agents can find it.
+  update:
+    x-idempotency:
+      supported: true
+      mechanism: client-supplied-event-id
+      header: Kurrent-EventId
+      scope: per-stream
+      note: >-
+        Appends are deduplicated on the client-generated event id within the target stream, so a
+        timed-out append is always safe to retry.
+- target: $.info
+  description: Declare the concurrency-control contract.
+  update:
+    x-concurrency:
+      mechanism: expected-version
+      header: Kurrent-ExpectedVersion
+      failure_status: 400
+- target: $.info
+  description: Declare that this API does not rate limit, so agents do not look for headers that are absent.
+  update:
+    x-rate-limiting:
+      supported: false
+      reason: >-
+        KurrentDB is a self-hosted or dedicated-cluster database rather than a shared multi-tenant
+        API, so it publishes no quota or rate-limit headers.
+- target: $.info
+  description: Point at the primary protocol, since the HTTP API is the secondary interface.
+  update:
+    x-primary-protocol:
+      name: gRPC
+      protobuf: grpc/kurrent-streams.proto
+      note: >-
+        The HTTP API is the AtomPub interface. Most production integrations use the gRPC client
+        SDKs; AtomPub over HTTP must be explicitly enabled with --enable-atom-pub-over-http.
+- target: $.paths['/streams/{stream}'].post
+  description: Flag the append operation as idempotent and mark its consequence class.
+  update:
+    x-idempotent: true
+    x-idempotency-key: Kurrent-EventId
+    x-safe-to-retry: true
+- target: $.paths['/streams/{stream}/incoming/{guid}'].post
+  description: Flag the dedicated idempotent append URL.
+  update:
+    x-idempotent: true
+    x-idempotency-key: guid
+    x-safe-to-retry: true
+- target: $.paths['/streams/{stream}'].delete
+  description: Warn that stream deletion can be irreversible.
+  update:
+    x-destructive: true
+    x-warning: >-
+      A hard delete tombstones the stream permanently; the name can never be reused. A soft delete
+      allows the stream to be recreated by a later append.
+- target: $.paths['/admin/shutdown'].post
+  description: Mark node shutdown as an operationally dangerous administrative action.
+  update:
+    x-destructive: true
+    x-warning: Shuts down the KurrentDB node. In a single-node deployment this takes the database offline.
+- target: $.paths['/admin/scavenge'].post
+  description: Note that scavenging is long-running and reclaims space irreversibly.
+  update:
+    x-long-running: true
+    x-warning: >-
+      Scavenging permanently reclaims space from soft-deleted and expired events. It is I/O heavy;
+      run it on a schedule rather than ad hoc on a busy cluster.
+- target: $.paths['/streams/$all'].get
+  description: Note the cost profile of reading the global stream.
+  update:
+    x-warning: >-
+      Reads the global stream of every event in the database. Page with an explicit count and start
+      position rather than reading unbounded.
+- target: $.components.securitySchemes.basicAuth
+  description: Cross-reference the fuller authentication profile.
+  update:
+    x-authentication-artifact: authentication/kurrent-authentication.yml
+    x-authorization-model: per-stream access control lists, plus policy-based authorization since 24.10

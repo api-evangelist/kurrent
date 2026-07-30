@@ -1,0 +1,292 @@
+{
+  "info": {
+    "_postman_id": "d450165c-1f50-47c5-b966-caff0a325700",
+    "name": "KurrentDB HTTP Admin Info API",
+    "description": "KurrentDB (formerly EventStoreDB) exposes a native AtomPub-over-HTTP interface alongside its primary gRPC protocol. This OpenAPI description is an API Evangelist transcription of the provider's published HTTP API Reference at https://docs.kurrent.io/server/v26.1/http-api/api.html \u2014 Kurrent does not publish an OpenAPI document of its own. Paths, methods, custom headers, media types and status codes are taken from that reference; nothing has been invented. The base URL is the address of your own KurrentDB node or Kurrent Cloud cluster (the same URL you use for the admin UI), which listens on port 2113 by default.\n\nContact Support:\n Name: Kurrent",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:01:29.000Z",
+    "updatedAt": "2026-07-28T02:01:29.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-d450165c-1f50-47c5-b966-caff0a325700"
+  },
+  "item": [
+    {
+      "name": "info",
+      "item": [
+        {
+          "name": "options",
+          "item": [
+            {
+              "name": "Get the configuration options of the node",
+              "id": "1a5241ae-3e16-4496-a164-a9020d06bc2c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/info/options",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "info",
+                    "options"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "65ecdcb8-6e53-410c-85f2-0b104bd44b6f",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/info/options",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "info",
+                        "options"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T02:01:29.000Z",
+                  "updatedAt": "2026-07-28T02:01:29.000Z",
+                  "uid": "35240-65ecdcb8-6e53-410c-85f2-0b104bd44b6f"
+                },
+                {
+                  "id": "702f2e53-627b-4ed7-ac6b-3b46a3d083b4",
+                  "name": "Unauthorized \u2014 credentials were missing, invalid, or lacked ACL permission",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "text/plain"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/info/options",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "info",
+                        "options"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "<string>",
+                  "createdAt": "2026-07-28T02:01:29.000Z",
+                  "updatedAt": "2026-07-28T02:01:29.000Z",
+                  "uid": "35240-702f2e53-627b-4ed7-ac6b-3b46a3d083b4"
+                }
+              ],
+              "createdAt": "2026-07-28T02:01:29.000Z",
+              "updatedAt": "2026-07-28T02:01:29.000Z",
+              "uid": "35240-1a5241ae-3e16-4496-a164-a9020d06bc2c"
+            }
+          ],
+          "id": "6ee85df5-f670-4a52-91d9-a7c7564de8f1",
+          "createdAt": "2026-07-28T02:01:29.000Z",
+          "updatedAt": "2026-07-28T02:01:29.000Z",
+          "uid": "35240-6ee85df5-f670-4a52-91d9-a7c7564de8f1"
+        },
+        {
+          "name": "Get information about the node",
+          "id": "9898882c-e3dc-44e3-acb6-d8dba3ff0fcd",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/info",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "info"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d7424067-b1ae-4874-ba43-e3d38425801c",
+              "name": "OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/info",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "info"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{}",
+              "createdAt": "2026-07-28T02:01:29.000Z",
+              "updatedAt": "2026-07-28T02:01:29.000Z",
+              "uid": "35240-d7424067-b1ae-4874-ba43-e3d38425801c"
+            },
+            {
+              "id": "96101fd5-0f5d-4801-87ef-9396c18d7e5b",
+              "name": "Unauthorized \u2014 credentials were missing, invalid, or lacked ACL permission",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/info",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "info"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<string>",
+              "createdAt": "2026-07-28T02:01:29.000Z",
+              "updatedAt": "2026-07-28T02:01:29.000Z",
+              "uid": "35240-96101fd5-0f5d-4801-87ef-9396c18d7e5b"
+            }
+          ],
+          "createdAt": "2026-07-28T02:01:29.000Z",
+          "updatedAt": "2026-07-28T02:01:29.000Z",
+          "uid": "35240-9898882c-e3dc-44e3-acb6-d8dba3ff0fcd"
+        }
+      ],
+      "id": "cffdf7b0-6ddd-489c-a0b4-5a06ac2b7bed",
+      "createdAt": "2026-07-28T02:01:29.000Z",
+      "updatedAt": "2026-07-28T02:01:29.000Z",
+      "uid": "35240-cffdf7b0-6ddd-489c-a0b4-5a06ac2b7bed"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "host",
+      "value": "localhost"
+    },
+    {
+      "key": "port",
+      "value": "2113"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{host}}:{{port}}"
+    }
+  ]
+}

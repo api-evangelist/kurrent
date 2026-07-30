@@ -1,0 +1,2778 @@
+{
+  "info": {
+    "_postman_id": "28309e7a-a8fc-4f3f-9238-f600bf6925f6",
+    "name": "KurrentDB HTTP Admin Streams API",
+    "description": "KurrentDB (formerly EventStoreDB) exposes a native AtomPub-over-HTTP interface alongside its primary gRPC protocol. This OpenAPI description is an API Evangelist transcription of the provider's published HTTP API Reference at https://docs.kurrent.io/server/v26.1/http-api/api.html \u2014 Kurrent does not publish an OpenAPI document of its own. Paths, methods, custom headers, media types and status codes are taken from that reference; nothing has been invented. The base URL is the address of your own KurrentDB node or Kurrent Cloud cluster (the same URL you use for the admin UI), which listens on port 2113 by default.\n\nContact Support:\n Name: Kurrent",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:01:33.000Z",
+    "updatedAt": "2026-07-28T02:01:34.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-28309e7a-a8fc-4f3f-9238-f600bf6925f6"
+  },
+  "item": [
+    {
+      "name": "streams",
+      "item": [
+        {
+          "name": "{stream}",
+          "item": [
+            {
+              "name": "incoming",
+              "item": [
+                {
+                  "name": "{guid}",
+                  "item": [
+                    {
+                      "name": "Append a single event using a client-supplied event id (idempotent append URL)",
+                      "id": "5e030a9e-8ca4-4f0b-a568-a7a1c42af982",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "The version the stream is expected to be at, used for optimistic concurrency control",
+                            "key": "Kurrent-ExpectedVersion",
+                            "value": "<integer>"
+                          },
+                          {
+                            "description": "The event type of the posted body",
+                            "key": "Kurrent-EventType",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "text/plain"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/streams/:stream/incoming/:guid",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "streams",
+                            ":stream",
+                            "incoming",
+                            ":guid"
+                          ],
+                          "variable": [
+                            {
+                              "id": "47bd2406-646d-4a5b-81fc-1b0afdd76fe8",
+                              "key": "stream",
+                              "value": "<string>",
+                              "description": "(Required) Name of the event stream"
+                            },
+                            {
+                              "id": "83e940bd-b970-48a2-bb39-3a30da0f2f03",
+                              "key": "guid",
+                              "value": "<uuid>",
+                              "description": "(Required) Client-generated event id, used as the idempotency key for this append"
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "712dabed-33f5-4597-a90f-bcb6f074baac",
+                          "name": "Created",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "The version the stream is expected to be at, used for optimistic concurrency control",
+                                "key": "Kurrent-ExpectedVersion",
+                                "value": "<integer>"
+                              },
+                              {
+                                "description": "The event type of the posted body",
+                                "key": "Kurrent-EventType",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/streams/:stream/incoming/:guid",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "streams",
+                                ":stream",
+                                "incoming",
+                                ":guid"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "stream"
+                                },
+                                {
+                                  "key": "guid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "URI of the created resource",
+                                "type": "text/plain"
+                              },
+                              "key": "Location",
+                              "value": "<string>"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:01:34.000Z",
+                          "updatedAt": "2026-07-28T02:01:34.000Z",
+                          "uid": "35240-712dabed-33f5-4597-a90f-bcb6f074baac"
+                        },
+                        {
+                          "id": "289b0527-5797-40e5-8acb-1f15ef60c365",
+                          "name": "Bad Request \u2014 the request was malformed or violated an expected version",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "The version the stream is expected to be at, used for optimistic concurrency control",
+                                "key": "Kurrent-ExpectedVersion",
+                                "value": "<integer>"
+                              },
+                              {
+                                "description": "The event type of the posted body",
+                                "key": "Kurrent-EventType",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "text/plain"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/streams/:stream/incoming/:guid",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "streams",
+                                ":stream",
+                                "incoming",
+                                ":guid"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "stream"
+                                },
+                                {
+                                  "key": "guid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "text/plain"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<string>",
+                          "createdAt": "2026-07-28T02:01:34.000Z",
+                          "updatedAt": "2026-07-28T02:01:34.000Z",
+                          "uid": "35240-289b0527-5797-40e5-8acb-1f15ef60c365"
+                        },
+                        {
+                          "id": "c30e99f1-d5ef-4895-8900-f54d883f91d7",
+                          "name": "Unauthorized \u2014 credentials were missing, invalid, or lacked ACL permission",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "The version the stream is expected to be at, used for optimistic concurrency control",
+                                "key": "Kurrent-ExpectedVersion",
+                                "value": "<integer>"
+                              },
+                              {
+                                "description": "The event type of the posted body",
+                                "key": "Kurrent-EventType",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "text/plain"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/streams/:stream/incoming/:guid",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "streams",
+                                ":stream",
+                                "incoming",
+                                ":guid"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "stream"
+                                },
+                                {
+                                  "key": "guid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "text/plain"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<string>",
+                          "createdAt": "2026-07-28T02:01:34.000Z",
+                          "updatedAt": "2026-07-28T02:01:34.000Z",
+                          "uid": "35240-c30e99f1-d5ef-4895-8900-f54d883f91d7"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:01:34.000Z",
+                      "updatedAt": "2026-07-28T02:01:34.000Z",
+                      "uid": "35240-5e030a9e-8ca4-4f0b-a568-a7a1c42af982"
+                    }
+                  ],
+                  "id": "5ec70dd7-e449-4e22-81d3-28fe4582e963",
+                  "createdAt": "2026-07-28T02:01:34.000Z",
+                  "updatedAt": "2026-07-28T02:01:34.000Z",
+                  "uid": "35240-5ec70dd7-e449-4e22-81d3-28fe4582e963"
+                }
+              ],
+              "id": "a745453f-dd65-4e4e-a736-363a8f83bc74",
+              "createdAt": "2026-07-28T02:01:34.000Z",
+              "updatedAt": "2026-07-28T02:01:34.000Z",
+              "uid": "35240-a745453f-dd65-4e4e-a736-363a8f83bc74"
+            },
+            {
+              "name": "metadata",
+              "item": [
+                {
+                  "name": "Read the metadata of a stream",
+                  "id": "592a69be-ba2a-47d6-b042-e4d7c6c0c8ef",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/streams/:stream/metadata",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "streams",
+                        ":stream",
+                        "metadata"
+                      ],
+                      "variable": [
+                        {
+                          "id": "97cbb913-0d6b-4f30-a28c-a24da3042af9",
+                          "key": "stream",
+                          "value": "<string>",
+                          "description": "(Required) Name of the event stream"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "1ada02fa-2a7c-414a-bb97-5ded23462431",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/streams/:stream/metadata",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "streams",
+                            ":stream",
+                            "metadata"
+                          ],
+                          "variable": [
+                            {
+                              "key": "stream"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-07-28T02:01:34.000Z",
+                      "updatedAt": "2026-07-28T02:01:34.000Z",
+                      "uid": "35240-1ada02fa-2a7c-414a-bb97-5ded23462431"
+                    },
+                    {
+                      "id": "b9fd3b3a-f311-4d28-b81c-2dec661d7067",
+                      "name": "Unauthorized \u2014 credentials were missing, invalid, or lacked ACL permission",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "text/plain"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/streams/:stream/metadata",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "streams",
+                            ":stream",
+                            "metadata"
+                          ],
+                          "variable": [
+                            {
+                              "key": "stream"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "text/plain"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "<string>",
+                      "createdAt": "2026-07-28T02:01:34.000Z",
+                      "updatedAt": "2026-07-28T02:01:34.000Z",
+                      "uid": "35240-b9fd3b3a-f311-4d28-b81c-2dec661d7067"
+                    },
+                    {
+                      "id": "91617211-8185-4593-a2ec-3bc3b18716cc",
+                      "name": "Not Found \u2014 the stream, event, projection, subscription or user does not exist",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "text/plain"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/streams/:stream/metadata",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "streams",
+                            ":stream",
+                            "metadata"
+                          ],
+                          "variable": [
+                            {
+                              "key": "stream"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "text/plain"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "<string>",
+                      "createdAt": "2026-07-28T02:01:34.000Z",
+                      "updatedAt": "2026-07-28T02:01:34.000Z",
+                      "uid": "35240-91617211-8185-4593-a2ec-3bc3b18716cc"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:01:34.000Z",
+                  "updatedAt": "2026-07-28T02:01:34.000Z",
+                  "uid": "35240-592a69be-ba2a-47d6-b042-e4d7c6c0c8ef"
+                },
+                {
+                  "name": "Update the metadata of a stream",
+                  "id": "9abdd8ab-ff17-4294-8c5d-64bf9dfc633d",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "The version the stream is expected to be at, used for optimistic concurrency control",
+                        "key": "Kurrent-ExpectedVersion",
+                        "value": "<integer>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "text/plain"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"$maxCount\": \"<integer>\",\n  \"$maxAge\": \"<integer>\",\n  \"$cacheControl\": \"<integer>\",\n  \"$tb\": \"<integer>\",\n  \"$acl\": {\n    \"$r\": {\n      \"description\": \"Users or groups allowed to read\"\n    },\n    \"$w\": {\n      \"description\": \"Users or groups allowed to write\"\n    },\n    \"$d\": {\n      \"description\": \"Users or groups allowed to delete\"\n    },\n    \"$mr\": {\n      \"description\": \"Users or groups allowed to read metadata\"\n    },\n    \"$mw\": {\n      \"description\": \"Users or groups allowed to write metadata\"\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/streams/:stream/metadata",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "streams",
+                        ":stream",
+                        "metadata"
+                      ],
+                      "variable": [
+                        {
+                          "id": "fec70724-9efa-4eb7-95c8-2c8dd9a1ae42",
+                          "key": "stream",
+                          "value": "<string>",
+                          "description": "(Required) Name of the event stream"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "b800aea8-9aae-4275-bf40-3b7bd597c171",
+                      "name": "Created",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "The version the stream is expected to be at, used for optimistic concurrency control",
+                            "key": "Kurrent-ExpectedVersion",
+                            "value": "<integer>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"$maxCount\": \"<integer>\",\n  \"$maxAge\": \"<integer>\",\n  \"$cacheControl\": \"<integer>\",\n  \"$tb\": \"<integer>\",\n  \"$acl\": {\n    \"$r\": {\n      \"description\": \"Users or groups allowed to read\"\n    },\n    \"$w\": {\n      \"description\": \"Users or groups allowed to write\"\n    },\n    \"$d\": {\n      \"description\": \"Users or groups allowed to delete\"\n    },\n    \"$mr\": {\n      \"description\": \"Users or groups allowed to read metadata\"\n    },\n    \"$mw\": {\n      \"description\": \"Users or groups allowed to write metadata\"\n    }\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/streams/:stream/metadata",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "streams",
+                            ":stream",
+                            "metadata"
+                          ],
+                          "variable": [
+                            {
+                              "key": "stream"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "URI of the created resource",
+                            "type": "text/plain"
+                          },
+                          "key": "Location",
+                          "value": "<string>"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:01:34.000Z",
+                      "updatedAt": "2026-07-28T02:01:34.000Z",
+                      "uid": "35240-b800aea8-9aae-4275-bf40-3b7bd597c171"
+                    },
+                    {
+                      "id": "fa6adccc-6f0a-4cf2-94f5-dcca75f84338",
+                      "name": "Bad Request \u2014 the request was malformed or violated an expected version",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "The version the stream is expected to be at, used for optimistic concurrency control",
+                            "key": "Kurrent-ExpectedVersion",
+                            "value": "<integer>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "text/plain"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"$maxCount\": \"<integer>\",\n  \"$maxAge\": \"<integer>\",\n  \"$cacheControl\": \"<integer>\",\n  \"$tb\": \"<integer>\",\n  \"$acl\": {\n    \"$r\": {\n      \"description\": \"Users or groups allowed to read\"\n    },\n    \"$w\": {\n      \"description\": \"Users or groups allowed to write\"\n    },\n    \"$d\": {\n      \"description\": \"Users or groups allowed to delete\"\n    },\n    \"$mr\": {\n      \"description\": \"Users or groups allowed to read metadata\"\n    },\n    \"$mw\": {\n      \"description\": \"Users or groups allowed to write metadata\"\n    }\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/streams/:stream/metadata",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "streams",
+                            ":stream",
+                            "metadata"
+                          ],
+                          "variable": [
+                            {
+                              "key": "stream"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "text/plain"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "<string>",
+                      "createdAt": "2026-07-28T02:01:34.000Z",
+                      "updatedAt": "2026-07-28T02:01:34.000Z",
+                      "uid": "35240-fa6adccc-6f0a-4cf2-94f5-dcca75f84338"
+                    },
+                    {
+                      "id": "75259015-71c6-44c3-8a9e-896247ce3aea",
+                      "name": "Unauthorized \u2014 credentials were missing, invalid, or lacked ACL permission",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "The version the stream is expected to be at, used for optimistic concurrency control",
+                            "key": "Kurrent-ExpectedVersion",
+                            "value": "<integer>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "text/plain"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"$maxCount\": \"<integer>\",\n  \"$maxAge\": \"<integer>\",\n  \"$cacheControl\": \"<integer>\",\n  \"$tb\": \"<integer>\",\n  \"$acl\": {\n    \"$r\": {\n      \"description\": \"Users or groups allowed to read\"\n    },\n    \"$w\": {\n      \"description\": \"Users or groups allowed to write\"\n    },\n    \"$d\": {\n      \"description\": \"Users or groups allowed to delete\"\n    },\n    \"$mr\": {\n      \"description\": \"Users or groups allowed to read metadata\"\n    },\n    \"$mw\": {\n      \"description\": \"Users or groups allowed to write metadata\"\n    }\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/streams/:stream/metadata",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "streams",
+                            ":stream",
+                            "metadata"
+                          ],
+                          "variable": [
+                            {
+                              "key": "stream"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "text/plain"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "<string>",
+                      "createdAt": "2026-07-28T02:01:34.000Z",
+                      "updatedAt": "2026-07-28T02:01:34.000Z",
+                      "uid": "35240-75259015-71c6-44c3-8a9e-896247ce3aea"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:01:34.000Z",
+                  "updatedAt": "2026-07-28T02:01:34.000Z",
+                  "uid": "35240-9abdd8ab-ff17-4294-8c5d-64bf9dfc633d"
+                }
+              ],
+              "id": "972f4a48-4667-4674-93c9-d41fa5315da4",
+              "createdAt": "2026-07-28T02:01:34.000Z",
+              "updatedAt": "2026-07-28T02:01:34.000Z",
+              "uid": "35240-972f4a48-4667-4674-93c9-d41fa5315da4"
+            },
+            {
+              "name": "{event}",
+              "item": [
+                {
+                  "name": "{count}",
+                  "item": [
+                    {
+                      "name": "Read a page of events from a stream starting at an event number",
+                      "id": "3a53a40b-5161-44ee-b225-63cfe02e817a",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/streams/:stream/:event/:count",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "streams",
+                            ":stream",
+                            ":event",
+                            ":count"
+                          ],
+                          "variable": [
+                            {
+                              "id": "4e10634b-5f06-45f7-89c2-46ac6bc19b19",
+                              "key": "stream",
+                              "value": "<string>",
+                              "description": "(Required) Name of the event stream"
+                            },
+                            {
+                              "id": "9fed0f03-a0e4-4b57-9d9f-3e7e27b1c48b",
+                              "key": "event",
+                              "value": "<string>",
+                              "description": "(Required) Event number within the stream, or \"head\" for the latest event"
+                            },
+                            {
+                              "id": "07856f2a-9f2d-420b-becf-f5eaaf957b29",
+                              "key": "count",
+                              "value": "<integer>",
+                              "description": "(Required) Number of events to return"
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "56d6720f-0e79-4c97-bcc7-219f96a3d006",
+                          "name": "OK \u2014 an AtomPub feed of events",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/streams/:stream/:event/:count",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "streams",
+                                ":stream",
+                                ":event",
+                                ":count"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "stream"
+                                },
+                                {
+                                  "key": "event"
+                                },
+                                {
+                                  "key": "count"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"title\": \"<string>\",\n  \"id\": \"<string>\",\n  \"updated\": \"<dateTime>\",\n  \"streamId\": \"<string>\",\n  \"author\": {\n    \"name\": \"<string>\"\n  },\n  \"headOfStream\": \"<boolean>\",\n  \"links\": [\n    {\n      \"uri\": \"<string>\",\n      \"relation\": \"<string>\"\n    },\n    {\n      \"uri\": \"<string>\",\n      \"relation\": \"<string>\"\n    }\n  ],\n  \"entries\": [\n    {\n      \"eventId\": \"<uuid>\",\n      \"eventType\": \"<string>\",\n      \"eventNumber\": \"<integer>\",\n      \"streamId\": \"<string>\",\n      \"isJson\": \"<boolean>\",\n      \"isMetaData\": \"<boolean>\",\n      \"isLinkMetaData\": \"<boolean>\",\n      \"positionEventNumber\": \"<integer>\",\n      \"positionStreamId\": \"<string>\",\n      \"title\": \"<string>\",\n      \"id\": \"<string>\",\n      \"updated\": \"<dateTime>\",\n      \"data\": {\n        \"description\": \"The event payload\"\n      },\n      \"metaData\": {\n        \"description\": \"The event metadata\"\n      },\n      \"links\": [\n        {\n          \"uri\": \"<string>\",\n          \"relation\": \"<string>\"\n        },\n        {\n          \"uri\": \"<string>\",\n          \"relation\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"eventId\": \"<uuid>\",\n      \"eventType\": \"<string>\",\n      \"eventNumber\": \"<integer>\",\n      \"streamId\": \"<string>\",\n      \"isJson\": \"<boolean>\",\n      \"isMetaData\": \"<boolean>\",\n      \"isLinkMetaData\": \"<boolean>\",\n      \"positionEventNumber\": \"<integer>\",\n      \"positionStreamId\": \"<string>\",\n      \"title\": \"<string>\",\n      \"id\": \"<string>\",\n      \"updated\": \"<dateTime>\",\n      \"data\": {\n        \"description\": \"The event payload\"\n      },\n      \"metaData\": {\n        \"description\": \"The event metadata\"\n      },\n      \"links\": [\n        {\n          \"uri\": \"<string>\",\n          \"relation\": \"<string>\"\n        },\n        {\n          \"uri\": \"<string>\",\n          \"relation\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:01:34.000Z",
+                          "updatedAt": "2026-07-28T02:01:34.000Z",
+                          "uid": "35240-56d6720f-0e79-4c97-bcc7-219f96a3d006"
+                        },
+                        {
+                          "id": "ce774946-df1e-4aa6-b0e2-b8bf6b1d8043",
+                          "name": "Unauthorized \u2014 credentials were missing, invalid, or lacked ACL permission",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "text/plain"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/streams/:stream/:event/:count",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "streams",
+                                ":stream",
+                                ":event",
+                                ":count"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "stream"
+                                },
+                                {
+                                  "key": "event"
+                                },
+                                {
+                                  "key": "count"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "text/plain"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<string>",
+                          "createdAt": "2026-07-28T02:01:34.000Z",
+                          "updatedAt": "2026-07-28T02:01:34.000Z",
+                          "uid": "35240-ce774946-df1e-4aa6-b0e2-b8bf6b1d8043"
+                        },
+                        {
+                          "id": "465348ac-fe1c-41ec-a988-09c52003de2c",
+                          "name": "Not Found \u2014 the stream, event, projection, subscription or user does not exist",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "text/plain"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/streams/:stream/:event/:count",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "streams",
+                                ":stream",
+                                ":event",
+                                ":count"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "stream"
+                                },
+                                {
+                                  "key": "event"
+                                },
+                                {
+                                  "key": "count"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "text/plain"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<string>",
+                          "createdAt": "2026-07-28T02:01:34.000Z",
+                          "updatedAt": "2026-07-28T02:01:34.000Z",
+                          "uid": "35240-465348ac-fe1c-41ec-a988-09c52003de2c"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:01:34.000Z",
+                      "updatedAt": "2026-07-28T02:01:34.000Z",
+                      "uid": "35240-3a53a40b-5161-44ee-b225-63cfe02e817a"
+                    }
+                  ],
+                  "id": "e6b5ae57-36fc-45a3-b73e-f4496fb30d23",
+                  "createdAt": "2026-07-28T02:01:34.000Z",
+                  "updatedAt": "2026-07-28T02:01:34.000Z",
+                  "uid": "35240-e6b5ae57-36fc-45a3-b73e-f4496fb30d23"
+                },
+                {
+                  "name": "backward",
+                  "item": [
+                    {
+                      "name": "{count}",
+                      "item": [
+                        {
+                          "name": "Page backward through a stream from an event number",
+                          "id": "b0ce0555-eccd-449e-bd9d-2e833aaa0698",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/streams/:stream/:event/backward/:count",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "streams",
+                                ":stream",
+                                ":event",
+                                "backward",
+                                ":count"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "3fe4e2eb-33db-4803-8e12-7644caf1dda9",
+                                  "key": "stream",
+                                  "value": "<string>",
+                                  "description": "(Required) Name of the event stream"
+                                },
+                                {
+                                  "id": "22736afc-6ea2-4462-90ab-fea9d5e31bd4",
+                                  "key": "event",
+                                  "value": "<string>",
+                                  "description": "(Required) Event number within the stream, or \"head\" for the latest event"
+                                },
+                                {
+                                  "id": "a4442e99-de78-4961-8223-ccbedc13f43e",
+                                  "key": "count",
+                                  "value": "<integer>",
+                                  "description": "(Required) Number of events to return"
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "9bb95bf3-dddc-4d09-9f88-776b672be370",
+                              "name": "OK \u2014 an AtomPub feed of events",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/streams/:stream/:event/backward/:count",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "streams",
+                                    ":stream",
+                                    ":event",
+                                    "backward",
+                                    ":count"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "stream"
+                                    },
+                                    {
+                                      "key": "event"
+                                    },
+                                    {
+                                      "key": "count"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"title\": \"<string>\",\n  \"id\": \"<string>\",\n  \"updated\": \"<dateTime>\",\n  \"streamId\": \"<string>\",\n  \"author\": {\n    \"name\": \"<string>\"\n  },\n  \"headOfStream\": \"<boolean>\",\n  \"links\": [\n    {\n      \"uri\": \"<string>\",\n      \"relation\": \"<string>\"\n    },\n    {\n      \"uri\": \"<string>\",\n      \"relation\": \"<string>\"\n    }\n  ],\n  \"entries\": [\n    {\n      \"eventId\": \"<uuid>\",\n      \"eventType\": \"<string>\",\n      \"eventNumber\": \"<integer>\",\n      \"streamId\": \"<string>\",\n      \"isJson\": \"<boolean>\",\n      \"isMetaData\": \"<boolean>\",\n      \"isLinkMetaData\": \"<boolean>\",\n      \"positionEventNumber\": \"<integer>\",\n      \"positionStreamId\": \"<string>\",\n      \"title\": \"<string>\",\n      \"id\": \"<string>\",\n      \"updated\": \"<dateTime>\",\n      \"data\": {\n        \"description\": \"The event payload\"\n      },\n      \"metaData\": {\n        \"description\": \"The event metadata\"\n      },\n      \"links\": [\n        {\n          \"uri\": \"<string>\",\n          \"relation\": \"<string>\"\n        },\n        {\n          \"uri\": \"<string>\",\n          \"relation\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"eventId\": \"<uuid>\",\n      \"eventType\": \"<string>\",\n      \"eventNumber\": \"<integer>\",\n      \"streamId\": \"<string>\",\n      \"isJson\": \"<boolean>\",\n      \"isMetaData\": \"<boolean>\",\n      \"isLinkMetaData\": \"<boolean>\",\n      \"positionEventNumber\": \"<integer>\",\n      \"positionStreamId\": \"<string>\",\n      \"title\": \"<string>\",\n      \"id\": \"<string>\",\n      \"updated\": \"<dateTime>\",\n      \"data\": {\n        \"description\": \"The event payload\"\n      },\n      \"metaData\": {\n        \"description\": \"The event metadata\"\n      },\n      \"links\": [\n        {\n          \"uri\": \"<string>\",\n          \"relation\": \"<string>\"\n        },\n        {\n          \"uri\": \"<string>\",\n          \"relation\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:01:34.000Z",
+                              "updatedAt": "2026-07-28T02:01:34.000Z",
+                              "uid": "35240-9bb95bf3-dddc-4d09-9f88-776b672be370"
+                            },
+                            {
+                              "id": "ae98c8fc-250b-4b12-bbfa-4656ea916c23",
+                              "name": "Unauthorized \u2014 credentials were missing, invalid, or lacked ACL permission",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "text/plain"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/streams/:stream/:event/backward/:count",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "streams",
+                                    ":stream",
+                                    ":event",
+                                    "backward",
+                                    ":count"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "stream"
+                                    },
+                                    {
+                                      "key": "event"
+                                    },
+                                    {
+                                      "key": "count"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "text",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "text/plain"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "<string>",
+                              "createdAt": "2026-07-28T02:01:34.000Z",
+                              "updatedAt": "2026-07-28T02:01:34.000Z",
+                              "uid": "35240-ae98c8fc-250b-4b12-bbfa-4656ea916c23"
+                            },
+                            {
+                              "id": "d18e4580-ea3d-4a98-94af-ed230f8e4119",
+                              "name": "Not Found \u2014 the stream, event, projection, subscription or user does not exist",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "text/plain"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/streams/:stream/:event/backward/:count",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "streams",
+                                    ":stream",
+                                    ":event",
+                                    "backward",
+                                    ":count"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "stream"
+                                    },
+                                    {
+                                      "key": "event"
+                                    },
+                                    {
+                                      "key": "count"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "text",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "text/plain"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "<string>",
+                              "createdAt": "2026-07-28T02:01:34.000Z",
+                              "updatedAt": "2026-07-28T02:01:34.000Z",
+                              "uid": "35240-d18e4580-ea3d-4a98-94af-ed230f8e4119"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:01:34.000Z",
+                          "updatedAt": "2026-07-28T02:01:34.000Z",
+                          "uid": "35240-b0ce0555-eccd-449e-bd9d-2e833aaa0698"
+                        }
+                      ],
+                      "id": "2119cef1-9d60-4b26-8876-c46501124d0b",
+                      "createdAt": "2026-07-28T02:01:34.000Z",
+                      "updatedAt": "2026-07-28T02:01:34.000Z",
+                      "uid": "35240-2119cef1-9d60-4b26-8876-c46501124d0b"
+                    }
+                  ],
+                  "id": "e1cb4736-1936-4b25-8c61-5d49cb4bb54a",
+                  "createdAt": "2026-07-28T02:01:34.000Z",
+                  "updatedAt": "2026-07-28T02:01:34.000Z",
+                  "uid": "35240-e1cb4736-1936-4b25-8c61-5d49cb4bb54a"
+                },
+                {
+                  "name": "forward",
+                  "item": [
+                    {
+                      "name": "{count}",
+                      "item": [
+                        {
+                          "name": "Page forward through a stream from an event number",
+                          "id": "5727d4ed-aee3-4554-9af9-fc7b767c33eb",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/streams/:stream/:event/forward/:count",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "streams",
+                                ":stream",
+                                ":event",
+                                "forward",
+                                ":count"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "c2a4c566-e566-47d1-8118-b1187c622658",
+                                  "key": "stream",
+                                  "value": "<string>",
+                                  "description": "(Required) Name of the event stream"
+                                },
+                                {
+                                  "id": "df5d8888-86fa-47f1-8512-b2bb3eae822f",
+                                  "key": "event",
+                                  "value": "<string>",
+                                  "description": "(Required) Event number within the stream, or \"head\" for the latest event"
+                                },
+                                {
+                                  "id": "442243f9-2fcd-427a-85fc-b5ada5dde205",
+                                  "key": "count",
+                                  "value": "<integer>",
+                                  "description": "(Required) Number of events to return"
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "1fcf47ac-a19a-41da-90a9-b5917a488d2e",
+                              "name": "OK \u2014 an AtomPub feed of events",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/streams/:stream/:event/forward/:count",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "streams",
+                                    ":stream",
+                                    ":event",
+                                    "forward",
+                                    ":count"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "stream"
+                                    },
+                                    {
+                                      "key": "event"
+                                    },
+                                    {
+                                      "key": "count"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"title\": \"<string>\",\n  \"id\": \"<string>\",\n  \"updated\": \"<dateTime>\",\n  \"streamId\": \"<string>\",\n  \"author\": {\n    \"name\": \"<string>\"\n  },\n  \"headOfStream\": \"<boolean>\",\n  \"links\": [\n    {\n      \"uri\": \"<string>\",\n      \"relation\": \"<string>\"\n    },\n    {\n      \"uri\": \"<string>\",\n      \"relation\": \"<string>\"\n    }\n  ],\n  \"entries\": [\n    {\n      \"eventId\": \"<uuid>\",\n      \"eventType\": \"<string>\",\n      \"eventNumber\": \"<integer>\",\n      \"streamId\": \"<string>\",\n      \"isJson\": \"<boolean>\",\n      \"isMetaData\": \"<boolean>\",\n      \"isLinkMetaData\": \"<boolean>\",\n      \"positionEventNumber\": \"<integer>\",\n      \"positionStreamId\": \"<string>\",\n      \"title\": \"<string>\",\n      \"id\": \"<string>\",\n      \"updated\": \"<dateTime>\",\n      \"data\": {\n        \"description\": \"The event payload\"\n      },\n      \"metaData\": {\n        \"description\": \"The event metadata\"\n      },\n      \"links\": [\n        {\n          \"uri\": \"<string>\",\n          \"relation\": \"<string>\"\n        },\n        {\n          \"uri\": \"<string>\",\n          \"relation\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"eventId\": \"<uuid>\",\n      \"eventType\": \"<string>\",\n      \"eventNumber\": \"<integer>\",\n      \"streamId\": \"<string>\",\n      \"isJson\": \"<boolean>\",\n      \"isMetaData\": \"<boolean>\",\n      \"isLinkMetaData\": \"<boolean>\",\n      \"positionEventNumber\": \"<integer>\",\n      \"positionStreamId\": \"<string>\",\n      \"title\": \"<string>\",\n      \"id\": \"<string>\",\n      \"updated\": \"<dateTime>\",\n      \"data\": {\n        \"description\": \"The event payload\"\n      },\n      \"metaData\": {\n        \"description\": \"The event metadata\"\n      },\n      \"links\": [\n        {\n          \"uri\": \"<string>\",\n          \"relation\": \"<string>\"\n        },\n        {\n          \"uri\": \"<string>\",\n          \"relation\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:01:34.000Z",
+                              "updatedAt": "2026-07-28T02:01:34.000Z",
+                              "uid": "35240-1fcf47ac-a19a-41da-90a9-b5917a488d2e"
+                            },
+                            {
+                              "id": "db1fabdc-3a07-481f-9596-8b9171bddc86",
+                              "name": "Unauthorized \u2014 credentials were missing, invalid, or lacked ACL permission",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "text/plain"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/streams/:stream/:event/forward/:count",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "streams",
+                                    ":stream",
+                                    ":event",
+                                    "forward",
+                                    ":count"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "stream"
+                                    },
+                                    {
+                                      "key": "event"
+                                    },
+                                    {
+                                      "key": "count"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "text",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "text/plain"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "<string>",
+                              "createdAt": "2026-07-28T02:01:34.000Z",
+                              "updatedAt": "2026-07-28T02:01:34.000Z",
+                              "uid": "35240-db1fabdc-3a07-481f-9596-8b9171bddc86"
+                            },
+                            {
+                              "id": "a744407e-5093-41cf-a5d1-518a7ac0d3c3",
+                              "name": "Not Found \u2014 the stream, event, projection, subscription or user does not exist",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "text/plain"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/streams/:stream/:event/forward/:count",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "streams",
+                                    ":stream",
+                                    ":event",
+                                    "forward",
+                                    ":count"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "stream"
+                                    },
+                                    {
+                                      "key": "event"
+                                    },
+                                    {
+                                      "key": "count"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "text",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "text/plain"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "<string>",
+                              "createdAt": "2026-07-28T02:01:34.000Z",
+                              "updatedAt": "2026-07-28T02:01:34.000Z",
+                              "uid": "35240-a744407e-5093-41cf-a5d1-518a7ac0d3c3"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:01:34.000Z",
+                          "updatedAt": "2026-07-28T02:01:34.000Z",
+                          "uid": "35240-5727d4ed-aee3-4554-9af9-fc7b767c33eb"
+                        }
+                      ],
+                      "id": "dd61978e-7bf6-453c-844d-c5bfb2e5316f",
+                      "createdAt": "2026-07-28T02:01:34.000Z",
+                      "updatedAt": "2026-07-28T02:01:34.000Z",
+                      "uid": "35240-dd61978e-7bf6-453c-844d-c5bfb2e5316f"
+                    }
+                  ],
+                  "id": "10365869-ef67-4088-acd0-c0686af4e180",
+                  "createdAt": "2026-07-28T02:01:34.000Z",
+                  "updatedAt": "2026-07-28T02:01:34.000Z",
+                  "uid": "35240-10365869-ef67-4088-acd0-c0686af4e180"
+                },
+                {
+                  "name": "Read a single event from a stream",
+                  "id": "2c6f2dd0-8247-489d-8c4a-2e4008cc3d8f",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/streams/:stream/:event",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "streams",
+                        ":stream",
+                        ":event"
+                      ],
+                      "variable": [
+                        {
+                          "id": "bec4e07a-0844-46ee-8878-48ae2595054e",
+                          "key": "stream",
+                          "value": "<string>",
+                          "description": "(Required) Name of the event stream"
+                        },
+                        {
+                          "id": "f3ee336b-a5e0-44fa-96c3-9600ed82481d",
+                          "key": "event",
+                          "value": "<string>",
+                          "description": "(Required) Event number within the stream, or \"head\" for the latest event"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "bbdc9760-a01d-4531-ab55-779d5661db6b",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/streams/:stream/:event",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "streams",
+                            ":stream",
+                            ":event"
+                          ],
+                          "variable": [
+                            {
+                              "key": "stream"
+                            },
+                            {
+                              "key": "event"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-07-28T02:01:34.000Z",
+                      "updatedAt": "2026-07-28T02:01:34.000Z",
+                      "uid": "35240-bbdc9760-a01d-4531-ab55-779d5661db6b"
+                    },
+                    {
+                      "id": "3017dd96-d49f-43ae-ad18-cdbdd681db64",
+                      "name": "Unauthorized \u2014 credentials were missing, invalid, or lacked ACL permission",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "text/plain"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/streams/:stream/:event",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "streams",
+                            ":stream",
+                            ":event"
+                          ],
+                          "variable": [
+                            {
+                              "key": "stream"
+                            },
+                            {
+                              "key": "event"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "text/plain"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "<string>",
+                      "createdAt": "2026-07-28T02:01:34.000Z",
+                      "updatedAt": "2026-07-28T02:01:34.000Z",
+                      "uid": "35240-3017dd96-d49f-43ae-ad18-cdbdd681db64"
+                    },
+                    {
+                      "id": "3f7e8079-59a3-4b10-bfbc-8291164fdb23",
+                      "name": "Not Found \u2014 the stream, event, projection, subscription or user does not exist",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "text/plain"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/streams/:stream/:event",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "streams",
+                            ":stream",
+                            ":event"
+                          ],
+                          "variable": [
+                            {
+                              "key": "stream"
+                            },
+                            {
+                              "key": "event"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "text/plain"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "<string>",
+                      "createdAt": "2026-07-28T02:01:34.000Z",
+                      "updatedAt": "2026-07-28T02:01:34.000Z",
+                      "uid": "35240-3f7e8079-59a3-4b10-bfbc-8291164fdb23"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:01:34.000Z",
+                  "updatedAt": "2026-07-28T02:01:34.000Z",
+                  "uid": "35240-2c6f2dd0-8247-489d-8c4a-2e4008cc3d8f"
+                }
+              ],
+              "id": "3691f9ec-2a36-459c-b27e-182e1a14cfdf",
+              "createdAt": "2026-07-28T02:01:34.000Z",
+              "updatedAt": "2026-07-28T02:01:34.000Z",
+              "uid": "35240-3691f9ec-2a36-459c-b27e-182e1a14cfdf"
+            },
+            {
+              "name": "Read events from a stream",
+              "id": "584f5d15-2aaa-4c7a-9f5a-36a14326e286",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Require that the request is served by the leader node rather than a follower",
+                    "key": "Kurrent-RequireLeader",
+                    "value": "<boolean>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/streams/:stream",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "streams",
+                    ":stream"
+                  ],
+                  "variable": [
+                    {
+                      "id": "22e47e82-1a3f-450f-abc4-3c94f7b0b633",
+                      "key": "stream",
+                      "value": "<string>",
+                      "description": "(Required) Name of the event stream"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "fb492ba9-d714-4253-a9fb-179c45b03e75",
+                  "name": "OK \u2014 an AtomPub feed of events",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Require that the request is served by the leader node rather than a follower",
+                        "key": "Kurrent-RequireLeader",
+                        "value": "<boolean>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/streams/:stream",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "streams",
+                        ":stream"
+                      ],
+                      "variable": [
+                        {
+                          "key": "stream"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"title\": \"<string>\",\n  \"id\": \"<string>\",\n  \"updated\": \"<dateTime>\",\n  \"streamId\": \"<string>\",\n  \"author\": {\n    \"name\": \"<string>\"\n  },\n  \"headOfStream\": \"<boolean>\",\n  \"links\": [\n    {\n      \"uri\": \"<string>\",\n      \"relation\": \"<string>\"\n    },\n    {\n      \"uri\": \"<string>\",\n      \"relation\": \"<string>\"\n    }\n  ],\n  \"entries\": [\n    {\n      \"eventId\": \"<uuid>\",\n      \"eventType\": \"<string>\",\n      \"eventNumber\": \"<integer>\",\n      \"streamId\": \"<string>\",\n      \"isJson\": \"<boolean>\",\n      \"isMetaData\": \"<boolean>\",\n      \"isLinkMetaData\": \"<boolean>\",\n      \"positionEventNumber\": \"<integer>\",\n      \"positionStreamId\": \"<string>\",\n      \"title\": \"<string>\",\n      \"id\": \"<string>\",\n      \"updated\": \"<dateTime>\",\n      \"data\": {\n        \"description\": \"The event payload\"\n      },\n      \"metaData\": {\n        \"description\": \"The event metadata\"\n      },\n      \"links\": [\n        {\n          \"uri\": \"<string>\",\n          \"relation\": \"<string>\"\n        },\n        {\n          \"uri\": \"<string>\",\n          \"relation\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"eventId\": \"<uuid>\",\n      \"eventType\": \"<string>\",\n      \"eventNumber\": \"<integer>\",\n      \"streamId\": \"<string>\",\n      \"isJson\": \"<boolean>\",\n      \"isMetaData\": \"<boolean>\",\n      \"isLinkMetaData\": \"<boolean>\",\n      \"positionEventNumber\": \"<integer>\",\n      \"positionStreamId\": \"<string>\",\n      \"title\": \"<string>\",\n      \"id\": \"<string>\",\n      \"updated\": \"<dateTime>\",\n      \"data\": {\n        \"description\": \"The event payload\"\n      },\n      \"metaData\": {\n        \"description\": \"The event metadata\"\n      },\n      \"links\": [\n        {\n          \"uri\": \"<string>\",\n          \"relation\": \"<string>\"\n        },\n        {\n          \"uri\": \"<string>\",\n          \"relation\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:01:34.000Z",
+                  "updatedAt": "2026-07-28T02:01:34.000Z",
+                  "uid": "35240-fb492ba9-d714-4253-a9fb-179c45b03e75"
+                },
+                {
+                  "id": "4d40132c-e99a-4f36-b7da-923ad3f17e3c",
+                  "name": "Unauthorized \u2014 credentials were missing, invalid, or lacked ACL permission",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Require that the request is served by the leader node rather than a follower",
+                        "key": "Kurrent-RequireLeader",
+                        "value": "<boolean>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "text/plain"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/streams/:stream",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "streams",
+                        ":stream"
+                      ],
+                      "variable": [
+                        {
+                          "key": "stream"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "<string>",
+                  "createdAt": "2026-07-28T02:01:34.000Z",
+                  "updatedAt": "2026-07-28T02:01:34.000Z",
+                  "uid": "35240-4d40132c-e99a-4f36-b7da-923ad3f17e3c"
+                },
+                {
+                  "id": "bbe78c78-959d-425f-a048-b98c4140d76e",
+                  "name": "Not Found \u2014 the stream, event, projection, subscription or user does not exist",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Require that the request is served by the leader node rather than a follower",
+                        "key": "Kurrent-RequireLeader",
+                        "value": "<boolean>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "text/plain"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/streams/:stream",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "streams",
+                        ":stream"
+                      ],
+                      "variable": [
+                        {
+                          "key": "stream"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "<string>",
+                  "createdAt": "2026-07-28T02:01:34.000Z",
+                  "updatedAt": "2026-07-28T02:01:34.000Z",
+                  "uid": "35240-bbe78c78-959d-425f-a048-b98c4140d76e"
+                }
+              ],
+              "createdAt": "2026-07-28T02:01:34.000Z",
+              "updatedAt": "2026-07-28T02:01:34.000Z",
+              "uid": "35240-584f5d15-2aaa-4c7a-9f5a-36a14326e286"
+            },
+            {
+              "name": "Append one or more events to a stream",
+              "id": "8f896a85-d354-4cd2-b33a-5d2bb3604ea4",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "The version the stream is expected to be at, used for optimistic concurrency control",
+                    "key": "Kurrent-ExpectedVersion",
+                    "value": "<integer>"
+                  },
+                  {
+                    "description": "The event type of the posted body",
+                    "key": "Kurrent-EventType",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "The unique identifier of the posted event. Supplying it makes the append idempotent \u2014 a repeated append with the same id is not written twice.",
+                    "key": "Kurrent-EventId",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "description": "Require that the request is served by the leader node rather than a follower",
+                    "key": "Kurrent-RequireLeader",
+                    "value": "<boolean>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"eventId\": \"<uuid>\",\n    \"eventType\": \"<string>\",\n    \"data\": {\n      \"description\": \"The event payload\"\n    },\n    \"metadata\": {\n      \"description\": \"Optional event metadata\"\n    }\n  },\n  {\n    \"eventId\": \"<uuid>\",\n    \"eventType\": \"<string>\",\n    \"data\": {\n      \"description\": \"The event payload\"\n    },\n    \"metadata\": {\n      \"description\": \"Optional event metadata\"\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/streams/:stream",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "streams",
+                    ":stream"
+                  ],
+                  "variable": [
+                    {
+                      "id": "99d1f330-1ea4-4e66-8f9b-53f0ceeeaead",
+                      "key": "stream",
+                      "value": "<string>",
+                      "description": "(Required) Name of the event stream"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "5197f574-4d7e-41b8-b835-c5d2992ec595",
+                  "name": "Created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "The version the stream is expected to be at, used for optimistic concurrency control",
+                        "key": "Kurrent-ExpectedVersion",
+                        "value": "<integer>"
+                      },
+                      {
+                        "description": "The event type of the posted body",
+                        "key": "Kurrent-EventType",
+                        "value": "<string>"
+                      },
+                      {
+                        "description": "The unique identifier of the posted event. Supplying it makes the append idempotent \u2014 a repeated append with the same id is not written twice.",
+                        "key": "Kurrent-EventId",
+                        "value": "<uuid>"
+                      },
+                      {
+                        "description": "Require that the request is served by the leader node rather than a follower",
+                        "key": "Kurrent-RequireLeader",
+                        "value": "<boolean>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "[\n  {\n    \"eventId\": \"<uuid>\",\n    \"eventType\": \"<string>\",\n    \"data\": {\n      \"description\": \"The event payload\"\n    },\n    \"metadata\": {\n      \"description\": \"Optional event metadata\"\n    }\n  },\n  {\n    \"eventId\": \"<uuid>\",\n    \"eventType\": \"<string>\",\n    \"data\": {\n      \"description\": \"The event payload\"\n    },\n    \"metadata\": {\n      \"description\": \"Optional event metadata\"\n    }\n  }\n]",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/streams/:stream",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "streams",
+                        ":stream"
+                      ],
+                      "variable": [
+                        {
+                          "key": "stream"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "URI of the created resource",
+                        "type": "text/plain"
+                      },
+                      "key": "Location",
+                      "value": "<string>"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:01:34.000Z",
+                  "updatedAt": "2026-07-28T02:01:34.000Z",
+                  "uid": "35240-5197f574-4d7e-41b8-b835-c5d2992ec595"
+                },
+                {
+                  "id": "c5a754e0-8e2f-458e-8b62-44be58796853",
+                  "name": "Temporary Redirect \u2014 the request must be forwarded to the leader node",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "The version the stream is expected to be at, used for optimistic concurrency control",
+                        "key": "Kurrent-ExpectedVersion",
+                        "value": "<integer>"
+                      },
+                      {
+                        "description": "The event type of the posted body",
+                        "key": "Kurrent-EventType",
+                        "value": "<string>"
+                      },
+                      {
+                        "description": "The unique identifier of the posted event. Supplying it makes the append idempotent \u2014 a repeated append with the same id is not written twice.",
+                        "key": "Kurrent-EventId",
+                        "value": "<uuid>"
+                      },
+                      {
+                        "description": "Require that the request is served by the leader node rather than a follower",
+                        "key": "Kurrent-RequireLeader",
+                        "value": "<boolean>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "[\n  {\n    \"eventId\": \"<uuid>\",\n    \"eventType\": \"<string>\",\n    \"data\": {\n      \"description\": \"The event payload\"\n    },\n    \"metadata\": {\n      \"description\": \"Optional event metadata\"\n    }\n  },\n  {\n    \"eventId\": \"<uuid>\",\n    \"eventType\": \"<string>\",\n    \"data\": {\n      \"description\": \"The event payload\"\n    },\n    \"metadata\": {\n      \"description\": \"Optional event metadata\"\n    }\n  }\n]",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/streams/:stream",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "streams",
+                        ":stream"
+                      ],
+                      "variable": [
+                        {
+                          "key": "stream"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Temporary Redirect (since HTTP/1.1)",
+                  "code": 307,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:01:34.000Z",
+                  "updatedAt": "2026-07-28T02:01:34.000Z",
+                  "uid": "35240-c5a754e0-8e2f-458e-8b62-44be58796853"
+                },
+                {
+                  "id": "3edbf916-c2eb-40ef-9b33-4a29ffe00b95",
+                  "name": "Bad Request \u2014 the request was malformed or violated an expected version",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "The version the stream is expected to be at, used for optimistic concurrency control",
+                        "key": "Kurrent-ExpectedVersion",
+                        "value": "<integer>"
+                      },
+                      {
+                        "description": "The event type of the posted body",
+                        "key": "Kurrent-EventType",
+                        "value": "<string>"
+                      },
+                      {
+                        "description": "The unique identifier of the posted event. Supplying it makes the append idempotent \u2014 a repeated append with the same id is not written twice.",
+                        "key": "Kurrent-EventId",
+                        "value": "<uuid>"
+                      },
+                      {
+                        "description": "Require that the request is served by the leader node rather than a follower",
+                        "key": "Kurrent-RequireLeader",
+                        "value": "<boolean>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "text/plain"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "[\n  {\n    \"eventId\": \"<uuid>\",\n    \"eventType\": \"<string>\",\n    \"data\": {\n      \"description\": \"The event payload\"\n    },\n    \"metadata\": {\n      \"description\": \"Optional event metadata\"\n    }\n  },\n  {\n    \"eventId\": \"<uuid>\",\n    \"eventType\": \"<string>\",\n    \"data\": {\n      \"description\": \"The event payload\"\n    },\n    \"metadata\": {\n      \"description\": \"Optional event metadata\"\n    }\n  }\n]",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/streams/:stream",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "streams",
+                        ":stream"
+                      ],
+                      "variable": [
+                        {
+                          "key": "stream"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "<string>",
+                  "createdAt": "2026-07-28T02:01:34.000Z",
+                  "updatedAt": "2026-07-28T02:01:34.000Z",
+                  "uid": "35240-3edbf916-c2eb-40ef-9b33-4a29ffe00b95"
+                },
+                {
+                  "id": "b025e517-cb6e-40b6-aea8-886e3f8faa57",
+                  "name": "Unauthorized \u2014 credentials were missing, invalid, or lacked ACL permission",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "The version the stream is expected to be at, used for optimistic concurrency control",
+                        "key": "Kurrent-ExpectedVersion",
+                        "value": "<integer>"
+                      },
+                      {
+                        "description": "The event type of the posted body",
+                        "key": "Kurrent-EventType",
+                        "value": "<string>"
+                      },
+                      {
+                        "description": "The unique identifier of the posted event. Supplying it makes the append idempotent \u2014 a repeated append with the same id is not written twice.",
+                        "key": "Kurrent-EventId",
+                        "value": "<uuid>"
+                      },
+                      {
+                        "description": "Require that the request is served by the leader node rather than a follower",
+                        "key": "Kurrent-RequireLeader",
+                        "value": "<boolean>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "text/plain"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "[\n  {\n    \"eventId\": \"<uuid>\",\n    \"eventType\": \"<string>\",\n    \"data\": {\n      \"description\": \"The event payload\"\n    },\n    \"metadata\": {\n      \"description\": \"Optional event metadata\"\n    }\n  },\n  {\n    \"eventId\": \"<uuid>\",\n    \"eventType\": \"<string>\",\n    \"data\": {\n      \"description\": \"The event payload\"\n    },\n    \"metadata\": {\n      \"description\": \"Optional event metadata\"\n    }\n  }\n]",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/streams/:stream",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "streams",
+                        ":stream"
+                      ],
+                      "variable": [
+                        {
+                          "key": "stream"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "<string>",
+                  "createdAt": "2026-07-28T02:01:34.000Z",
+                  "updatedAt": "2026-07-28T02:01:34.000Z",
+                  "uid": "35240-b025e517-cb6e-40b6-aea8-886e3f8faa57"
+                }
+              ],
+              "createdAt": "2026-07-28T02:01:34.000Z",
+              "updatedAt": "2026-07-28T02:01:34.000Z",
+              "uid": "35240-8f896a85-d354-4cd2-b33a-5d2bb3604ea4"
+            },
+            {
+              "name": "Delete a stream",
+              "id": "466a5db3-7221-4660-82cf-ec0800e3bd2b",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "description": "The version the stream is expected to be at, used for optimistic concurrency control",
+                    "key": "Kurrent-ExpectedVersion",
+                    "value": "<integer>"
+                  },
+                  {
+                    "description": "Require that the request is served by the leader node rather than a follower",
+                    "key": "Kurrent-RequireLeader",
+                    "value": "<boolean>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/streams/:stream",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "streams",
+                    ":stream"
+                  ],
+                  "variable": [
+                    {
+                      "id": "086a9c16-e03b-4452-a46c-ba0c48bf30a3",
+                      "key": "stream",
+                      "value": "<string>",
+                      "description": "(Required) Name of the event stream"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "345a15df-b397-4de4-a283-aecde1caa296",
+                  "name": "No Content \u2014 the stream was deleted",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "The version the stream is expected to be at, used for optimistic concurrency control",
+                        "key": "Kurrent-ExpectedVersion",
+                        "value": "<integer>"
+                      },
+                      {
+                        "description": "Require that the request is served by the leader node rather than a follower",
+                        "key": "Kurrent-RequireLeader",
+                        "value": "<boolean>"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/streams/:stream",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "streams",
+                        ":stream"
+                      ],
+                      "variable": [
+                        {
+                          "key": "stream"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:01:34.000Z",
+                  "updatedAt": "2026-07-28T02:01:34.000Z",
+                  "uid": "35240-345a15df-b397-4de4-a283-aecde1caa296"
+                },
+                {
+                  "id": "9cec801b-255b-4dab-8210-ab3f667eb9f0",
+                  "name": "Bad Request \u2014 the request was malformed or violated an expected version",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "The version the stream is expected to be at, used for optimistic concurrency control",
+                        "key": "Kurrent-ExpectedVersion",
+                        "value": "<integer>"
+                      },
+                      {
+                        "description": "Require that the request is served by the leader node rather than a follower",
+                        "key": "Kurrent-RequireLeader",
+                        "value": "<boolean>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "text/plain"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/streams/:stream",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "streams",
+                        ":stream"
+                      ],
+                      "variable": [
+                        {
+                          "key": "stream"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "<string>",
+                  "createdAt": "2026-07-28T02:01:34.000Z",
+                  "updatedAt": "2026-07-28T02:01:34.000Z",
+                  "uid": "35240-9cec801b-255b-4dab-8210-ab3f667eb9f0"
+                },
+                {
+                  "id": "b333532f-2fc7-401e-b575-eb60e1bad490",
+                  "name": "Unauthorized \u2014 credentials were missing, invalid, or lacked ACL permission",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "The version the stream is expected to be at, used for optimistic concurrency control",
+                        "key": "Kurrent-ExpectedVersion",
+                        "value": "<integer>"
+                      },
+                      {
+                        "description": "Require that the request is served by the leader node rather than a follower",
+                        "key": "Kurrent-RequireLeader",
+                        "value": "<boolean>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "text/plain"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/streams/:stream",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "streams",
+                        ":stream"
+                      ],
+                      "variable": [
+                        {
+                          "key": "stream"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "<string>",
+                  "createdAt": "2026-07-28T02:01:34.000Z",
+                  "updatedAt": "2026-07-28T02:01:34.000Z",
+                  "uid": "35240-b333532f-2fc7-401e-b575-eb60e1bad490"
+                },
+                {
+                  "id": "02328538-7d81-4c25-bbfe-da1acb710519",
+                  "name": "Not Found \u2014 the stream, event, projection, subscription or user does not exist",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "The version the stream is expected to be at, used for optimistic concurrency control",
+                        "key": "Kurrent-ExpectedVersion",
+                        "value": "<integer>"
+                      },
+                      {
+                        "description": "Require that the request is served by the leader node rather than a follower",
+                        "key": "Kurrent-RequireLeader",
+                        "value": "<boolean>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "text/plain"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/streams/:stream",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "streams",
+                        ":stream"
+                      ],
+                      "variable": [
+                        {
+                          "key": "stream"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "<string>",
+                  "createdAt": "2026-07-28T02:01:34.000Z",
+                  "updatedAt": "2026-07-28T02:01:34.000Z",
+                  "uid": "35240-02328538-7d81-4c25-bbfe-da1acb710519"
+                }
+              ],
+              "createdAt": "2026-07-28T02:01:34.000Z",
+              "updatedAt": "2026-07-28T02:01:34.000Z",
+              "uid": "35240-466a5db3-7221-4660-82cf-ec0800e3bd2b"
+            }
+          ],
+          "id": "4e1efd0a-15e3-4a9c-bff6-af49c9be71b7",
+          "createdAt": "2026-07-28T02:01:34.000Z",
+          "updatedAt": "2026-07-28T02:01:34.000Z",
+          "uid": "35240-4e1efd0a-15e3-4a9c-bff6-af49c9be71b7"
+        },
+        {
+          "name": "$all",
+          "item": [
+            {
+              "name": "Read events from the $all stream",
+              "id": "426d4af1-1f7c-4bbd-9496-3b0f88a0d984",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Require that the request is served by the leader node rather than a follower",
+                    "key": "Kurrent-RequireLeader",
+                    "value": "<boolean>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/streams/$all",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "streams",
+                    "$all"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "a3c3a160-47d7-48dc-ab2e-dfe281b6b565",
+                  "name": "OK \u2014 an AtomPub feed of events",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Require that the request is served by the leader node rather than a follower",
+                        "key": "Kurrent-RequireLeader",
+                        "value": "<boolean>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/streams/$all",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "streams",
+                        "$all"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"title\": \"<string>\",\n  \"id\": \"<string>\",\n  \"updated\": \"<dateTime>\",\n  \"streamId\": \"<string>\",\n  \"author\": {\n    \"name\": \"<string>\"\n  },\n  \"headOfStream\": \"<boolean>\",\n  \"links\": [\n    {\n      \"uri\": \"<string>\",\n      \"relation\": \"<string>\"\n    },\n    {\n      \"uri\": \"<string>\",\n      \"relation\": \"<string>\"\n    }\n  ],\n  \"entries\": [\n    {\n      \"eventId\": \"<uuid>\",\n      \"eventType\": \"<string>\",\n      \"eventNumber\": \"<integer>\",\n      \"streamId\": \"<string>\",\n      \"isJson\": \"<boolean>\",\n      \"isMetaData\": \"<boolean>\",\n      \"isLinkMetaData\": \"<boolean>\",\n      \"positionEventNumber\": \"<integer>\",\n      \"positionStreamId\": \"<string>\",\n      \"title\": \"<string>\",\n      \"id\": \"<string>\",\n      \"updated\": \"<dateTime>\",\n      \"data\": {\n        \"description\": \"The event payload\"\n      },\n      \"metaData\": {\n        \"description\": \"The event metadata\"\n      },\n      \"links\": [\n        {\n          \"uri\": \"<string>\",\n          \"relation\": \"<string>\"\n        },\n        {\n          \"uri\": \"<string>\",\n          \"relation\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"eventId\": \"<uuid>\",\n      \"eventType\": \"<string>\",\n      \"eventNumber\": \"<integer>\",\n      \"streamId\": \"<string>\",\n      \"isJson\": \"<boolean>\",\n      \"isMetaData\": \"<boolean>\",\n      \"isLinkMetaData\": \"<boolean>\",\n      \"positionEventNumber\": \"<integer>\",\n      \"positionStreamId\": \"<string>\",\n      \"title\": \"<string>\",\n      \"id\": \"<string>\",\n      \"updated\": \"<dateTime>\",\n      \"data\": {\n        \"description\": \"The event payload\"\n      },\n      \"metaData\": {\n        \"description\": \"The event metadata\"\n      },\n      \"links\": [\n        {\n          \"uri\": \"<string>\",\n          \"relation\": \"<string>\"\n        },\n        {\n          \"uri\": \"<string>\",\n          \"relation\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:01:34.000Z",
+                  "updatedAt": "2026-07-28T02:01:34.000Z",
+                  "uid": "35240-a3c3a160-47d7-48dc-ab2e-dfe281b6b565"
+                },
+                {
+                  "id": "135ce783-84c3-4a6c-81b7-817c63b8e6ae",
+                  "name": "Unauthorized \u2014 credentials were missing, invalid, or lacked ACL permission",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Require that the request is served by the leader node rather than a follower",
+                        "key": "Kurrent-RequireLeader",
+                        "value": "<boolean>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "text/plain"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/streams/$all",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "streams",
+                        "$all"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "<string>",
+                  "createdAt": "2026-07-28T02:01:34.000Z",
+                  "updatedAt": "2026-07-28T02:01:34.000Z",
+                  "uid": "35240-135ce783-84c3-4a6c-81b7-817c63b8e6ae"
+                }
+              ],
+              "createdAt": "2026-07-28T02:01:34.000Z",
+              "updatedAt": "2026-07-28T02:01:34.000Z",
+              "uid": "35240-426d4af1-1f7c-4bbd-9496-3b0f88a0d984"
+            }
+          ],
+          "id": "82370651-d290-4607-bd30-1537f40286fc",
+          "createdAt": "2026-07-28T02:01:34.000Z",
+          "updatedAt": "2026-07-28T02:01:34.000Z",
+          "uid": "35240-82370651-d290-4607-bd30-1537f40286fc"
+        }
+      ],
+      "id": "be03209a-2f92-47f4-9f21-55e65a5e8c0f",
+      "createdAt": "2026-07-28T02:01:34.000Z",
+      "updatedAt": "2026-07-28T02:01:34.000Z",
+      "uid": "35240-be03209a-2f92-47f4-9f21-55e65a5e8c0f"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "host",
+      "value": "localhost"
+    },
+    {
+      "key": "port",
+      "value": "2113"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{host}}:{{port}}"
+    }
+  ]
+}

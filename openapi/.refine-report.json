@@ -1,0 +1,28 @@
+{
+  "provider": "kurrent",
+  "sources": [
+    "kurrent-admin-api-openapi.yml",
+    "kurrent-gossip-api-openapi.yml",
+    "kurrent-info-api-openapi.yml",
+    "kurrent-projections-api-openapi.yml",
+    "kurrent-statistics-api-openapi.yml",
+    "kurrent-streams-api-openapi.yml",
+    "kurrent-subscriptions-api-openapi.yml",
+    "kurrent-users-api-openapi.yml"
+  ],
+  "outputs": [
+    "kurrent-admin-api-openapi.yml",
+    "kurrent-gossip-api-openapi.yml",
+    "kurrent-info-api-openapi.yml",
+    "kurrent-projections-api-openapi.yml",
+    "kurrent-statistics-api-openapi.yml",
+    "kurrent-streams-api-openapi.yml",
+    "kurrent-subscriptions-api-openapi.yml",
+    "kurrent-users-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

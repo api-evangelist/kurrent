@@ -1,0 +1,73 @@
+generated: '2026-07-19'
+method: searched
+source: >-
+  https://docs.kurrent.io/getting-started/quickstart/ and
+  https://github.com/kurrent-io/coding-agent-skills/blob/main/kurrent_skills/SKILL.md
+notes: >-
+  Kurrent has no hosted sandbox tenant and no test-vs-live key prefixes, because KurrentDB is a
+  database you run rather than a shared multi-tenant API. Its equivalent of a sandbox is a
+  disposable local instance — a documented Docker one-liner that starts an insecure single node
+  with projections and AtomPub enabled. Every value below is published verbatim by Kurrent; none
+  has been invented.
+model: local-instance
+test_live_separation:
+  key_prefixes: none
+  detail: >-
+    There are no test-mode credentials or key prefixes. Isolation comes from running a separate
+    instance — typically a local container for development and a Kurrent Cloud cluster or
+    self-hosted cluster for production.
+local_instance:
+  method: docker
+  command: >-
+    docker run --name kurrentdb-node -it -p 2113:2113
+    docker.kurrent.io/kurrent-latest/kurrentdb:latest
+    --insecure --run-projections=All --enable-atom-pub-over-http
+  image: docker.kurrent.io/kurrent-latest/kurrentdb:latest
+  connection_string: kurrentdb://localhost:2113?tls=false
+  web_ui: http://localhost:2113
+  http_api: http://localhost:2113
+  flags:
+  - flag: --insecure
+    effect: Disables TLS and authentication. Development only — never use in production.
+  - flag: --run-projections=All
+    effect: Enables the projections subsystem, required for projections and for the MCP server.
+  - flag: --enable-atom-pub-over-http
+    effect: >-
+      Enables the AtomPub HTTP API, which is off by default in recent versions. Required to use
+      openapi/kurrent-kurrentdb-http-api-openapi.yml against the instance.
+  source: https://github.com/kurrent-io/coding-agent-skills/blob/main/kurrent_skills/SKILL.md
+compose_fixtures:
+  description: >-
+    Kurrent publishes Docker Compose files and runnable per-language project templates alongside
+    its code-generation skill, including a separate test compose file.
+  files:
+  - kurrent_skills/templates/docker-compose.yaml
+  - kurrent_skills/templates/docker-compose.test.yaml
+  languages: [dotnet, fsharp, golang, java, nodejs, python, rust]
+  source: https://github.com/kurrent-io/coding-agent-skills
+prepopulated_test_data:
+  description: >-
+    Kurrent maintains a container image with a pre-populated data set, used for testing the gRPC
+    client SDKs.
+  repository: https://github.com/kurrent-io/EventStore-Client-gRPC-TestData
+learning_environments:
+- name: Kurrent Academy
+  url: https://academy.kurrent.io
+  description: Structured courses with hands-on exercises.
+- name: From Scratch template repositories
+  description: >-
+    GitHub template repositories that run in Codespaces for .NET, Java, Node.js and Python, aimed
+    at first-time users reading and writing events.
+  repositories:
+  - https://github.com/kurrent-io/EventStoreDB-From-Scratch-Dotnet
+  - https://github.com/kurrent-io/EventStoreDB-From-Scratch-Java
+  - https://github.com/kurrent-io/EventStoreDB-From-Scratch-Nodejs
+  - https://github.com/kurrent-io/EventStoreDB-From-Scratch-Python
+- name: samples
+  url: https://github.com/kurrent-io/samples
+  description: Samples showing practical aspects of KurrentDB and event sourcing.
+cloud_trial:
+  detail: >-
+    Kurrent Cloud clusters are provisioned from https://console.kurrent.cloud/ after sign-up;
+    commercial terms are on https://www.kurrent.io/pricing. No published free sandbox tier was
+    confirmed at generation time.

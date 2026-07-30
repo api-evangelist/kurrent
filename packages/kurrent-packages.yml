@@ -1,0 +1,102 @@
+generated: '2026-07-19'
+method: searched
+source: >-
+  https://docs.kurrent.io/clients/ plus live lookups against npm, PyPI, NuGet, crates.io,
+  pkg.go.dev and the kurrent-io GitHub organization
+notes: >-
+  Kurrent publishes official gRPC client SDKs for six languages. The KurrentDB-prefixed packages
+  are the current generation; the EventStore-prefixed packages are the legacy generation kept for
+  applications that have not yet migrated after the EventStoreDB to KurrentDB rebrand. Versions
+  recorded are the latest observed at the generated date.
+packages:
+- language: dotnet
+  registry: nuget
+  name: KurrentDB.Client
+  version: 1.4.0
+  url: https://www.nuget.org/packages/KurrentDB.Client
+  install: dotnet add package KurrentDB.Client
+  source: https://github.com/kurrent-io/KurrentDB-Client-Dotnet
+  docs: https://docs.kurrent.io/clients/dotnet/
+  official: true
+- language: javascript
+  registry: npm
+  name: '@kurrent/kurrentdb-client'
+  version: 1.3.1
+  url: https://www.npmjs.com/package/@kurrent/kurrentdb-client
+  install: npm install @kurrent/kurrentdb-client
+  source: https://github.com/kurrent-io/KurrentDB-Client-NodeJS
+  docs: https://docs.kurrent.io/clients/node/
+  official: true
+- language: python
+  registry: pypi
+  name: kurrentdbclient
+  version: 1.3.3
+  url: https://pypi.org/project/kurrentdbclient/
+  install: pip install kurrentdbclient
+  docs: https://docs.kurrent.io/clients/python/
+  official: true
+- language: rust
+  registry: crates.io
+  name: kurrentdb
+  version: 1.2.0
+  url: https://crates.io/crates/kurrentdb
+  install: cargo add kurrentdb
+  source: https://github.com/kurrent-io/KurrentDB-Client-Rust
+  docs: https://docs.kurrent.io/clients/rust/
+  official: true
+- language: go
+  registry: go-modules
+  name: github.com/kurrent-io/KurrentDB-Client-Go/kurrentdb
+  url: https://pkg.go.dev/github.com/kurrent-io/KurrentDB-Client-Go/kurrentdb
+  install: go get github.com/kurrent-io/KurrentDB-Client-Go/kurrentdb
+  source: https://github.com/kurrent-io/KurrentDB-Client-Go
+  docs: https://docs.kurrent.io/clients/golang/
+  official: true
+- language: java
+  registry: maven-central
+  name: io.kurrent:kurrentdb-client
+  url: https://github.com/kurrent-io/KurrentDB-Client-Java
+  install: 'Add the io.kurrent:kurrentdb-client dependency — see https://docs.kurrent.io/clients/java/'
+  source: https://github.com/kurrent-io/KurrentDB-Client-Java
+  docs: https://docs.kurrent.io/clients/java/
+  official: true
+  note: >-
+    Listed from the official Java client repository and docs; the Maven Central coordinate was not
+    confirmed by a registry lookup at generation time.
+- language: javascript
+  registry: npm
+  name: '@kurrent/kcap'
+  version: 0.11.2
+  url: https://www.npmjs.com/package/@kurrent/kcap
+  install: npm install -g @kurrent/kcap
+  source: https://github.com/kurrent-io/kcap-cli
+  official: true
+  kind: cli
+  description: Kurrent Capacitor CLI — records and visualizes agentic coding sessions.
+- language: javascript
+  registry: npm
+  name: '@eventstore/db-client'
+  version: 6.2.1
+  url: https://www.npmjs.com/package/@eventstore/db-client
+  install: npm install @eventstore/db-client
+  official: true
+  status: legacy
+  description: Previous-generation Node.js client, superseded by @kurrent/kurrentdb-client.
+- language: dotnet
+  registry: nuget
+  name: EventStore.Client.Grpc.Streams
+  version: 23.3.9
+  url: https://www.nuget.org/packages/EventStore.Client.Grpc.Streams
+  install: dotnet add package EventStore.Client.Grpc.Streams
+  official: true
+  status: legacy
+  description: Previous-generation .NET streams client, superseded by KurrentDB.Client.
+- language: python
+  registry: pypi
+  name: esdbclient
+  version: 1.1.7
+  url: https://pypi.org/project/esdbclient/
+  install: pip install esdbclient
+  official: true
+  status: legacy
+  description: Previous-generation Python client, superseded by kurrentdbclient.

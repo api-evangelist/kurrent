@@ -1,0 +1,733 @@
+{
+  "info": {
+    "_postman_id": "c18be4c2-bd71-4099-b771-036112a7e5e6",
+    "name": "KurrentDB HTTP Admin API",
+    "description": "KurrentDB (formerly EventStoreDB) exposes a native AtomPub-over-HTTP interface alongside its primary gRPC protocol. This OpenAPI description is an API Evangelist transcription of the provider's published HTTP API Reference at https://docs.kurrent.io/server/v26.1/http-api/api.html \u2014 Kurrent does not publish an OpenAPI document of its own. Paths, methods, custom headers, media types and status codes are taken from that reference; nothing has been invented. The base URL is the address of your own KurrentDB node or Kurrent Cloud cluster (the same URL you use for the admin UI), which listens on port 2113 by default.\n\nContact Support:\n Name: Kurrent",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:01:27.000Z",
+    "updatedAt": "2026-07-28T02:01:27.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-c18be4c2-bd71-4099-b771-036112a7e5e6"
+  },
+  "item": [
+    {
+      "name": "admin",
+      "item": [
+        {
+          "name": "shutdown",
+          "item": [
+            {
+              "name": "Shut down the node",
+              "id": "1b91ece7-9ce2-43d4-b050-b8692671e3fa",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/admin/shutdown",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "shutdown"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "b8acbfe3-c89d-4d82-8560-b7a34c7572cf",
+                  "name": "OK \u2014 shutdown initiated",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/shutdown",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "shutdown"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:01:27.000Z",
+                  "updatedAt": "2026-07-28T02:01:27.000Z",
+                  "uid": "35240-b8acbfe3-c89d-4d82-8560-b7a34c7572cf"
+                },
+                {
+                  "id": "e88414a1-13c3-408f-be2c-d8c059f11c43",
+                  "name": "Unauthorized \u2014 credentials were missing, invalid, or lacked ACL permission",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "text/plain"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/shutdown",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "shutdown"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "<string>",
+                  "createdAt": "2026-07-28T02:01:27.000Z",
+                  "updatedAt": "2026-07-28T02:01:27.000Z",
+                  "uid": "35240-e88414a1-13c3-408f-be2c-d8c059f11c43"
+                }
+              ],
+              "createdAt": "2026-07-28T02:01:27.000Z",
+              "updatedAt": "2026-07-28T02:01:27.000Z",
+              "uid": "35240-1b91ece7-9ce2-43d4-b050-b8692671e3fa"
+            }
+          ],
+          "id": "584f3701-4f3e-4589-bf1f-5349383e2e58",
+          "createdAt": "2026-07-28T02:01:27.000Z",
+          "updatedAt": "2026-07-28T02:01:27.000Z",
+          "uid": "35240-584f3701-4f3e-4589-bf1f-5349383e2e58"
+        },
+        {
+          "name": "node",
+          "item": [
+            {
+              "name": "resign",
+              "item": [
+                {
+                  "name": "Resign leadership of the node",
+                  "id": "64eb7ea0-38d5-46c3-9806-818435fcf6ba",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "text/plain"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/node/resign",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "node",
+                        "resign"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "f1262e3f-69fa-4bb2-9e63-bd06c2251217",
+                      "name": "OK \u2014 the node resigned leadership",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/node/resign",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "admin",
+                            "node",
+                            "resign"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:01:27.000Z",
+                      "updatedAt": "2026-07-28T02:01:27.000Z",
+                      "uid": "35240-f1262e3f-69fa-4bb2-9e63-bd06c2251217"
+                    },
+                    {
+                      "id": "ec358a49-c544-4e03-9807-722e7389cf34",
+                      "name": "Unauthorized \u2014 credentials were missing, invalid, or lacked ACL permission",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "text/plain"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/node/resign",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "admin",
+                            "node",
+                            "resign"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "text/plain"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "<string>",
+                      "createdAt": "2026-07-28T02:01:27.000Z",
+                      "updatedAt": "2026-07-28T02:01:27.000Z",
+                      "uid": "35240-ec358a49-c544-4e03-9807-722e7389cf34"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:01:27.000Z",
+                  "updatedAt": "2026-07-28T02:01:27.000Z",
+                  "uid": "35240-64eb7ea0-38d5-46c3-9806-818435fcf6ba"
+                }
+              ],
+              "id": "ed587249-8ebd-4f32-818f-1f8d66ece1c9",
+              "createdAt": "2026-07-28T02:01:27.000Z",
+              "updatedAt": "2026-07-28T02:01:27.000Z",
+              "uid": "35240-ed587249-8ebd-4f32-818f-1f8d66ece1c9"
+            }
+          ],
+          "id": "4a7d6e8b-5703-4dc6-9932-fc90c22f8d4d",
+          "createdAt": "2026-07-28T02:01:27.000Z",
+          "updatedAt": "2026-07-28T02:01:27.000Z",
+          "uid": "35240-4a7d6e8b-5703-4dc6-9932-fc90c22f8d4d"
+        },
+        {
+          "name": "scavenge",
+          "item": [
+            {
+              "name": "{scavengeId}",
+              "item": [
+                {
+                  "name": "Stop a running scavenge operation",
+                  "id": "bd9194ce-de4b-4513-bc7f-dd937d28055a",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/scavenge/:scavengeId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "scavenge",
+                        ":scavengeId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "40de12ed-a605-4531-bf27-44b5de53fd40",
+                          "key": "scavengeId",
+                          "value": "<string>",
+                          "description": "(Required) Identifier of the running scavenge operation"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "e6d2a0f6-541c-4ae3-a87f-a1ef075fbc2f",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/scavenge/:scavengeId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "admin",
+                            "scavenge",
+                            ":scavengeId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "scavengeId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-07-28T02:01:27.000Z",
+                      "updatedAt": "2026-07-28T02:01:27.000Z",
+                      "uid": "35240-e6d2a0f6-541c-4ae3-a87f-a1ef075fbc2f"
+                    },
+                    {
+                      "id": "3b26b0dd-bd06-4655-af08-8f83bb3456f7",
+                      "name": "Unauthorized \u2014 credentials were missing, invalid, or lacked ACL permission",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "text/plain"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/scavenge/:scavengeId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "admin",
+                            "scavenge",
+                            ":scavengeId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "scavengeId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "text/plain"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "<string>",
+                      "createdAt": "2026-07-28T02:01:27.000Z",
+                      "updatedAt": "2026-07-28T02:01:27.000Z",
+                      "uid": "35240-3b26b0dd-bd06-4655-af08-8f83bb3456f7"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:01:27.000Z",
+                  "updatedAt": "2026-07-28T02:01:27.000Z",
+                  "uid": "35240-bd9194ce-de4b-4513-bc7f-dd937d28055a"
+                }
+              ],
+              "id": "0a13deaf-7d7f-485e-8de0-285b378d715e",
+              "createdAt": "2026-07-28T02:01:27.000Z",
+              "updatedAt": "2026-07-28T02:01:27.000Z",
+              "uid": "35240-0a13deaf-7d7f-485e-8de0-285b378d715e"
+            },
+            {
+              "name": "Start a scavenge operation",
+              "id": "bb67e079-3221-4440-95ae-4bba0840fac7",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/admin/scavenge?startFromChunk=<integer>&threads=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "scavenge"
+                  ],
+                  "query": [
+                    {
+                      "description": "Chunk number to start scavenging from",
+                      "key": "startFromChunk",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Number of threads to use for the scavenge",
+                      "key": "threads",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "a27e121a-ccff-431d-9990-dbc4cbfed4db",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/scavenge?startFromChunk=<integer>&threads=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "scavenge"
+                      ],
+                      "query": [
+                        {
+                          "description": "Chunk number to start scavenging from",
+                          "key": "startFromChunk",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Number of threads to use for the scavenge",
+                          "key": "threads",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T02:01:27.000Z",
+                  "updatedAt": "2026-07-28T02:01:27.000Z",
+                  "uid": "35240-a27e121a-ccff-431d-9990-dbc4cbfed4db"
+                },
+                {
+                  "id": "6ed953b9-11a9-4f51-bb5a-6d162839b63d",
+                  "name": "Unauthorized \u2014 credentials were missing, invalid, or lacked ACL permission",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "text/plain"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/scavenge?startFromChunk=<integer>&threads=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "scavenge"
+                      ],
+                      "query": [
+                        {
+                          "description": "Chunk number to start scavenging from",
+                          "key": "startFromChunk",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Number of threads to use for the scavenge",
+                          "key": "threads",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "<string>",
+                  "createdAt": "2026-07-28T02:01:27.000Z",
+                  "updatedAt": "2026-07-28T02:01:27.000Z",
+                  "uid": "35240-6ed953b9-11a9-4f51-bb5a-6d162839b63d"
+                }
+              ],
+              "createdAt": "2026-07-28T02:01:27.000Z",
+              "updatedAt": "2026-07-28T02:01:27.000Z",
+              "uid": "35240-bb67e079-3221-4440-95ae-4bba0840fac7"
+            }
+          ],
+          "id": "5ce927f2-4888-41d5-b9c5-bddb6137e280",
+          "createdAt": "2026-07-28T02:01:27.000Z",
+          "updatedAt": "2026-07-28T02:01:27.000Z",
+          "uid": "35240-5ce927f2-4888-41d5-b9c5-bddb6137e280"
+        },
+        {
+          "name": "mergeindexes",
+          "item": [
+            {
+              "name": "Merge the node indexes",
+              "id": "3ccb2083-189d-49fd-a47e-710e7b53c7f2",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/admin/mergeindexes",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "mergeindexes"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "3b67a031-1f1c-4fe7-8afb-17c77ddc6625",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/mergeindexes",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "mergeindexes"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T02:01:27.000Z",
+                  "updatedAt": "2026-07-28T02:01:27.000Z",
+                  "uid": "35240-3b67a031-1f1c-4fe7-8afb-17c77ddc6625"
+                },
+                {
+                  "id": "e1d95b95-231c-4b08-a47a-6017fec510eb",
+                  "name": "Unauthorized \u2014 credentials were missing, invalid, or lacked ACL permission",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "text/plain"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/mergeindexes",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "mergeindexes"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "<string>",
+                  "createdAt": "2026-07-28T02:01:27.000Z",
+                  "updatedAt": "2026-07-28T02:01:27.000Z",
+                  "uid": "35240-e1d95b95-231c-4b08-a47a-6017fec510eb"
+                }
+              ],
+              "createdAt": "2026-07-28T02:01:27.000Z",
+              "updatedAt": "2026-07-28T02:01:27.000Z",
+              "uid": "35240-3ccb2083-189d-49fd-a47e-710e7b53c7f2"
+            }
+          ],
+          "id": "f515344c-85d4-40d8-99af-67507ae4210e",
+          "createdAt": "2026-07-28T02:01:27.000Z",
+          "updatedAt": "2026-07-28T02:01:27.000Z",
+          "uid": "35240-f515344c-85d4-40d8-99af-67507ae4210e"
+        }
+      ],
+      "id": "5dd5773f-5292-4d09-8597-b04226992192",
+      "createdAt": "2026-07-28T02:01:27.000Z",
+      "updatedAt": "2026-07-28T02:01:27.000Z",
+      "uid": "35240-5dd5773f-5292-4d09-8597-b04226992192"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "host",
+      "value": "localhost"
+    },
+    {
+      "key": "port",
+      "value": "2113"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{host}}:{{port}}"
+    }
+  ]
+}

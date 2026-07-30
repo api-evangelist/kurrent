@@ -1,0 +1,400 @@
+{
+  "info": {
+    "_postman_id": "e8d23485-a793-49b7-98e3-e61074042ae7",
+    "name": "KurrentDB HTTP Admin Statistics API",
+    "description": "KurrentDB (formerly EventStoreDB) exposes a native AtomPub-over-HTTP interface alongside its primary gRPC protocol. This OpenAPI description is an API Evangelist transcription of the provider's published HTTP API Reference at https://docs.kurrent.io/server/v26.1/http-api/api.html \u2014 Kurrent does not publish an OpenAPI document of its own. Paths, methods, custom headers, media types and status codes are taken from that reference; nothing has been invented. The base URL is the address of your own KurrentDB node or Kurrent Cloud cluster (the same URL you use for the admin UI), which listens on port 2113 by default.\n\nContact Support:\n Name: Kurrent",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:01:32.000Z",
+    "updatedAt": "2026-07-28T02:01:32.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e8d23485-a793-49b7-98e3-e61074042ae7"
+  },
+  "item": [
+    {
+      "name": "stats",
+      "item": [
+        {
+          "name": "{statPath}",
+          "item": [
+            {
+              "name": "Get a specific statistic",
+              "id": "b9a676ce-d499-437c-9766-b85349e11acf",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/stats/:statPath",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "stats",
+                    ":statPath"
+                  ],
+                  "variable": [
+                    {
+                      "id": "f96ea9d4-a1c7-44f4-8112-cf72095edcfd",
+                      "key": "statPath",
+                      "value": "<string>",
+                      "description": "(Required) Path of the statistic to return"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "a6d6c549-0ac7-4b99-99ab-25978c89ae36",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/stats/:statPath",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "stats",
+                        ":statPath"
+                      ],
+                      "variable": [
+                        {
+                          "key": "statPath"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T02:01:33.000Z",
+                  "updatedAt": "2026-07-28T02:01:33.000Z",
+                  "uid": "35240-a6d6c549-0ac7-4b99-99ab-25978c89ae36"
+                },
+                {
+                  "id": "808b14ec-4f73-4876-9046-1b17759838fb",
+                  "name": "Unauthorized \u2014 credentials were missing, invalid, or lacked ACL permission",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "text/plain"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/stats/:statPath",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "stats",
+                        ":statPath"
+                      ],
+                      "variable": [
+                        {
+                          "key": "statPath"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "<string>",
+                  "createdAt": "2026-07-28T02:01:33.000Z",
+                  "updatedAt": "2026-07-28T02:01:33.000Z",
+                  "uid": "35240-808b14ec-4f73-4876-9046-1b17759838fb"
+                },
+                {
+                  "id": "13578bc7-0f62-4bb7-b8bf-c49bac606fb6",
+                  "name": "Not Found \u2014 the stream, event, projection, subscription or user does not exist",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "text/plain"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/stats/:statPath",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "stats",
+                        ":statPath"
+                      ],
+                      "variable": [
+                        {
+                          "key": "statPath"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "<string>",
+                  "createdAt": "2026-07-28T02:01:33.000Z",
+                  "updatedAt": "2026-07-28T02:01:33.000Z",
+                  "uid": "35240-13578bc7-0f62-4bb7-b8bf-c49bac606fb6"
+                }
+              ],
+              "createdAt": "2026-07-28T02:01:33.000Z",
+              "updatedAt": "2026-07-28T02:01:33.000Z",
+              "uid": "35240-b9a676ce-d499-437c-9766-b85349e11acf"
+            }
+          ],
+          "id": "b8e20f9d-849f-4be7-ad09-d06436eadc74",
+          "createdAt": "2026-07-28T02:01:33.000Z",
+          "updatedAt": "2026-07-28T02:01:33.000Z",
+          "uid": "35240-b8e20f9d-849f-4be7-ad09-d06436eadc74"
+        },
+        {
+          "name": "Get all node statistics",
+          "id": "882148ea-37ab-4e73-a4dd-3dfbf34fb774",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/stats",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "stats"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "28e0be04-7ecf-433f-848f-c868a339a3d2",
+              "name": "OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/stats",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "stats"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{}",
+              "createdAt": "2026-07-28T02:01:33.000Z",
+              "updatedAt": "2026-07-28T02:01:33.000Z",
+              "uid": "35240-28e0be04-7ecf-433f-848f-c868a339a3d2"
+            },
+            {
+              "id": "e27b3589-8f36-4dd0-8d3e-1da577bacb62",
+              "name": "Unauthorized \u2014 credentials were missing, invalid, or lacked ACL permission",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/stats",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "stats"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<string>",
+              "createdAt": "2026-07-28T02:01:33.000Z",
+              "updatedAt": "2026-07-28T02:01:33.000Z",
+              "uid": "35240-e27b3589-8f36-4dd0-8d3e-1da577bacb62"
+            },
+            {
+              "id": "1765e1c6-c89d-42db-8d59-9900d5587cbe",
+              "name": "Not Found \u2014 the stream, event, projection, subscription or user does not exist",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/stats",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "stats"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "text",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<string>",
+              "createdAt": "2026-07-28T02:01:33.000Z",
+              "updatedAt": "2026-07-28T02:01:33.000Z",
+              "uid": "35240-1765e1c6-c89d-42db-8d59-9900d5587cbe"
+            }
+          ],
+          "createdAt": "2026-07-28T02:01:33.000Z",
+          "updatedAt": "2026-07-28T02:01:33.000Z",
+          "uid": "35240-882148ea-37ab-4e73-a4dd-3dfbf34fb774"
+        }
+      ],
+      "id": "358ff1d6-ada5-4f92-9c8c-51c1491af5ee",
+      "createdAt": "2026-07-28T02:01:33.000Z",
+      "updatedAt": "2026-07-28T02:01:33.000Z",
+      "uid": "35240-358ff1d6-ada5-4f92-9c8c-51c1491af5ee"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "host",
+      "value": "localhost"
+    },
+    {
+      "key": "port",
+      "value": "2113"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{host}}:{{port}}"
+    }
+  ]
+}

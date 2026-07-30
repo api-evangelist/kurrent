@@ -1,0 +1,2390 @@
+{
+  "info": {
+    "_postman_id": "b0935a2d-13a2-4281-9ff5-faee431a696d",
+    "name": "KurrentDB HTTP Admin Subscriptions API",
+    "description": "KurrentDB (formerly EventStoreDB) exposes a native AtomPub-over-HTTP interface alongside its primary gRPC protocol. This OpenAPI description is an API Evangelist transcription of the provider's published HTTP API Reference at https://docs.kurrent.io/server/v26.1/http-api/api.html \u2014 Kurrent does not publish an OpenAPI document of its own. Paths, methods, custom headers, media types and status codes are taken from that reference; nothing has been invented. The base URL is the address of your own KurrentDB node or Kurrent Cloud cluster (the same URL you use for the admin UI), which listens on port 2113 by default.\n\nContact Support:\n Name: Kurrent",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:01:34.000Z",
+    "updatedAt": "2026-07-28T02:01:35.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b0935a2d-13a2-4281-9ff5-faee431a696d"
+  },
+  "item": [
+    {
+      "name": "subscriptions",
+      "item": [
+        {
+          "name": "{stream}",
+          "item": [
+            {
+              "name": "{subscription}",
+              "item": [
+                {
+                  "name": "info",
+                  "item": [
+                    {
+                      "name": "Get details of a persistent subscription",
+                      "id": "1757b77a-c7d9-434c-9cc6-fe7e8e9d08a9",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/subscriptions/:stream/:subscription/info",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "subscriptions",
+                            ":stream",
+                            ":subscription",
+                            "info"
+                          ],
+                          "variable": [
+                            {
+                              "id": "92b1011d-8510-4d82-8313-985e2ce8d35b",
+                              "key": "stream",
+                              "value": "<string>",
+                              "description": "(Required) Name of the event stream"
+                            },
+                            {
+                              "id": "253a86a7-8552-4046-ba27-c96e0f282e35",
+                              "key": "subscription",
+                              "value": "<string>",
+                              "description": "(Required) Name of the persistent subscription group"
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "ad4f1007-cf37-4c2e-bd43-ef802914d2dc",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/subscriptions/:stream/:subscription/info",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "subscriptions",
+                                ":stream",
+                                ":subscription",
+                                "info"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "stream"
+                                },
+                                {
+                                  "key": "subscription"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{}",
+                          "createdAt": "2026-07-28T02:01:35.000Z",
+                          "updatedAt": "2026-07-28T02:01:35.000Z",
+                          "uid": "35240-ad4f1007-cf37-4c2e-bd43-ef802914d2dc"
+                        },
+                        {
+                          "id": "64403e6f-a958-4dab-886a-264b9d76fe03",
+                          "name": "Unauthorized \u2014 credentials were missing, invalid, or lacked ACL permission",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "text/plain"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/subscriptions/:stream/:subscription/info",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "subscriptions",
+                                ":stream",
+                                ":subscription",
+                                "info"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "stream"
+                                },
+                                {
+                                  "key": "subscription"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "text/plain"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<string>",
+                          "createdAt": "2026-07-28T02:01:35.000Z",
+                          "updatedAt": "2026-07-28T02:01:35.000Z",
+                          "uid": "35240-64403e6f-a958-4dab-886a-264b9d76fe03"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:01:35.000Z",
+                      "updatedAt": "2026-07-28T02:01:35.000Z",
+                      "uid": "35240-1757b77a-c7d9-434c-9cc6-fe7e8e9d08a9"
+                    }
+                  ],
+                  "id": "ff441773-0064-4889-96ef-a67fe1a63a87",
+                  "createdAt": "2026-07-28T02:01:35.000Z",
+                  "updatedAt": "2026-07-28T02:01:35.000Z",
+                  "uid": "35240-ff441773-0064-4889-96ef-a67fe1a63a87"
+                },
+                {
+                  "name": "{count}",
+                  "item": [
+                    {
+                      "name": "Read a number of events from a persistent subscription",
+                      "id": "d95ab42e-a659-4180-a743-e9efbe3a9540",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/subscriptions/:stream/:subscription/:count",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "subscriptions",
+                            ":stream",
+                            ":subscription",
+                            ":count"
+                          ],
+                          "variable": [
+                            {
+                              "id": "3b6d1845-89b2-4dce-8933-d958bec2a060",
+                              "key": "stream",
+                              "value": "<string>",
+                              "description": "(Required) Name of the event stream"
+                            },
+                            {
+                              "id": "1bcd786a-9e4f-4994-95cc-1edd6b484dde",
+                              "key": "subscription",
+                              "value": "<string>",
+                              "description": "(Required) Name of the persistent subscription group"
+                            },
+                            {
+                              "id": "417c0c02-e5e5-443b-a563-50254da5ad69",
+                              "key": "count",
+                              "value": "<integer>",
+                              "description": "(Required) Number of events to return"
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "bfd5ff93-1965-4979-a799-4b653308a274",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/subscriptions/:stream/:subscription/:count",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "subscriptions",
+                                ":stream",
+                                ":subscription",
+                                ":count"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "stream"
+                                },
+                                {
+                                  "key": "subscription"
+                                },
+                                {
+                                  "key": "count"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{}",
+                          "createdAt": "2026-07-28T02:01:35.000Z",
+                          "updatedAt": "2026-07-28T02:01:35.000Z",
+                          "uid": "35240-bfd5ff93-1965-4979-a799-4b653308a274"
+                        },
+                        {
+                          "id": "1f50032e-b81b-4125-b7e3-f64bedf9aaf4",
+                          "name": "Unauthorized \u2014 credentials were missing, invalid, or lacked ACL permission",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "text/plain"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/subscriptions/:stream/:subscription/:count",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "subscriptions",
+                                ":stream",
+                                ":subscription",
+                                ":count"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "stream"
+                                },
+                                {
+                                  "key": "subscription"
+                                },
+                                {
+                                  "key": "count"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "text/plain"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<string>",
+                          "createdAt": "2026-07-28T02:01:35.000Z",
+                          "updatedAt": "2026-07-28T02:01:35.000Z",
+                          "uid": "35240-1f50032e-b81b-4125-b7e3-f64bedf9aaf4"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:01:35.000Z",
+                      "updatedAt": "2026-07-28T02:01:35.000Z",
+                      "uid": "35240-d95ab42e-a659-4180-a743-e9efbe3a9540"
+                    }
+                  ],
+                  "id": "0ce0b1ef-7c64-43a9-b168-0f3c8caabbdc",
+                  "createdAt": "2026-07-28T02:01:35.000Z",
+                  "updatedAt": "2026-07-28T02:01:35.000Z",
+                  "uid": "35240-0ce0b1ef-7c64-43a9-b168-0f3c8caabbdc"
+                },
+                {
+                  "name": "ack",
+                  "item": [
+                    {
+                      "name": "{messageid}",
+                      "item": [
+                        {
+                          "name": "Acknowledge a single message",
+                          "id": "df20264b-4404-492e-bab0-323e0aaaa902",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/subscriptions/:stream/:subscription/ack/:messageid",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "subscriptions",
+                                ":stream",
+                                ":subscription",
+                                "ack",
+                                ":messageid"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "a08cd073-a33e-4504-af31-1335300a5d60",
+                                  "key": "stream",
+                                  "value": "<string>",
+                                  "description": "(Required) Name of the event stream"
+                                },
+                                {
+                                  "id": "ce66b39f-8a0b-414f-bd12-0893da1361b0",
+                                  "key": "subscription",
+                                  "value": "<string>",
+                                  "description": "(Required) Name of the persistent subscription group"
+                                },
+                                {
+                                  "id": "d17ae5ab-16c0-4688-9a5d-fdb1f04a8a9e",
+                                  "key": "messageid",
+                                  "value": "<uuid>",
+                                  "description": "(Required) Identifier of the message to acknowledge"
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "7d491c02-54fe-4044-999e-55e636760a2d",
+                              "name": "OK",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/subscriptions/:stream/:subscription/ack/:messageid",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "subscriptions",
+                                    ":stream",
+                                    ":subscription",
+                                    "ack",
+                                    ":messageid"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "stream"
+                                    },
+                                    {
+                                      "key": "subscription"
+                                    },
+                                    {
+                                      "key": "messageid"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{}",
+                              "createdAt": "2026-07-28T02:01:35.000Z",
+                              "updatedAt": "2026-07-28T02:01:35.000Z",
+                              "uid": "35240-7d491c02-54fe-4044-999e-55e636760a2d"
+                            },
+                            {
+                              "id": "95df370a-bd44-4556-b1db-da93e3326441",
+                              "name": "Unauthorized \u2014 credentials were missing, invalid, or lacked ACL permission",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "text/plain"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/subscriptions/:stream/:subscription/ack/:messageid",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "subscriptions",
+                                    ":stream",
+                                    ":subscription",
+                                    "ack",
+                                    ":messageid"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "stream"
+                                    },
+                                    {
+                                      "key": "subscription"
+                                    },
+                                    {
+                                      "key": "messageid"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "text",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "text/plain"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "<string>",
+                              "createdAt": "2026-07-28T02:01:35.000Z",
+                              "updatedAt": "2026-07-28T02:01:35.000Z",
+                              "uid": "35240-95df370a-bd44-4556-b1db-da93e3326441"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:01:35.000Z",
+                          "updatedAt": "2026-07-28T02:01:35.000Z",
+                          "uid": "35240-df20264b-4404-492e-bab0-323e0aaaa902"
+                        }
+                      ],
+                      "id": "85f0fca7-a1d8-4e8f-8d8f-0df8e6dd622f",
+                      "createdAt": "2026-07-28T02:01:35.000Z",
+                      "updatedAt": "2026-07-28T02:01:35.000Z",
+                      "uid": "35240-85f0fca7-a1d8-4e8f-8d8f-0df8e6dd622f"
+                    },
+                    {
+                      "name": "Acknowledge a set of messages",
+                      "id": "1891cba6-92f0-4c54-826c-6bc45c13ff35",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/subscriptions/:stream/:subscription/ack?ids=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "subscriptions",
+                            ":stream",
+                            ":subscription",
+                            "ack"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Comma-separated list of message ids to acknowledge",
+                              "key": "ids",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "8946a097-c9ad-46bb-91c3-e217e35a2a9d",
+                              "key": "stream",
+                              "value": "<string>",
+                              "description": "(Required) Name of the event stream"
+                            },
+                            {
+                              "id": "650c212b-11cf-4ed3-bcaf-7ca4d8053eb2",
+                              "key": "subscription",
+                              "value": "<string>",
+                              "description": "(Required) Name of the persistent subscription group"
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "81d93e08-3c88-4300-a7e9-1ad1b9e2acf5",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/subscriptions/:stream/:subscription/ack?ids=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "subscriptions",
+                                ":stream",
+                                ":subscription",
+                                "ack"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) Comma-separated list of message ids to acknowledge",
+                                  "key": "ids",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "stream"
+                                },
+                                {
+                                  "key": "subscription"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{}",
+                          "createdAt": "2026-07-28T02:01:35.000Z",
+                          "updatedAt": "2026-07-28T02:01:35.000Z",
+                          "uid": "35240-81d93e08-3c88-4300-a7e9-1ad1b9e2acf5"
+                        },
+                        {
+                          "id": "e4dc51bf-de04-4aa7-89d4-04a14e25f763",
+                          "name": "Unauthorized \u2014 credentials were missing, invalid, or lacked ACL permission",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "text/plain"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/subscriptions/:stream/:subscription/ack?ids=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "subscriptions",
+                                ":stream",
+                                ":subscription",
+                                "ack"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) Comma-separated list of message ids to acknowledge",
+                                  "key": "ids",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "stream"
+                                },
+                                {
+                                  "key": "subscription"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "text/plain"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<string>",
+                          "createdAt": "2026-07-28T02:01:35.000Z",
+                          "updatedAt": "2026-07-28T02:01:35.000Z",
+                          "uid": "35240-e4dc51bf-de04-4aa7-89d4-04a14e25f763"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:01:35.000Z",
+                      "updatedAt": "2026-07-28T02:01:35.000Z",
+                      "uid": "35240-1891cba6-92f0-4c54-826c-6bc45c13ff35"
+                    }
+                  ],
+                  "id": "2ffbc8ce-2767-4ab2-9b61-a16efebd442b",
+                  "createdAt": "2026-07-28T02:01:35.000Z",
+                  "updatedAt": "2026-07-28T02:01:35.000Z",
+                  "uid": "35240-2ffbc8ce-2767-4ab2-9b61-a16efebd442b"
+                },
+                {
+                  "name": "nack",
+                  "item": [
+                    {
+                      "name": "{messageid}",
+                      "item": [
+                        {
+                          "name": "Negatively acknowledge a single message",
+                          "id": "87959c45-d4a2-4c9b-8fe5-8bb9aeceec77",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/subscriptions/:stream/:subscription/nack/:messageid?action=Stop",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "subscriptions",
+                                ":stream",
+                                ":subscription",
+                                "nack",
+                                ":messageid"
+                              ],
+                              "query": [
+                                {
+                                  "description": "What the server should do with the negatively acknowledged message",
+                                  "key": "action",
+                                  "value": "Stop"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "21d489bb-e245-476b-a37d-d5eb9191aaaa",
+                                  "key": "stream",
+                                  "value": "<string>",
+                                  "description": "(Required) Name of the event stream"
+                                },
+                                {
+                                  "id": "b2d8941d-346a-46c4-8924-be41e0c0a859",
+                                  "key": "subscription",
+                                  "value": "<string>",
+                                  "description": "(Required) Name of the persistent subscription group"
+                                },
+                                {
+                                  "id": "6b4aeeaf-e02a-463c-acd9-20e148446f8e",
+                                  "key": "messageid",
+                                  "value": "<uuid>",
+                                  "description": "(Required) Identifier of the message to acknowledge"
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "a7f47e08-f9c6-4a0d-8dd7-2203b2d4c52c",
+                              "name": "OK",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/subscriptions/:stream/:subscription/nack/:messageid?action=Stop",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "subscriptions",
+                                    ":stream",
+                                    ":subscription",
+                                    "nack",
+                                    ":messageid"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "What the server should do with the negatively acknowledged message",
+                                      "key": "action",
+                                      "value": "Stop"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "stream"
+                                    },
+                                    {
+                                      "key": "subscription"
+                                    },
+                                    {
+                                      "key": "messageid"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{}",
+                              "createdAt": "2026-07-28T02:01:35.000Z",
+                              "updatedAt": "2026-07-28T02:01:35.000Z",
+                              "uid": "35240-a7f47e08-f9c6-4a0d-8dd7-2203b2d4c52c"
+                            },
+                            {
+                              "id": "fd5e6da0-7b01-469c-87bd-ea2f8cbc2bfd",
+                              "name": "Unauthorized \u2014 credentials were missing, invalid, or lacked ACL permission",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "text/plain"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/subscriptions/:stream/:subscription/nack/:messageid?action=Stop",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "subscriptions",
+                                    ":stream",
+                                    ":subscription",
+                                    "nack",
+                                    ":messageid"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "What the server should do with the negatively acknowledged message",
+                                      "key": "action",
+                                      "value": "Stop"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "stream"
+                                    },
+                                    {
+                                      "key": "subscription"
+                                    },
+                                    {
+                                      "key": "messageid"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "text",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "text/plain"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "<string>",
+                              "createdAt": "2026-07-28T02:01:35.000Z",
+                              "updatedAt": "2026-07-28T02:01:35.000Z",
+                              "uid": "35240-fd5e6da0-7b01-469c-87bd-ea2f8cbc2bfd"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:01:35.000Z",
+                          "updatedAt": "2026-07-28T02:01:35.000Z",
+                          "uid": "35240-87959c45-d4a2-4c9b-8fe5-8bb9aeceec77"
+                        }
+                      ],
+                      "id": "fba85b89-827d-43c4-8c67-dbbf95f95426",
+                      "createdAt": "2026-07-28T02:01:35.000Z",
+                      "updatedAt": "2026-07-28T02:01:35.000Z",
+                      "uid": "35240-fba85b89-827d-43c4-8c67-dbbf95f95426"
+                    },
+                    {
+                      "name": "Negatively acknowledge a set of messages",
+                      "id": "c5e75655-e441-4f84-a0fc-b6964316bd1d",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/subscriptions/:stream/:subscription/nack?ids=<string>&action=Stop",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "subscriptions",
+                            ":stream",
+                            ":subscription",
+                            "nack"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Comma-separated list of message ids to negatively acknowledge",
+                              "key": "ids",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "What the server should do with the negatively acknowledged message",
+                              "key": "action",
+                              "value": "Stop"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "95aa64f2-8f33-48e8-b0e2-7f0114636e4f",
+                              "key": "stream",
+                              "value": "<string>",
+                              "description": "(Required) Name of the event stream"
+                            },
+                            {
+                              "id": "d311cf71-1f66-473e-a8e4-7a9b5f549a3d",
+                              "key": "subscription",
+                              "value": "<string>",
+                              "description": "(Required) Name of the persistent subscription group"
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "1feb1757-3f98-48ee-80b1-89371ead242a",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/subscriptions/:stream/:subscription/nack?ids=<string>&action=Stop",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "subscriptions",
+                                ":stream",
+                                ":subscription",
+                                "nack"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) Comma-separated list of message ids to negatively acknowledge",
+                                  "key": "ids",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "What the server should do with the negatively acknowledged message",
+                                  "key": "action",
+                                  "value": "Stop"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "stream"
+                                },
+                                {
+                                  "key": "subscription"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{}",
+                          "createdAt": "2026-07-28T02:01:35.000Z",
+                          "updatedAt": "2026-07-28T02:01:35.000Z",
+                          "uid": "35240-1feb1757-3f98-48ee-80b1-89371ead242a"
+                        },
+                        {
+                          "id": "df778a7e-a155-4abc-ac3e-924c3d9ef608",
+                          "name": "Unauthorized \u2014 credentials were missing, invalid, or lacked ACL permission",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "text/plain"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/subscriptions/:stream/:subscription/nack?ids=<string>&action=Stop",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "subscriptions",
+                                ":stream",
+                                ":subscription",
+                                "nack"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) Comma-separated list of message ids to negatively acknowledge",
+                                  "key": "ids",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "What the server should do with the negatively acknowledged message",
+                                  "key": "action",
+                                  "value": "Stop"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "stream"
+                                },
+                                {
+                                  "key": "subscription"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "text/plain"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<string>",
+                          "createdAt": "2026-07-28T02:01:35.000Z",
+                          "updatedAt": "2026-07-28T02:01:35.000Z",
+                          "uid": "35240-df778a7e-a155-4abc-ac3e-924c3d9ef608"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:01:35.000Z",
+                      "updatedAt": "2026-07-28T02:01:35.000Z",
+                      "uid": "35240-c5e75655-e441-4f84-a0fc-b6964316bd1d"
+                    }
+                  ],
+                  "id": "0dc7a7af-19b9-4249-9dd8-55009057e23c",
+                  "createdAt": "2026-07-28T02:01:35.000Z",
+                  "updatedAt": "2026-07-28T02:01:35.000Z",
+                  "uid": "35240-0dc7a7af-19b9-4249-9dd8-55009057e23c"
+                },
+                {
+                  "name": "replayParked",
+                  "item": [
+                    {
+                      "name": "Replay the parked messages of a persistent subscription",
+                      "id": "a91564bc-0ad0-456f-af12-008dbf6c8c44",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/subscriptions/:stream/:subscription/replayParked",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "subscriptions",
+                            ":stream",
+                            ":subscription",
+                            "replayParked"
+                          ],
+                          "variable": [
+                            {
+                              "id": "da2ba24f-56a9-449c-98e1-9702e63b4cf4",
+                              "key": "stream",
+                              "value": "<string>",
+                              "description": "(Required) Name of the event stream"
+                            },
+                            {
+                              "id": "470e51c0-9145-44df-a3f9-b7a81e70a09a",
+                              "key": "subscription",
+                              "value": "<string>",
+                              "description": "(Required) Name of the persistent subscription group"
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "8585c962-c0c8-40d1-8128-4d5c354738d5",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/subscriptions/:stream/:subscription/replayParked",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "subscriptions",
+                                ":stream",
+                                ":subscription",
+                                "replayParked"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "stream"
+                                },
+                                {
+                                  "key": "subscription"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{}",
+                          "createdAt": "2026-07-28T02:01:35.000Z",
+                          "updatedAt": "2026-07-28T02:01:35.000Z",
+                          "uid": "35240-8585c962-c0c8-40d1-8128-4d5c354738d5"
+                        },
+                        {
+                          "id": "8d41a25c-0fbe-48e0-8b56-3088dc0920f4",
+                          "name": "Unauthorized \u2014 credentials were missing, invalid, or lacked ACL permission",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "text/plain"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/subscriptions/:stream/:subscription/replayParked",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "subscriptions",
+                                ":stream",
+                                ":subscription",
+                                "replayParked"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "stream"
+                                },
+                                {
+                                  "key": "subscription"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "text/plain"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<string>",
+                          "createdAt": "2026-07-28T02:01:35.000Z",
+                          "updatedAt": "2026-07-28T02:01:35.000Z",
+                          "uid": "35240-8d41a25c-0fbe-48e0-8b56-3088dc0920f4"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:01:35.000Z",
+                      "updatedAt": "2026-07-28T02:01:35.000Z",
+                      "uid": "35240-a91564bc-0ad0-456f-af12-008dbf6c8c44"
+                    }
+                  ],
+                  "id": "cf73af9e-016d-4b11-969c-a54a8ab8095f",
+                  "createdAt": "2026-07-28T02:01:35.000Z",
+                  "updatedAt": "2026-07-28T02:01:35.000Z",
+                  "uid": "35240-cf73af9e-016d-4b11-969c-a54a8ab8095f"
+                },
+                {
+                  "name": "Read events from a persistent subscription",
+                  "id": "7f40bae2-0936-496a-b268-c5dced64f15e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/subscriptions/:stream/:subscription",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "subscriptions",
+                        ":stream",
+                        ":subscription"
+                      ],
+                      "variable": [
+                        {
+                          "id": "b0d54f90-ed23-4805-98f9-094293ed0ada",
+                          "key": "stream",
+                          "value": "<string>",
+                          "description": "(Required) Name of the event stream"
+                        },
+                        {
+                          "id": "a4cad6a1-dcf6-4144-8993-29a537a07ff9",
+                          "key": "subscription",
+                          "value": "<string>",
+                          "description": "(Required) Name of the persistent subscription group"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "847bb2ab-2c27-487a-9b65-93b6e242decb",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/subscriptions/:stream/:subscription",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "subscriptions",
+                            ":stream",
+                            ":subscription"
+                          ],
+                          "variable": [
+                            {
+                              "key": "stream"
+                            },
+                            {
+                              "key": "subscription"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-07-28T02:01:35.000Z",
+                      "updatedAt": "2026-07-28T02:01:35.000Z",
+                      "uid": "35240-847bb2ab-2c27-487a-9b65-93b6e242decb"
+                    },
+                    {
+                      "id": "147f54b1-dde7-4706-bf39-6fe19b23b231",
+                      "name": "Unauthorized \u2014 credentials were missing, invalid, or lacked ACL permission",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "text/plain"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/subscriptions/:stream/:subscription",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "subscriptions",
+                            ":stream",
+                            ":subscription"
+                          ],
+                          "variable": [
+                            {
+                              "key": "stream"
+                            },
+                            {
+                              "key": "subscription"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "text/plain"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "<string>",
+                      "createdAt": "2026-07-28T02:01:35.000Z",
+                      "updatedAt": "2026-07-28T02:01:35.000Z",
+                      "uid": "35240-147f54b1-dde7-4706-bf39-6fe19b23b231"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:01:35.000Z",
+                  "updatedAt": "2026-07-28T02:01:35.000Z",
+                  "uid": "35240-7f40bae2-0936-496a-b268-c5dced64f15e"
+                },
+                {
+                  "name": "Create a persistent subscription",
+                  "id": "bcfe28d9-a8a0-4198-9b4e-ef05d7979ae4",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "text/plain"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"resolveLinktos\": \"<boolean>\",\n  \"startFrom\": \"<integer>\",\n  \"extraStatistics\": \"<boolean>\",\n  \"checkPointAfterMilliseconds\": \"<integer>\",\n  \"liveBufferSize\": \"<integer>\",\n  \"readBatchSize\": \"<integer>\",\n  \"bufferSize\": \"<integer>\",\n  \"maxCheckPointCount\": \"<integer>\",\n  \"maxRetryCount\": \"<integer>\",\n  \"maxSubscriberCount\": \"<integer>\",\n  \"messageTimeoutMilliseconds\": \"<integer>\",\n  \"minCheckPointCount\": \"<integer>\",\n  \"namedConsumerStrategy\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/subscriptions/:stream/:subscription",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "subscriptions",
+                        ":stream",
+                        ":subscription"
+                      ],
+                      "variable": [
+                        {
+                          "id": "8b5a54c5-854a-4d2d-8816-544ef6128249",
+                          "key": "stream",
+                          "value": "<string>",
+                          "description": "(Required) Name of the event stream"
+                        },
+                        {
+                          "id": "fcfd3fcb-599f-42fb-b62a-2fd158df0bad",
+                          "key": "subscription",
+                          "value": "<string>",
+                          "description": "(Required) Name of the persistent subscription group"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "538ce24b-b212-4c39-91c7-d1bcbbdd579b",
+                      "name": "Created",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"resolveLinktos\": \"<boolean>\",\n  \"startFrom\": \"<integer>\",\n  \"extraStatistics\": \"<boolean>\",\n  \"checkPointAfterMilliseconds\": \"<integer>\",\n  \"liveBufferSize\": \"<integer>\",\n  \"readBatchSize\": \"<integer>\",\n  \"bufferSize\": \"<integer>\",\n  \"maxCheckPointCount\": \"<integer>\",\n  \"maxRetryCount\": \"<integer>\",\n  \"maxSubscriberCount\": \"<integer>\",\n  \"messageTimeoutMilliseconds\": \"<integer>\",\n  \"minCheckPointCount\": \"<integer>\",\n  \"namedConsumerStrategy\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/subscriptions/:stream/:subscription",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "subscriptions",
+                            ":stream",
+                            ":subscription"
+                          ],
+                          "variable": [
+                            {
+                              "key": "stream"
+                            },
+                            {
+                              "key": "subscription"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "URI of the created resource",
+                            "type": "text/plain"
+                          },
+                          "key": "Location",
+                          "value": "<string>"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:01:35.000Z",
+                      "updatedAt": "2026-07-28T02:01:35.000Z",
+                      "uid": "35240-538ce24b-b212-4c39-91c7-d1bcbbdd579b"
+                    },
+                    {
+                      "id": "3ff06b53-050d-464a-9064-5d20a89d8266",
+                      "name": "Bad Request \u2014 the request was malformed or violated an expected version",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "text/plain"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"resolveLinktos\": \"<boolean>\",\n  \"startFrom\": \"<integer>\",\n  \"extraStatistics\": \"<boolean>\",\n  \"checkPointAfterMilliseconds\": \"<integer>\",\n  \"liveBufferSize\": \"<integer>\",\n  \"readBatchSize\": \"<integer>\",\n  \"bufferSize\": \"<integer>\",\n  \"maxCheckPointCount\": \"<integer>\",\n  \"maxRetryCount\": \"<integer>\",\n  \"maxSubscriberCount\": \"<integer>\",\n  \"messageTimeoutMilliseconds\": \"<integer>\",\n  \"minCheckPointCount\": \"<integer>\",\n  \"namedConsumerStrategy\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/subscriptions/:stream/:subscription",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "subscriptions",
+                            ":stream",
+                            ":subscription"
+                          ],
+                          "variable": [
+                            {
+                              "key": "stream"
+                            },
+                            {
+                              "key": "subscription"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "text/plain"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "<string>",
+                      "createdAt": "2026-07-28T02:01:35.000Z",
+                      "updatedAt": "2026-07-28T02:01:35.000Z",
+                      "uid": "35240-3ff06b53-050d-464a-9064-5d20a89d8266"
+                    },
+                    {
+                      "id": "0a899d9c-4da9-41d8-ad7e-519a4a3a956c",
+                      "name": "Unauthorized \u2014 credentials were missing, invalid, or lacked ACL permission",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "text/plain"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"resolveLinktos\": \"<boolean>\",\n  \"startFrom\": \"<integer>\",\n  \"extraStatistics\": \"<boolean>\",\n  \"checkPointAfterMilliseconds\": \"<integer>\",\n  \"liveBufferSize\": \"<integer>\",\n  \"readBatchSize\": \"<integer>\",\n  \"bufferSize\": \"<integer>\",\n  \"maxCheckPointCount\": \"<integer>\",\n  \"maxRetryCount\": \"<integer>\",\n  \"maxSubscriberCount\": \"<integer>\",\n  \"messageTimeoutMilliseconds\": \"<integer>\",\n  \"minCheckPointCount\": \"<integer>\",\n  \"namedConsumerStrategy\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/subscriptions/:stream/:subscription",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "subscriptions",
+                            ":stream",
+                            ":subscription"
+                          ],
+                          "variable": [
+                            {
+                              "key": "stream"
+                            },
+                            {
+                              "key": "subscription"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "text/plain"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "<string>",
+                      "createdAt": "2026-07-28T02:01:35.000Z",
+                      "updatedAt": "2026-07-28T02:01:35.000Z",
+                      "uid": "35240-0a899d9c-4da9-41d8-ad7e-519a4a3a956c"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:01:35.000Z",
+                  "updatedAt": "2026-07-28T02:01:35.000Z",
+                  "uid": "35240-bcfe28d9-a8a0-4198-9b4e-ef05d7979ae4"
+                },
+                {
+                  "name": "Update a persistent subscription",
+                  "id": "dc125417-fad2-465a-8256-fb60d78ffb56",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"resolveLinktos\": \"<boolean>\",\n  \"startFrom\": \"<integer>\",\n  \"extraStatistics\": \"<boolean>\",\n  \"checkPointAfterMilliseconds\": \"<integer>\",\n  \"liveBufferSize\": \"<integer>\",\n  \"readBatchSize\": \"<integer>\",\n  \"bufferSize\": \"<integer>\",\n  \"maxCheckPointCount\": \"<integer>\",\n  \"maxRetryCount\": \"<integer>\",\n  \"maxSubscriberCount\": \"<integer>\",\n  \"messageTimeoutMilliseconds\": \"<integer>\",\n  \"minCheckPointCount\": \"<integer>\",\n  \"namedConsumerStrategy\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/subscriptions/:stream/:subscription",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "subscriptions",
+                        ":stream",
+                        ":subscription"
+                      ],
+                      "variable": [
+                        {
+                          "id": "4f691a38-8db6-40a2-a6f7-1ae72611286c",
+                          "key": "stream",
+                          "value": "<string>",
+                          "description": "(Required) Name of the event stream"
+                        },
+                        {
+                          "id": "fe41a18d-87c5-4844-a02f-9158966dbe33",
+                          "key": "subscription",
+                          "value": "<string>",
+                          "description": "(Required) Name of the persistent subscription group"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "d5e3c9cd-2a45-4307-b4bf-d1209a6c0737",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"resolveLinktos\": \"<boolean>\",\n  \"startFrom\": \"<integer>\",\n  \"extraStatistics\": \"<boolean>\",\n  \"checkPointAfterMilliseconds\": \"<integer>\",\n  \"liveBufferSize\": \"<integer>\",\n  \"readBatchSize\": \"<integer>\",\n  \"bufferSize\": \"<integer>\",\n  \"maxCheckPointCount\": \"<integer>\",\n  \"maxRetryCount\": \"<integer>\",\n  \"maxSubscriberCount\": \"<integer>\",\n  \"messageTimeoutMilliseconds\": \"<integer>\",\n  \"minCheckPointCount\": \"<integer>\",\n  \"namedConsumerStrategy\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/subscriptions/:stream/:subscription",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "subscriptions",
+                            ":stream",
+                            ":subscription"
+                          ],
+                          "variable": [
+                            {
+                              "key": "stream"
+                            },
+                            {
+                              "key": "subscription"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-07-28T02:01:35.000Z",
+                      "updatedAt": "2026-07-28T02:01:35.000Z",
+                      "uid": "35240-d5e3c9cd-2a45-4307-b4bf-d1209a6c0737"
+                    },
+                    {
+                      "id": "e9c684ee-ffae-45e8-ab30-868bf6da9878",
+                      "name": "Bad Request \u2014 the request was malformed or violated an expected version",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "text/plain"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"resolveLinktos\": \"<boolean>\",\n  \"startFrom\": \"<integer>\",\n  \"extraStatistics\": \"<boolean>\",\n  \"checkPointAfterMilliseconds\": \"<integer>\",\n  \"liveBufferSize\": \"<integer>\",\n  \"readBatchSize\": \"<integer>\",\n  \"bufferSize\": \"<integer>\",\n  \"maxCheckPointCount\": \"<integer>\",\n  \"maxRetryCount\": \"<integer>\",\n  \"maxSubscriberCount\": \"<integer>\",\n  \"messageTimeoutMilliseconds\": \"<integer>\",\n  \"minCheckPointCount\": \"<integer>\",\n  \"namedConsumerStrategy\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/subscriptions/:stream/:subscription",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "subscriptions",
+                            ":stream",
+                            ":subscription"
+                          ],
+                          "variable": [
+                            {
+                              "key": "stream"
+                            },
+                            {
+                              "key": "subscription"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "text/plain"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "<string>",
+                      "createdAt": "2026-07-28T02:01:35.000Z",
+                      "updatedAt": "2026-07-28T02:01:35.000Z",
+                      "uid": "35240-e9c684ee-ffae-45e8-ab30-868bf6da9878"
+                    },
+                    {
+                      "id": "62cec416-7f6f-445c-8bd2-fffce769aa2b",
+                      "name": "Unauthorized \u2014 credentials were missing, invalid, or lacked ACL permission",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "text/plain"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"resolveLinktos\": \"<boolean>\",\n  \"startFrom\": \"<integer>\",\n  \"extraStatistics\": \"<boolean>\",\n  \"checkPointAfterMilliseconds\": \"<integer>\",\n  \"liveBufferSize\": \"<integer>\",\n  \"readBatchSize\": \"<integer>\",\n  \"bufferSize\": \"<integer>\",\n  \"maxCheckPointCount\": \"<integer>\",\n  \"maxRetryCount\": \"<integer>\",\n  \"maxSubscriberCount\": \"<integer>\",\n  \"messageTimeoutMilliseconds\": \"<integer>\",\n  \"minCheckPointCount\": \"<integer>\",\n  \"namedConsumerStrategy\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/subscriptions/:stream/:subscription",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "subscriptions",
+                            ":stream",
+                            ":subscription"
+                          ],
+                          "variable": [
+                            {
+                              "key": "stream"
+                            },
+                            {
+                              "key": "subscription"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "text/plain"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "<string>",
+                      "createdAt": "2026-07-28T02:01:35.000Z",
+                      "updatedAt": "2026-07-28T02:01:35.000Z",
+                      "uid": "35240-62cec416-7f6f-445c-8bd2-fffce769aa2b"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:01:35.000Z",
+                  "updatedAt": "2026-07-28T02:01:35.000Z",
+                  "uid": "35240-dc125417-fad2-465a-8256-fb60d78ffb56"
+                },
+                {
+                  "name": "Delete a persistent subscription",
+                  "id": "0dc83d58-af8e-4e8c-b7f3-956005c81bb0",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/subscriptions/:stream/:subscription",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "subscriptions",
+                        ":stream",
+                        ":subscription"
+                      ],
+                      "variable": [
+                        {
+                          "id": "5665252f-740a-4829-b95c-edd1005cd46f",
+                          "key": "stream",
+                          "value": "<string>",
+                          "description": "(Required) Name of the event stream"
+                        },
+                        {
+                          "id": "47013a4e-e036-48e2-be05-c1197356bf2d",
+                          "key": "subscription",
+                          "value": "<string>",
+                          "description": "(Required) Name of the persistent subscription group"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "7a160713-bbd6-41d7-8ddd-f5531cc76ffe",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/subscriptions/:stream/:subscription",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "subscriptions",
+                            ":stream",
+                            ":subscription"
+                          ],
+                          "variable": [
+                            {
+                              "key": "stream"
+                            },
+                            {
+                              "key": "subscription"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-07-28T02:01:35.000Z",
+                      "updatedAt": "2026-07-28T02:01:35.000Z",
+                      "uid": "35240-7a160713-bbd6-41d7-8ddd-f5531cc76ffe"
+                    },
+                    {
+                      "id": "068bafe3-b9f0-4063-98aa-c41406060b73",
+                      "name": "Unauthorized \u2014 credentials were missing, invalid, or lacked ACL permission",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "text/plain"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/subscriptions/:stream/:subscription",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "subscriptions",
+                            ":stream",
+                            ":subscription"
+                          ],
+                          "variable": [
+                            {
+                              "key": "stream"
+                            },
+                            {
+                              "key": "subscription"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "text/plain"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "<string>",
+                      "createdAt": "2026-07-28T02:01:35.000Z",
+                      "updatedAt": "2026-07-28T02:01:35.000Z",
+                      "uid": "35240-068bafe3-b9f0-4063-98aa-c41406060b73"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:01:35.000Z",
+                  "updatedAt": "2026-07-28T02:01:35.000Z",
+                  "uid": "35240-0dc83d58-af8e-4e8c-b7f3-956005c81bb0"
+                }
+              ],
+              "id": "e97a89d3-bfb9-47cf-b4e3-2a0c196eb4ba",
+              "createdAt": "2026-07-28T02:01:35.000Z",
+              "updatedAt": "2026-07-28T02:01:35.000Z",
+              "uid": "35240-e97a89d3-bfb9-47cf-b4e3-2a0c196eb4ba"
+            },
+            {
+              "name": "List the persistent subscriptions on a stream",
+              "id": "a7c32d3d-3309-4f53-a5ea-bb823e3bd3d0",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/subscriptions/:stream",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "subscriptions",
+                    ":stream"
+                  ],
+                  "variable": [
+                    {
+                      "id": "7befd462-5e8a-446c-9a01-1aeaadc5c330",
+                      "key": "stream",
+                      "value": "<string>",
+                      "description": "(Required) Name of the event stream"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "897bff36-ef56-4c63-9822-c7b364d250cf",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/subscriptions/:stream",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "subscriptions",
+                        ":stream"
+                      ],
+                      "variable": [
+                        {
+                          "key": "stream"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T02:01:35.000Z",
+                  "updatedAt": "2026-07-28T02:01:35.000Z",
+                  "uid": "35240-897bff36-ef56-4c63-9822-c7b364d250cf"
+                },
+                {
+                  "id": "ae5cdac0-4a87-42f4-b9c4-b27b46485bbc",
+                  "name": "Unauthorized \u2014 credentials were missing, invalid, or lacked ACL permission",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "text/plain"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/subscriptions/:stream",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "subscriptions",
+                        ":stream"
+                      ],
+                      "variable": [
+                        {
+                          "key": "stream"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "<string>",
+                  "createdAt": "2026-07-28T02:01:35.000Z",
+                  "updatedAt": "2026-07-28T02:01:35.000Z",
+                  "uid": "35240-ae5cdac0-4a87-42f4-b9c4-b27b46485bbc"
+                }
+              ],
+              "createdAt": "2026-07-28T02:01:35.000Z",
+              "updatedAt": "2026-07-28T02:01:35.000Z",
+              "uid": "35240-a7c32d3d-3309-4f53-a5ea-bb823e3bd3d0"
+            }
+          ],
+          "id": "b4f8b083-d966-44e3-a126-45117f595da5",
+          "createdAt": "2026-07-28T02:01:35.000Z",
+          "updatedAt": "2026-07-28T02:01:35.000Z",
+          "uid": "35240-b4f8b083-d966-44e3-a126-45117f595da5"
+        },
+        {
+          "name": "List all persistent subscriptions",
+          "id": "fd132c88-c724-4d9e-858f-3ec7f27b62d2",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/subscriptions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "subscriptions"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0bb182b2-2ef4-4f92-a33e-9707629c2028",
+              "name": "OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/subscriptions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "subscriptions"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{}",
+              "createdAt": "2026-07-28T02:01:35.000Z",
+              "updatedAt": "2026-07-28T02:01:35.000Z",
+              "uid": "35240-0bb182b2-2ef4-4f92-a33e-9707629c2028"
+            },
+            {
+              "id": "b680960f-7857-4362-a43d-0366e75e4fe8",
+              "name": "Unauthorized \u2014 credentials were missing, invalid, or lacked ACL permission",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/subscriptions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "subscriptions"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<string>",
+              "createdAt": "2026-07-28T02:01:35.000Z",
+              "updatedAt": "2026-07-28T02:01:35.000Z",
+              "uid": "35240-b680960f-7857-4362-a43d-0366e75e4fe8"
+            }
+          ],
+          "createdAt": "2026-07-28T02:01:35.000Z",
+          "updatedAt": "2026-07-28T02:01:35.000Z",
+          "uid": "35240-fd132c88-c724-4d9e-858f-3ec7f27b62d2"
+        }
+      ],
+      "id": "7a646cf2-4990-40dd-a564-3454dfa9fe8a",
+      "createdAt": "2026-07-28T02:01:35.000Z",
+      "updatedAt": "2026-07-28T02:01:35.000Z",
+      "uid": "35240-7a646cf2-4990-40dd-a564-3454dfa9fe8a"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "host",
+      "value": "localhost"
+    },
+    {
+      "key": "port",
+      "value": "2113"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{host}}:{{port}}"
+    }
+  ]
+}

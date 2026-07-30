@@ -1,0 +1,108 @@
+generated: '2026-07-19'
+method: derived
+source: >-
+  openapi/kurrent-kurrentdb-http-api-openapi.yml, grpc/*.proto,
+  well-known/kurrent-openid-configuration.json, https://www.kurrent.io/releases
+notes: >-
+  Assertions about cross-cutting technical standards, derived from the captured artifacts. This is
+  a standards-conformance record, not a claim about Kurrent's certification posture — Kurrent
+  operates a Trust Center at https://trust.kurrent.io/ whose contents are rendered client-side and
+  could not be read programmatically, so no named certification is asserted here.
+standards:
+- id: oauth2
+  conforms: true
+  evidence: >-
+    Kurrent Cloud's identity provider publishes RFC 8414 authorization-server metadata at
+    https://identity.eventstore.com/.well-known/oauth-authorization-server with authorization code,
+    client credentials, refresh token and device code grants.
+  scope: Kurrent Cloud control plane
+- id: oidc
+  conforms: true
+  evidence: >-
+    OpenID Connect discovery document served at
+    https://identity.eventstore.com/.well-known/openid-configuration, with openid/profile/email
+    scopes, a userinfo endpoint and a JWKS URI.
+  scope: Kurrent Cloud control plane
+- id: pkce-rfc7636
+  conforms: true
+  evidence: code_challenge_methods_supported includes S256 in the OIDC discovery document.
+- id: rfc7009-token-revocation
+  conforms: true
+  evidence: revocation_endpoint published at https://identity.eventstore.com/oauth/revoke
+- id: rfc8628-device-authorization
+  conforms: true
+  evidence: device_authorization_endpoint published at https://identity.eventstore.com/oauth/device/code
+- id: http-basic-auth-rfc7617
+  conforms: true
+  evidence: The KurrentDB HTTP API authenticates with HTTP Basic credentials.
+  scope: KurrentDB HTTP API
+- id: mutual-tls
+  conforms: true
+  evidence: X.509 client-certificate authentication introduced in EventStoreDB 24.2.
+  scope: KurrentDB server, commercial editions
+- id: atompub-rfc5023
+  conforms: true
+  evidence: >-
+    The KurrentDB HTTP API is a native AtomPub-over-HTTP interface; stream reads return Atom feeds
+    with first/last/previous/next link relations.
+- id: grpc
+  conforms: true
+  evidence: >-
+    Primary protocol. Protobuf service definitions published for streams, schema registry and
+    secondary indexes; captured in grpc/.
+- id: protobuf
+  conforms: true
+  evidence: grpc/kurrent-streams.proto and siblings, published at github.com/kurrent-io/KurrentDB/tree/master/proto
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: >-
+    The HTTP API signals failures with status codes and plain-text bodies rather than
+    application/problem+json. The gRPC surface uses a typed protobuf error model instead.
+- id: idempotency
+  conforms: true
+  evidence: >-
+    Appends are idempotent on a client-supplied event id, carried in the Kurrent-EventId header, in
+    the eventId body field, or as the {guid} path segment of /streams/{stream}/incoming/{guid}.
+- id: optimistic-concurrency
+  conforms: true
+  evidence: Kurrent-ExpectedVersion header asserts the expected stream revision on writes.
+- id: pagination
+  conforms: true
+  evidence: AtomPub link-relation paging (first, last, previous, next) plus explicit count and direction path segments.
+- id: opentelemetry
+  conforms: true
+  evidence: OpenTelemetry exporter shipped in EventStoreDB 24.2; client SDKs document observability integration.
+- id: prometheus-metrics
+  conforms: true
+  evidence: Prometheus metrics shipped in EventStoreDB 23.10 LTS, exposed at /metrics.
+- id: apache-arrow-flight-sql
+  conforms: true
+  evidence: SQL access over event data via Apache Arrow Flight SQL, introduced in KurrentDB 26.1.
+- id: fips-140
+  conforms: true
+  evidence: FIPS compliance listed in the EventStoreDB 23.10 LTS release notes.
+- id: model-context-protocol
+  conforms: true
+  evidence: >-
+    Kurrent publishes an official MCP server at github.com/kurrent-io/mcp-server exposing eight
+    tools over stdio transport.
+- id: llms-txt
+  conforms: true
+  evidence: https://docs.kurrent.io/llms.txt published and captured verbatim in llms/.
+- id: json-api
+  conforms: false
+- id: odata
+  conforms: false
+- id: scim
+  conforms: false
+- id: fhir
+  conforms: false
+- id: fapi
+  conforms: false
+- id: psd2
+  conforms: false
+- id: asyncapi
+  conforms: false
+  evidence: >-
+    No AsyncAPI document is published by Kurrent, despite the product being event-native. The
+    webhook and connector surface is captured in asyncapi/kurrent-connectors-webhooks.yml.

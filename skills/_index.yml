@@ -1,0 +1,93 @@
+generated: '2026-07-19'
+method: searched
+source: >-
+  https://github.com/kurrent-io/skills (official Kurrent Agent Skills plugin) and
+  https://github.com/kurrent-io/coding-agent-skills
+notes: >-
+  Kurrent is one of the few providers in the network that publishes Agent Skills itself. The
+  kurrent-io/skills repository ships a plugin with Claude Code, Codex and Cursor manifests, six
+  skills and three sub-agents (code-reviewer, migration-specialist, troubleshooter); a separate
+  kurrent-io/coding-agent-skills repository ships a code-generation skill with runnable templates
+  for seven languages. Those seven are captured VERBATIM below and marked method: searched. The two
+  API Evangelist skills at the end were generated to cover the HTTP API surface, which the
+  provider's own skills route around in favour of the gRPC SDKs; every operation they name was
+  verified against openapi/kurrent-kurrentdb-http-api-openapi.yml.
+provider_plugin:
+  repository: https://github.com/kurrent-io/skills
+  install: Add the kurrent-io/skills marketplace, then install the "kurrent" plugin.
+  manifests:
+  - .claude-plugin/marketplace.json
+  - .cursor-plugin/marketplace.json
+  - .agents/plugins/marketplace.json
+  agents:
+  - name: code-reviewer
+    description: Reviews code that uses KurrentDB.
+  - name: migration-specialist
+    description: Drives EventStoreDB to KurrentDB and TCP to gRPC migrations.
+  - name: troubleshooter
+    description: Diagnoses KurrentDB problems.
+skills:
+- file: kurrent-docs.md
+  name: kurrent-docs
+  method: searched
+  source: https://github.com/kurrent-io/skills/blob/main/plugins/kurrent/skills/kurrent-docs/SKILL.md
+  description: >-
+    Routing index across the whole KurrentDB documentation set — client SDKs, the self-hosted
+    server, and Kurrent Cloud.
+- file: kurrent-kurrentdb-connection.md
+  name: kurrentdb-connection
+  method: searched
+  source: https://github.com/kurrent-io/skills/blob/main/plugins/kurrent/skills/kurrentdb-connection/SKILL.md
+  description: >-
+    Connection-string parameters, gossip discovery, node preference, HTTP/2 keepalive, deadlines,
+    serverless client reuse, and triage of connection failures.
+- file: kurrent-kurrent-upgrade.md
+  name: kurrent-upgrade
+  method: searched
+  source: https://github.com/kurrent-io/skills/blob/main/plugins/kurrent/skills/kurrent-upgrade/SKILL.md
+  description: >-
+    Migrating onto the KurrentDB gRPC client from a legacy EventStoreDB client — the TCP rewrite
+    and gRPC rebrand paths, and the esdb to kurrentdb connection-string switch.
+- file: kurrent-kurrentdb-client-detection.md
+  name: kurrentdb-client-detection
+  method: searched
+  source: https://github.com/kurrent-io/skills/blob/main/plugins/kurrent/skills/kurrentdb-client-detection/SKILL.md
+  description: Inventorying an application's KurrentDB or EventStoreDB client surface before a migration or audit.
+- file: kurrent-kurrentdb-server-detection.md
+  name: kurrentdb-server-detection
+  method: searched
+  source: https://github.com/kurrent-io/skills/blob/main/plugins/kurrent/skills/kurrentdb-server-detection/SKILL.md
+  description: >-
+    Inventorying a deployed server for version, cluster topology, license status and deployment
+    method.
+- file: kurrent-capacitor-cli.md
+  name: kurrent-capacitor-cli
+  method: searched
+  source: https://github.com/kurrent-io/skills/blob/main/plugins/kurrent/skills/kurrent-capacitor-cli/SKILL.md
+  description: >-
+    Installing, configuring and operating the kcap CLI (npm @kurrent/kcap), which records and
+    visualizes agentic coding sessions.
+  related: cli/kurrent-cli.yml
+- file: kurrent-kurrentdb-coding.md
+  name: kurrentdb
+  method: searched
+  source: https://github.com/kurrent-io/coding-agent-skills/blob/main/kurrent_skills/SKILL.md
+  description: >-
+    Generates correct KurrentDB client code — package names, connection strings and API patterns
+    for Python, Node.js, .NET, F#, Go, Java and Rust, with runnable project templates.
+- file: kurrent-append-and-read-stream.md
+  name: kurrent-append-and-read-stream
+  method: generated
+  api: openapi/kurrent-kurrentdb-http-api-openapi.yml
+  operations: [appendToStream, appendEventToStreamIdempotent, readStream, readEventsBackward, readEventsForward, readEvent, readStreamMetadata, updateStreamMetadata]
+  description: >-
+    Writing events over the HTTP API and reading them back, with expected-version optimistic
+    concurrency and event-id idempotent retries.
+- file: kurrent-persistent-subscriptions.md
+  name: kurrent-persistent-subscriptions
+  method: generated
+  api: openapi/kurrent-kurrentdb-http-api-openapi.yml
+  operations: [createSubscription, updateSubscription, deleteSubscription, listSubscriptions, listSubscriptionsForStream, getSubscriptionInfo, readSubscription, readSubscriptionEvents, ackMessage, ackMessages, nackMessage, nackMessages, replayParkedMessages]
+  description: >-
+    Consuming a stream through a server-managed competing-consumer group — creation, settlement
+    semantics, nack actions and parked-message replay.
