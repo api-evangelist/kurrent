@@ -297,7 +297,7 @@ common:
 - type: Overlay
   url: overlays/kurrent-kurrentdb-http-api-overlay.yaml
 - type: OpenAPI
-  url: openapi/kurrent-kurrentdb-http-api-openapi.yml
+  url: openapi/_original/kurrent-kurrentdb-http-api-openapi.yml
 x-enrichment:
   date: '2026-07-19'
   status: backfilled
