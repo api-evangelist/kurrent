@@ -1,0 +1,51 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "KurrentDB HTTP Admin Gossip API",
+    "version": "v26.1"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Gossip",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get the gossip details of the cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/gossip"
+          },
+          "docs": "Get the gossip details of the cluster"
+        },
+        {
+          "info": {
+            "name": "Update the gossip details of the cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/gossip",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the gossip details of the cluster"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

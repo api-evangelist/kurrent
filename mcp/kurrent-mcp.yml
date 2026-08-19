@@ -4,8 +4,7 @@ status: published
 source: https://github.com/kurrent-io/mcp-server
 server:
   name: KurrentDB
-  description: >-
-    Official Kurrent MCP server that lets an agent explore data in KurrentDB by reading streams,
+  description: Official Kurrent MCP server that lets an agent explore data in KurrentDB by reading streams,
     writing events, and building, creating, updating and testing projections.
   transport: stdio
   repository: https://github.com/kurrent-io/mcp-server
@@ -18,9 +17,8 @@ server:
     required: true
     description: KurrentDB connection string the server connects with.
   requirements:
-  - >-
-    KurrentDB must be started with --run-projections=all and --start-standard-projections; the
-    $streams stream is used to discover available streams.
+  - KurrentDB must be started with --run-projections=all and --start-standard-projections; the $streams
+    stream is used to discover available streams.
   - uv must be installed on the host running the server.
   clients:
   - Claude Desktop
@@ -55,7 +53,12 @@ tools:
 related:
 - name: Kurrent Agent Skills
   url: https://github.com/kurrent-io/skills
-  description: >-
-    Kurrent also publishes an Agent Skills plugin (Claude Code, Codex and Cursor plugin manifests)
-    covering the docs, the Capacitor CLI, connection tuning, upgrades and client/server detection.
-    Captured in skills/.
+  description: Kurrent also publishes an Agent Skills plugin (Claude Code, Codex and Cursor plugin manifests)
+    covering the docs, the Capacitor CLI, connection tuning, upgrades and client/server detection. Captured
+    in skills/.
+deployment:
+  mode: local-stdio
+  verified: searched
+  tools: 8
+  checked: '2026-08-12'
+  source: catalog MCP census

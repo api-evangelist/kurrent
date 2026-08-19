@@ -1,0 +1,429 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "KurrentDB HTTP Admin Projections API",
+    "version": "v26.1"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Projections",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all projections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/projections/any"
+          },
+          "docs": "List all projections"
+        },
+        {
+          "info": {
+            "name": "List all non-transient projections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/projections/all-non-transient"
+          },
+          "docs": "List all non-transient projections"
+        },
+        {
+          "info": {
+            "name": "List all transient projections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/projections/transient"
+          },
+          "docs": "List all transient projections"
+        },
+        {
+          "info": {
+            "name": "Create a transient projection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/projections/transient",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Name to give the projection"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a transient projection"
+        },
+        {
+          "info": {
+            "name": "List all one-time projections (queries)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/projections/onetime"
+          },
+          "docs": "List all one-time projections (queries)"
+        },
+        {
+          "info": {
+            "name": "Create a one-time projection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/projections/onetime",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a one-time projection"
+        },
+        {
+          "info": {
+            "name": "List all continuous projections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/projections/continuous"
+          },
+          "docs": "List all continuous projections"
+        },
+        {
+          "info": {
+            "name": "Create a continuous projection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/projections/continuous",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Name to give the projection"
+              },
+              {
+                "name": "emit",
+                "value": "",
+                "type": "query",
+                "description": "Whether the projection is allowed to emit events"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a continuous projection"
+        },
+        {
+          "info": {
+            "name": "Query the events of a projection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/projections/read-events",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Query the events of a projection"
+        },
+        {
+          "info": {
+            "name": "Get the details of a projection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/projection/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the projection"
+              }
+            ]
+          },
+          "docs": "Get the details of a projection"
+        },
+        {
+          "info": {
+            "name": "Delete a projection",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{host}:{port}/projection/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the projection"
+              }
+            ]
+          },
+          "docs": "Delete a projection"
+        },
+        {
+          "info": {
+            "name": "Get the definition of a projection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/projection/:name/query",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the projection"
+              }
+            ]
+          },
+          "docs": "Get the definition of a projection"
+        },
+        {
+          "info": {
+            "name": "Update the definition of a projection",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{host}:{port}/projection/:name/query",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the projection"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the definition of a projection"
+        },
+        {
+          "info": {
+            "name": "Get the state of a projection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/projection/:name/state",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the projection"
+              },
+              {
+                "name": "partition",
+                "value": "",
+                "type": "query",
+                "description": "Partition of a partitioned projection to read"
+              }
+            ]
+          },
+          "docs": "Get the state of a projection"
+        },
+        {
+          "info": {
+            "name": "Get the result of a projection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/projection/:name/result",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the projection"
+              },
+              {
+                "name": "partition",
+                "value": "",
+                "type": "query",
+                "description": "Partition of a partitioned projection to read"
+              }
+            ]
+          },
+          "docs": "Get the result of a projection"
+        },
+        {
+          "info": {
+            "name": "Get the statistics of a projection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/projection/:name/statistics",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the projection"
+              }
+            ]
+          },
+          "docs": "Get the statistics of a projection"
+        },
+        {
+          "info": {
+            "name": "Get the configuration of a projection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/projection/:name/config",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the projection"
+              }
+            ]
+          },
+          "docs": "Get the configuration of a projection"
+        },
+        {
+          "info": {
+            "name": "Update the configuration of a projection",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{host}:{port}/projection/:name/config",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the projection"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the configuration of a projection"
+        },
+        {
+          "info": {
+            "name": "Enable a projection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/projection/:name/command/enable",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the projection"
+              }
+            ]
+          },
+          "docs": "Enable a projection"
+        },
+        {
+          "info": {
+            "name": "Disable a projection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/projection/:name/command/disable",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the projection"
+              }
+            ]
+          },
+          "docs": "Disable a projection"
+        },
+        {
+          "info": {
+            "name": "Reset a projection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/projection/:name/command/reset",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the projection"
+              }
+            ]
+          },
+          "docs": "Reset a projection"
+        },
+        {
+          "info": {
+            "name": "Abort a projection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/projection/:name/command/abort",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the projection"
+              }
+            ]
+          },
+          "docs": "Abort a projection"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

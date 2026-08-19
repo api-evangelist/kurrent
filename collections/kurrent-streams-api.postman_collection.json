@@ -1,0 +1,3488 @@
+{
+  "item": [
+    {
+      "id": "27999d1d-99ec-4995-b55e-c6c49ab779d7",
+      "name": "Streams",
+      "description": {
+        "content": "Append to, read from and manage event streams",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1f1d6ca5-8f8b-451b-925c-e68286fde5ee",
+          "name": "Read events from a stream",
+          "request": {
+            "name": "Read events from a stream",
+            "description": {},
+            "url": {
+              "path": [
+                "streams",
+                ":stream"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "stream",
+                  "description": "(Required) Name of the event stream"
+                },
+                {
+                  "description": "Hostname of the KurrentDB node (the same host you use for the admin UI)",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                },
+                {
+                  "description": "KurrentDB HTTP port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Require that the request is served by the leader node rather than a follower",
+                "key": "Kurrent-RequireLeader",
+                "value": "<boolean>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ef6f78b4-4bc3-4ae6-9c53-a07d4d0cee6c",
+              "name": "OK — an AtomPub feed of events",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "streams",
+                    ":stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "stream",
+                      "description": "(Required) Name of the event stream"
+                    },
+                    {
+                      "description": "Hostname of the KurrentDB node (the same host you use for the admin UI)",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "KurrentDB HTTP port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Require that the request is served by the leader node rather than a follower",
+                    "key": "Kurrent-RequireLeader",
+                    "value": "<boolean>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"title\": \"string\",\n  \"id\": \"string\",\n  \"updated\": \"1962-02-27T15:50:38.253Z\",\n  \"streamId\": \"string\",\n  \"author\": {\n    \"name\": \"string\"\n  },\n  \"headOfStream\": true,\n  \"links\": [\n    {\n      \"uri\": \"string\",\n      \"relation\": \"string\"\n    },\n    {\n      \"uri\": \"string\",\n      \"relation\": \"string\"\n    }\n  ],\n  \"entries\": [\n    {\n      \"eventId\": \"e7d11a22-8c17-2e8b-476e-697f0398287b\",\n      \"eventType\": \"string\",\n      \"eventNumber\": 9483,\n      \"streamId\": \"string\",\n      \"isJson\": true,\n      \"isMetaData\": false,\n      \"isLinkMetaData\": true,\n      \"positionEventNumber\": 4892,\n      \"positionStreamId\": \"string\",\n      \"title\": \"string\",\n      \"id\": \"string\",\n      \"updated\": \"1973-11-01T07:09:32.380Z\",\n      \"data\": {},\n      \"metaData\": {},\n      \"links\": [\n        {\n          \"uri\": \"string\",\n          \"relation\": \"string\"\n        },\n        {\n          \"uri\": \"string\",\n          \"relation\": \"string\"\n        }\n      ]\n    },\n    {\n      \"eventId\": \"2ad8eab7-1367-95a7-ba5b-1dcd3ba520da\",\n      \"eventType\": \"string\",\n      \"eventNumber\": 7377,\n      \"streamId\": \"string\",\n      \"isJson\": false,\n      \"isMetaData\": true,\n      \"isLinkMetaData\": true,\n      \"positionEventNumber\": 1890,\n      \"positionStreamId\": \"string\",\n      \"title\": \"string\",\n      \"id\": \"string\",\n      \"updated\": \"2000-01-13T14:28:40.416Z\",\n      \"data\": {},\n      \"metaData\": {},\n      \"links\": [\n        {\n          \"uri\": \"string\",\n          \"relation\": \"string\"\n        },\n        {\n          \"uri\": \"string\",\n          \"relation\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c5fa8414-773e-4ffb-8c2e-02675af8baa2",
+              "name": "Unauthorized — credentials were missing, invalid, or lacked ACL permission",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "streams",
+                    ":stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "stream",
+                      "description": "(Required) Name of the event stream"
+                    },
+                    {
+                      "description": "Hostname of the KurrentDB node (the same host you use for the admin UI)",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "KurrentDB HTTP port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Require that the request is served by the leader node rather than a follower",
+                    "key": "Kurrent-RequireLeader",
+                    "value": "<boolean>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c9d3497f-d039-4ca3-941b-21db101092d6",
+              "name": "Not Found — the stream, event, projection, subscription or user does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "streams",
+                    ":stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "stream",
+                      "description": "(Required) Name of the event stream"
+                    },
+                    {
+                      "description": "Hostname of the KurrentDB node (the same host you use for the admin UI)",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "KurrentDB HTTP port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Require that the request is served by the leader node rather than a follower",
+                    "key": "Kurrent-RequireLeader",
+                    "value": "<boolean>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ab4ecd9f-8c7a-4151-b5e9-125b9f48ab0b",
+          "name": "Append one or more events to a stream",
+          "request": {
+            "name": "Append one or more events to a stream",
+            "description": {},
+            "url": {
+              "path": [
+                "streams",
+                ":stream"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "stream",
+                  "description": "(Required) Name of the event stream"
+                },
+                {
+                  "description": "Hostname of the KurrentDB node (the same host you use for the admin UI)",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                },
+                {
+                  "description": "KurrentDB HTTP port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The version the stream is expected to be at, used for optimistic concurrency control",
+                "key": "Kurrent-ExpectedVersion",
+                "value": "<integer>"
+              },
+              {
+                "disabled": false,
+                "description": "The event type of the posted body",
+                "key": "Kurrent-EventType",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "The unique identifier of the posted event. Supplying it makes the append idempotent — a repeated append with the same id is not written twice.",
+                "key": "Kurrent-EventId",
+                "value": "<uuid>"
+              },
+              {
+                "disabled": false,
+                "description": "Require that the request is served by the leader node rather than a follower",
+                "key": "Kurrent-RequireLeader",
+                "value": "<boolean>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"eventId\": \"<uuid>\",\n    \"eventType\": \"<string>\",\n    \"data\": {},\n    \"metadata\": {}\n  },\n  {\n    \"eventId\": \"<uuid>\",\n    \"eventType\": \"<string>\",\n    \"data\": {},\n    \"metadata\": {}\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ee0e513e-dd30-4bdb-a3ef-6bde81c8c80e",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "streams",
+                    ":stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "stream",
+                      "description": "(Required) Name of the event stream"
+                    },
+                    {
+                      "description": "Hostname of the KurrentDB node (the same host you use for the admin UI)",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "KurrentDB HTTP port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The version the stream is expected to be at, used for optimistic concurrency control",
+                    "key": "Kurrent-ExpectedVersion",
+                    "value": "<integer>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The event type of the posted body",
+                    "key": "Kurrent-EventType",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The unique identifier of the posted event. Supplying it makes the append idempotent — a repeated append with the same id is not written twice.",
+                    "key": "Kurrent-EventId",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Require that the request is served by the leader node rather than a follower",
+                    "key": "Kurrent-RequireLeader",
+                    "value": "<boolean>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"eventId\": \"ee9f0848-7c5a-73ba-fc2a-9fb3bda37a87\",\n    \"eventType\": \"string\",\n    \"data\": {},\n    \"metadata\": {}\n  },\n  {\n    \"eventId\": \"c7150ec3-2a89-28b9-2cc2-11a576f9da08\",\n    \"eventType\": \"string\",\n    \"data\": {},\n    \"metadata\": {}\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "URI of the created resource",
+                  "key": "Location",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a63d7285-205c-418c-beb9-345390c871f4",
+              "name": "Temporary Redirect — the request must be forwarded to the leader node",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "streams",
+                    ":stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "stream",
+                      "description": "(Required) Name of the event stream"
+                    },
+                    {
+                      "description": "Hostname of the KurrentDB node (the same host you use for the admin UI)",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "KurrentDB HTTP port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The version the stream is expected to be at, used for optimistic concurrency control",
+                    "key": "Kurrent-ExpectedVersion",
+                    "value": "<integer>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The event type of the posted body",
+                    "key": "Kurrent-EventType",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The unique identifier of the posted event. Supplying it makes the append idempotent — a repeated append with the same id is not written twice.",
+                    "key": "Kurrent-EventId",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Require that the request is served by the leader node rather than a follower",
+                    "key": "Kurrent-RequireLeader",
+                    "value": "<boolean>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"eventId\": \"ee9f0848-7c5a-73ba-fc2a-9fb3bda37a87\",\n    \"eventType\": \"string\",\n    \"data\": {},\n    \"metadata\": {}\n  },\n  {\n    \"eventId\": \"c7150ec3-2a89-28b9-2cc2-11a576f9da08\",\n    \"eventType\": \"string\",\n    \"data\": {},\n    \"metadata\": {}\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Temporary Redirect (since HTTP/1.1)",
+              "code": 307,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "420a5cb4-3933-480a-8ebe-e27f0a51dd7c",
+              "name": "Bad Request — the request was malformed or violated an expected version",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "streams",
+                    ":stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "stream",
+                      "description": "(Required) Name of the event stream"
+                    },
+                    {
+                      "description": "Hostname of the KurrentDB node (the same host you use for the admin UI)",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "KurrentDB HTTP port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The version the stream is expected to be at, used for optimistic concurrency control",
+                    "key": "Kurrent-ExpectedVersion",
+                    "value": "<integer>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The event type of the posted body",
+                    "key": "Kurrent-EventType",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The unique identifier of the posted event. Supplying it makes the append idempotent — a repeated append with the same id is not written twice.",
+                    "key": "Kurrent-EventId",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Require that the request is served by the leader node rather than a follower",
+                    "key": "Kurrent-RequireLeader",
+                    "value": "<boolean>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"eventId\": \"ee9f0848-7c5a-73ba-fc2a-9fb3bda37a87\",\n    \"eventType\": \"string\",\n    \"data\": {},\n    \"metadata\": {}\n  },\n  {\n    \"eventId\": \"c7150ec3-2a89-28b9-2cc2-11a576f9da08\",\n    \"eventType\": \"string\",\n    \"data\": {},\n    \"metadata\": {}\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2a270f26-d31d-459d-b946-dd0c605559c0",
+              "name": "Unauthorized — credentials were missing, invalid, or lacked ACL permission",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "streams",
+                    ":stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "stream",
+                      "description": "(Required) Name of the event stream"
+                    },
+                    {
+                      "description": "Hostname of the KurrentDB node (the same host you use for the admin UI)",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "KurrentDB HTTP port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The version the stream is expected to be at, used for optimistic concurrency control",
+                    "key": "Kurrent-ExpectedVersion",
+                    "value": "<integer>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The event type of the posted body",
+                    "key": "Kurrent-EventType",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The unique identifier of the posted event. Supplying it makes the append idempotent — a repeated append with the same id is not written twice.",
+                    "key": "Kurrent-EventId",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Require that the request is served by the leader node rather than a follower",
+                    "key": "Kurrent-RequireLeader",
+                    "value": "<boolean>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"eventId\": \"ee9f0848-7c5a-73ba-fc2a-9fb3bda37a87\",\n    \"eventType\": \"string\",\n    \"data\": {},\n    \"metadata\": {}\n  },\n  {\n    \"eventId\": \"c7150ec3-2a89-28b9-2cc2-11a576f9da08\",\n    \"eventType\": \"string\",\n    \"data\": {},\n    \"metadata\": {}\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "523005d8-11f6-4e79-bceb-fcc3bb61e729",
+          "name": "Delete a stream",
+          "request": {
+            "name": "Delete a stream",
+            "description": {},
+            "url": {
+              "path": [
+                "streams",
+                ":stream"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "stream",
+                  "description": "(Required) Name of the event stream"
+                },
+                {
+                  "description": "Hostname of the KurrentDB node (the same host you use for the admin UI)",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                },
+                {
+                  "description": "KurrentDB HTTP port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The version the stream is expected to be at, used for optimistic concurrency control",
+                "key": "Kurrent-ExpectedVersion",
+                "value": "<integer>"
+              },
+              {
+                "disabled": false,
+                "description": "Require that the request is served by the leader node rather than a follower",
+                "key": "Kurrent-RequireLeader",
+                "value": "<boolean>"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "82f4a6fc-b008-4b86-961b-2e02b94ea046",
+              "name": "No Content — the stream was deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "streams",
+                    ":stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "stream",
+                      "description": "(Required) Name of the event stream"
+                    },
+                    {
+                      "description": "Hostname of the KurrentDB node (the same host you use for the admin UI)",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "KurrentDB HTTP port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The version the stream is expected to be at, used for optimistic concurrency control",
+                    "key": "Kurrent-ExpectedVersion",
+                    "value": "<integer>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Require that the request is served by the leader node rather than a follower",
+                    "key": "Kurrent-RequireLeader",
+                    "value": "<boolean>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c02d8270-6685-49b6-a46c-082f3b2f9120",
+              "name": "Bad Request — the request was malformed or violated an expected version",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "streams",
+                    ":stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "stream",
+                      "description": "(Required) Name of the event stream"
+                    },
+                    {
+                      "description": "Hostname of the KurrentDB node (the same host you use for the admin UI)",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "KurrentDB HTTP port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The version the stream is expected to be at, used for optimistic concurrency control",
+                    "key": "Kurrent-ExpectedVersion",
+                    "value": "<integer>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Require that the request is served by the leader node rather than a follower",
+                    "key": "Kurrent-RequireLeader",
+                    "value": "<boolean>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "95d05461-69df-4e96-80a4-e0e863e69465",
+              "name": "Unauthorized — credentials were missing, invalid, or lacked ACL permission",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "streams",
+                    ":stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "stream",
+                      "description": "(Required) Name of the event stream"
+                    },
+                    {
+                      "description": "Hostname of the KurrentDB node (the same host you use for the admin UI)",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "KurrentDB HTTP port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The version the stream is expected to be at, used for optimistic concurrency control",
+                    "key": "Kurrent-ExpectedVersion",
+                    "value": "<integer>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Require that the request is served by the leader node rather than a follower",
+                    "key": "Kurrent-RequireLeader",
+                    "value": "<boolean>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "764f9fa6-b8dc-45d5-a2d9-1ea567a03b24",
+              "name": "Not Found — the stream, event, projection, subscription or user does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "streams",
+                    ":stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "stream",
+                      "description": "(Required) Name of the event stream"
+                    },
+                    {
+                      "description": "Hostname of the KurrentDB node (the same host you use for the admin UI)",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "KurrentDB HTTP port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The version the stream is expected to be at, used for optimistic concurrency control",
+                    "key": "Kurrent-ExpectedVersion",
+                    "value": "<integer>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Require that the request is served by the leader node rather than a follower",
+                    "key": "Kurrent-RequireLeader",
+                    "value": "<boolean>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a198d2de-42d6-4726-9af2-b25a212dd16c",
+          "name": "Append a single event using a client-supplied event id (idempotent append URL)",
+          "request": {
+            "name": "Append a single event using a client-supplied event id (idempotent append URL)",
+            "description": {},
+            "url": {
+              "path": [
+                "streams",
+                ":stream",
+                "incoming",
+                ":guid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "stream",
+                  "description": "(Required) Name of the event stream"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "guid",
+                  "description": "(Required) Client-generated event id, used as the idempotency key for this append"
+                },
+                {
+                  "description": "Hostname of the KurrentDB node (the same host you use for the admin UI)",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                },
+                {
+                  "description": "KurrentDB HTTP port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The version the stream is expected to be at, used for optimistic concurrency control",
+                "key": "Kurrent-ExpectedVersion",
+                "value": "<integer>"
+              },
+              {
+                "disabled": false,
+                "description": "The event type of the posted body",
+                "key": "Kurrent-EventType",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2cfb6ea9-31d1-4bda-b901-bc7b364adeb0",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "streams",
+                    ":stream",
+                    "incoming",
+                    ":guid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "stream",
+                      "description": "(Required) Name of the event stream"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "guid",
+                      "description": "(Required) Client-generated event id, used as the idempotency key for this append"
+                    },
+                    {
+                      "description": "Hostname of the KurrentDB node (the same host you use for the admin UI)",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "KurrentDB HTTP port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The version the stream is expected to be at, used for optimistic concurrency control",
+                    "key": "Kurrent-ExpectedVersion",
+                    "value": "<integer>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The event type of the posted body",
+                    "key": "Kurrent-EventType",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "URI of the created resource",
+                  "key": "Location",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b9ee613f-29de-4306-b245-3c499596c481",
+              "name": "Bad Request — the request was malformed or violated an expected version",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "streams",
+                    ":stream",
+                    "incoming",
+                    ":guid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "stream",
+                      "description": "(Required) Name of the event stream"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "guid",
+                      "description": "(Required) Client-generated event id, used as the idempotency key for this append"
+                    },
+                    {
+                      "description": "Hostname of the KurrentDB node (the same host you use for the admin UI)",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "KurrentDB HTTP port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The version the stream is expected to be at, used for optimistic concurrency control",
+                    "key": "Kurrent-ExpectedVersion",
+                    "value": "<integer>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The event type of the posted body",
+                    "key": "Kurrent-EventType",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b73ec3e3-56a6-4cd5-a171-0d65ba191daa",
+              "name": "Unauthorized — credentials were missing, invalid, or lacked ACL permission",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "streams",
+                    ":stream",
+                    "incoming",
+                    ":guid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "stream",
+                      "description": "(Required) Name of the event stream"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "guid",
+                      "description": "(Required) Client-generated event id, used as the idempotency key for this append"
+                    },
+                    {
+                      "description": "Hostname of the KurrentDB node (the same host you use for the admin UI)",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "KurrentDB HTTP port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The version the stream is expected to be at, used for optimistic concurrency control",
+                    "key": "Kurrent-ExpectedVersion",
+                    "value": "<integer>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The event type of the posted body",
+                    "key": "Kurrent-EventType",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "351f700c-5c37-49c3-8908-d88e22807c38",
+          "name": "Read the metadata of a stream",
+          "request": {
+            "name": "Read the metadata of a stream",
+            "description": {},
+            "url": {
+              "path": [
+                "streams",
+                ":stream",
+                "metadata"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "stream",
+                  "description": "(Required) Name of the event stream"
+                },
+                {
+                  "description": "Hostname of the KurrentDB node (the same host you use for the admin UI)",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                },
+                {
+                  "description": "KurrentDB HTTP port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "04b56a22-e130-4a89-844f-ca70d84b2513",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "streams",
+                    ":stream",
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "stream",
+                      "description": "(Required) Name of the event stream"
+                    },
+                    {
+                      "description": "Hostname of the KurrentDB node (the same host you use for the admin UI)",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "KurrentDB HTTP port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b6226288-a31e-4e9b-a309-1e8ff26f2ee6",
+              "name": "Unauthorized — credentials were missing, invalid, or lacked ACL permission",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "streams",
+                    ":stream",
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "stream",
+                      "description": "(Required) Name of the event stream"
+                    },
+                    {
+                      "description": "Hostname of the KurrentDB node (the same host you use for the admin UI)",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "KurrentDB HTTP port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c06d1d96-31eb-467f-b924-f861d2f1caa4",
+              "name": "Not Found — the stream, event, projection, subscription or user does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "streams",
+                    ":stream",
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "stream",
+                      "description": "(Required) Name of the event stream"
+                    },
+                    {
+                      "description": "Hostname of the KurrentDB node (the same host you use for the admin UI)",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "KurrentDB HTTP port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a26d8b46-578d-4f43-a904-6497b9edad05",
+          "name": "Update the metadata of a stream",
+          "request": {
+            "name": "Update the metadata of a stream",
+            "description": {},
+            "url": {
+              "path": [
+                "streams",
+                ":stream",
+                "metadata"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "stream",
+                  "description": "(Required) Name of the event stream"
+                },
+                {
+                  "description": "Hostname of the KurrentDB node (the same host you use for the admin UI)",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                },
+                {
+                  "description": "KurrentDB HTTP port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The version the stream is expected to be at, used for optimistic concurrency control",
+                "key": "Kurrent-ExpectedVersion",
+                "value": "<integer>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"$maxCount\": \"<integer>\",\n  \"$maxAge\": \"<integer>\",\n  \"$cacheControl\": \"<integer>\",\n  \"$tb\": \"<integer>\",\n  \"$acl\": {\n    \"$r\": {},\n    \"$w\": {},\n    \"$d\": {},\n    \"$mr\": {},\n    \"$mw\": {}\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0d033d1c-aa8e-4854-aeb8-14ea28c9b58d",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "streams",
+                    ":stream",
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "stream",
+                      "description": "(Required) Name of the event stream"
+                    },
+                    {
+                      "description": "Hostname of the KurrentDB node (the same host you use for the admin UI)",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "KurrentDB HTTP port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The version the stream is expected to be at, used for optimistic concurrency control",
+                    "key": "Kurrent-ExpectedVersion",
+                    "value": "<integer>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"$maxCount\": \"<integer>\",\n  \"$maxAge\": \"<integer>\",\n  \"$cacheControl\": \"<integer>\",\n  \"$tb\": \"<integer>\",\n  \"$acl\": {\n    \"$r\": {},\n    \"$w\": {},\n    \"$d\": {},\n    \"$mr\": {},\n    \"$mw\": {}\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "URI of the created resource",
+                  "key": "Location",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6e6b8552-3e48-4f02-a037-f5cab40fe5c4",
+              "name": "Bad Request — the request was malformed or violated an expected version",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "streams",
+                    ":stream",
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "stream",
+                      "description": "(Required) Name of the event stream"
+                    },
+                    {
+                      "description": "Hostname of the KurrentDB node (the same host you use for the admin UI)",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "KurrentDB HTTP port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The version the stream is expected to be at, used for optimistic concurrency control",
+                    "key": "Kurrent-ExpectedVersion",
+                    "value": "<integer>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"$maxCount\": \"<integer>\",\n  \"$maxAge\": \"<integer>\",\n  \"$cacheControl\": \"<integer>\",\n  \"$tb\": \"<integer>\",\n  \"$acl\": {\n    \"$r\": {},\n    \"$w\": {},\n    \"$d\": {},\n    \"$mr\": {},\n    \"$mw\": {}\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "246cb7a1-f084-4542-adff-58ea81474966",
+              "name": "Unauthorized — credentials were missing, invalid, or lacked ACL permission",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "streams",
+                    ":stream",
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "stream",
+                      "description": "(Required) Name of the event stream"
+                    },
+                    {
+                      "description": "Hostname of the KurrentDB node (the same host you use for the admin UI)",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "KurrentDB HTTP port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The version the stream is expected to be at, used for optimistic concurrency control",
+                    "key": "Kurrent-ExpectedVersion",
+                    "value": "<integer>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"$maxCount\": \"<integer>\",\n  \"$maxAge\": \"<integer>\",\n  \"$cacheControl\": \"<integer>\",\n  \"$tb\": \"<integer>\",\n  \"$acl\": {\n    \"$r\": {},\n    \"$w\": {},\n    \"$d\": {},\n    \"$mr\": {},\n    \"$mw\": {}\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "98252bb8-7330-4b30-9f91-b6c05867bf86",
+          "name": "Read a single event from a stream",
+          "request": {
+            "name": "Read a single event from a stream",
+            "description": {},
+            "url": {
+              "path": [
+                "streams",
+                ":stream",
+                ":event"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "stream",
+                  "description": "(Required) Name of the event stream"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "event",
+                  "description": "(Required) Event number within the stream, or \"head\" for the latest event"
+                },
+                {
+                  "description": "Hostname of the KurrentDB node (the same host you use for the admin UI)",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                },
+                {
+                  "description": "KurrentDB HTTP port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8c7d972d-d029-460e-be91-3d78213979fb",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "streams",
+                    ":stream",
+                    ":event"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "stream",
+                      "description": "(Required) Name of the event stream"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "event",
+                      "description": "(Required) Event number within the stream, or \"head\" for the latest event"
+                    },
+                    {
+                      "description": "Hostname of the KurrentDB node (the same host you use for the admin UI)",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "KurrentDB HTTP port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4c8bd02f-f6c2-4732-8822-f9b750aebc37",
+              "name": "Unauthorized — credentials were missing, invalid, or lacked ACL permission",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "streams",
+                    ":stream",
+                    ":event"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "stream",
+                      "description": "(Required) Name of the event stream"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "event",
+                      "description": "(Required) Event number within the stream, or \"head\" for the latest event"
+                    },
+                    {
+                      "description": "Hostname of the KurrentDB node (the same host you use for the admin UI)",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "KurrentDB HTTP port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "388729e4-d854-454c-9bac-ee94875f9769",
+              "name": "Not Found — the stream, event, projection, subscription or user does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "streams",
+                    ":stream",
+                    ":event"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "stream",
+                      "description": "(Required) Name of the event stream"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "event",
+                      "description": "(Required) Event number within the stream, or \"head\" for the latest event"
+                    },
+                    {
+                      "description": "Hostname of the KurrentDB node (the same host you use for the admin UI)",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "KurrentDB HTTP port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "80de607e-7eaa-47f0-aa86-861fc3320521",
+          "name": "Read a page of events from a stream starting at an event number",
+          "request": {
+            "name": "Read a page of events from a stream starting at an event number",
+            "description": {},
+            "url": {
+              "path": [
+                "streams",
+                ":stream",
+                ":event",
+                ":count"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "stream",
+                  "description": "(Required) Name of the event stream"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "event",
+                  "description": "(Required) Event number within the stream, or \"head\" for the latest event"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "count",
+                  "description": "(Required) Number of events to return"
+                },
+                {
+                  "description": "Hostname of the KurrentDB node (the same host you use for the admin UI)",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                },
+                {
+                  "description": "KurrentDB HTTP port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fe58f182-c603-404c-a6f7-f544bb77bc6a",
+              "name": "OK — an AtomPub feed of events",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "streams",
+                    ":stream",
+                    ":event",
+                    ":count"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "stream",
+                      "description": "(Required) Name of the event stream"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "event",
+                      "description": "(Required) Event number within the stream, or \"head\" for the latest event"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "count",
+                      "description": "(Required) Number of events to return"
+                    },
+                    {
+                      "description": "Hostname of the KurrentDB node (the same host you use for the admin UI)",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "KurrentDB HTTP port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"title\": \"string\",\n  \"id\": \"string\",\n  \"updated\": \"1982-11-14T19:23:30.974Z\",\n  \"streamId\": \"string\",\n  \"author\": {\n    \"name\": \"string\"\n  },\n  \"headOfStream\": false,\n  \"links\": [\n    {\n      \"uri\": \"string\",\n      \"relation\": \"string\"\n    },\n    {\n      \"uri\": \"string\",\n      \"relation\": \"string\"\n    }\n  ],\n  \"entries\": [\n    {\n      \"eventId\": \"0205884e-60ae-499b-8f9e-aa0912eacd46\",\n      \"eventType\": \"string\",\n      \"eventNumber\": 7497,\n      \"streamId\": \"string\",\n      \"isJson\": true,\n      \"isMetaData\": false,\n      \"isLinkMetaData\": true,\n      \"positionEventNumber\": 1378,\n      \"positionStreamId\": \"string\",\n      \"title\": \"string\",\n      \"id\": \"string\",\n      \"updated\": \"1968-03-26T16:43:22.651Z\",\n      \"data\": {},\n      \"metaData\": {},\n      \"links\": [\n        {\n          \"uri\": \"string\",\n          \"relation\": \"string\"\n        },\n        {\n          \"uri\": \"string\",\n          \"relation\": \"string\"\n        }\n      ]\n    },\n    {\n      \"eventId\": \"fa613100-dfe0-7c62-a9a7-625d57c900b2\",\n      \"eventType\": \"string\",\n      \"eventNumber\": 7801,\n      \"streamId\": \"string\",\n      \"isJson\": false,\n      \"isMetaData\": false,\n      \"isLinkMetaData\": false,\n      \"positionEventNumber\": 5381,\n      \"positionStreamId\": \"string\",\n      \"title\": \"string\",\n      \"id\": \"string\",\n      \"updated\": \"1959-09-18T12:40:45.549Z\",\n      \"data\": {},\n      \"metaData\": {},\n      \"links\": [\n        {\n          \"uri\": \"string\",\n          \"relation\": \"string\"\n        },\n        {\n          \"uri\": \"string\",\n          \"relation\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ab8bf62e-d1fe-407d-bc64-47666bab9fee",
+              "name": "Unauthorized — credentials were missing, invalid, or lacked ACL permission",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "streams",
+                    ":stream",
+                    ":event",
+                    ":count"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "stream",
+                      "description": "(Required) Name of the event stream"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "event",
+                      "description": "(Required) Event number within the stream, or \"head\" for the latest event"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "count",
+                      "description": "(Required) Number of events to return"
+                    },
+                    {
+                      "description": "Hostname of the KurrentDB node (the same host you use for the admin UI)",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "KurrentDB HTTP port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9e8b00ed-bd36-4ec5-ac02-c2f6540e551d",
+              "name": "Not Found — the stream, event, projection, subscription or user does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "streams",
+                    ":stream",
+                    ":event",
+                    ":count"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "stream",
+                      "description": "(Required) Name of the event stream"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "event",
+                      "description": "(Required) Event number within the stream, or \"head\" for the latest event"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "count",
+                      "description": "(Required) Number of events to return"
+                    },
+                    {
+                      "description": "Hostname of the KurrentDB node (the same host you use for the admin UI)",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "KurrentDB HTTP port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4dea2c94-b58b-45b3-b8f1-f4fb513625a7",
+          "name": "Page backward through a stream from an event number",
+          "request": {
+            "name": "Page backward through a stream from an event number",
+            "description": {},
+            "url": {
+              "path": [
+                "streams",
+                ":stream",
+                ":event",
+                "backward",
+                ":count"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "stream",
+                  "description": "(Required) Name of the event stream"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "event",
+                  "description": "(Required) Event number within the stream, or \"head\" for the latest event"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "count",
+                  "description": "(Required) Number of events to return"
+                },
+                {
+                  "description": "Hostname of the KurrentDB node (the same host you use for the admin UI)",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                },
+                {
+                  "description": "KurrentDB HTTP port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "57eb0d63-09ef-48d1-adc7-9c419ac27b85",
+              "name": "OK — an AtomPub feed of events",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "streams",
+                    ":stream",
+                    ":event",
+                    "backward",
+                    ":count"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "stream",
+                      "description": "(Required) Name of the event stream"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "event",
+                      "description": "(Required) Event number within the stream, or \"head\" for the latest event"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "count",
+                      "description": "(Required) Number of events to return"
+                    },
+                    {
+                      "description": "Hostname of the KurrentDB node (the same host you use for the admin UI)",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "KurrentDB HTTP port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"title\": \"string\",\n  \"id\": \"string\",\n  \"updated\": \"1982-11-14T19:23:30.974Z\",\n  \"streamId\": \"string\",\n  \"author\": {\n    \"name\": \"string\"\n  },\n  \"headOfStream\": false,\n  \"links\": [\n    {\n      \"uri\": \"string\",\n      \"relation\": \"string\"\n    },\n    {\n      \"uri\": \"string\",\n      \"relation\": \"string\"\n    }\n  ],\n  \"entries\": [\n    {\n      \"eventId\": \"0205884e-60ae-499b-8f9e-aa0912eacd46\",\n      \"eventType\": \"string\",\n      \"eventNumber\": 7497,\n      \"streamId\": \"string\",\n      \"isJson\": true,\n      \"isMetaData\": false,\n      \"isLinkMetaData\": true,\n      \"positionEventNumber\": 1378,\n      \"positionStreamId\": \"string\",\n      \"title\": \"string\",\n      \"id\": \"string\",\n      \"updated\": \"1968-03-26T16:43:22.651Z\",\n      \"data\": {},\n      \"metaData\": {},\n      \"links\": [\n        {\n          \"uri\": \"string\",\n          \"relation\": \"string\"\n        },\n        {\n          \"uri\": \"string\",\n          \"relation\": \"string\"\n        }\n      ]\n    },\n    {\n      \"eventId\": \"fa613100-dfe0-7c62-a9a7-625d57c900b2\",\n      \"eventType\": \"string\",\n      \"eventNumber\": 7801,\n      \"streamId\": \"string\",\n      \"isJson\": false,\n      \"isMetaData\": false,\n      \"isLinkMetaData\": false,\n      \"positionEventNumber\": 5381,\n      \"positionStreamId\": \"string\",\n      \"title\": \"string\",\n      \"id\": \"string\",\n      \"updated\": \"1959-09-18T12:40:45.549Z\",\n      \"data\": {},\n      \"metaData\": {},\n      \"links\": [\n        {\n          \"uri\": \"string\",\n          \"relation\": \"string\"\n        },\n        {\n          \"uri\": \"string\",\n          \"relation\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1254d3a5-2a60-4bc2-9e16-d8b4fc358d5c",
+              "name": "Unauthorized — credentials were missing, invalid, or lacked ACL permission",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "streams",
+                    ":stream",
+                    ":event",
+                    "backward",
+                    ":count"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "stream",
+                      "description": "(Required) Name of the event stream"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "event",
+                      "description": "(Required) Event number within the stream, or \"head\" for the latest event"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "count",
+                      "description": "(Required) Number of events to return"
+                    },
+                    {
+                      "description": "Hostname of the KurrentDB node (the same host you use for the admin UI)",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "KurrentDB HTTP port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c72dc5ff-4f1d-498d-b0c8-73ce9742909a",
+              "name": "Not Found — the stream, event, projection, subscription or user does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "streams",
+                    ":stream",
+                    ":event",
+                    "backward",
+                    ":count"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "stream",
+                      "description": "(Required) Name of the event stream"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "event",
+                      "description": "(Required) Event number within the stream, or \"head\" for the latest event"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "count",
+                      "description": "(Required) Number of events to return"
+                    },
+                    {
+                      "description": "Hostname of the KurrentDB node (the same host you use for the admin UI)",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "KurrentDB HTTP port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c15b1d43-a977-4ee3-81e9-dfe9a3b0163c",
+          "name": "Page forward through a stream from an event number",
+          "request": {
+            "name": "Page forward through a stream from an event number",
+            "description": {},
+            "url": {
+              "path": [
+                "streams",
+                ":stream",
+                ":event",
+                "forward",
+                ":count"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "stream",
+                  "description": "(Required) Name of the event stream"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "event",
+                  "description": "(Required) Event number within the stream, or \"head\" for the latest event"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "count",
+                  "description": "(Required) Number of events to return"
+                },
+                {
+                  "description": "Hostname of the KurrentDB node (the same host you use for the admin UI)",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                },
+                {
+                  "description": "KurrentDB HTTP port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "385b31e6-7bdc-41d9-be57-3aa9b6a12400",
+              "name": "OK — an AtomPub feed of events",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "streams",
+                    ":stream",
+                    ":event",
+                    "forward",
+                    ":count"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "stream",
+                      "description": "(Required) Name of the event stream"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "event",
+                      "description": "(Required) Event number within the stream, or \"head\" for the latest event"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "count",
+                      "description": "(Required) Number of events to return"
+                    },
+                    {
+                      "description": "Hostname of the KurrentDB node (the same host you use for the admin UI)",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "KurrentDB HTTP port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"title\": \"string\",\n  \"id\": \"string\",\n  \"updated\": \"1982-11-14T19:23:30.974Z\",\n  \"streamId\": \"string\",\n  \"author\": {\n    \"name\": \"string\"\n  },\n  \"headOfStream\": false,\n  \"links\": [\n    {\n      \"uri\": \"string\",\n      \"relation\": \"string\"\n    },\n    {\n      \"uri\": \"string\",\n      \"relation\": \"string\"\n    }\n  ],\n  \"entries\": [\n    {\n      \"eventId\": \"0205884e-60ae-499b-8f9e-aa0912eacd46\",\n      \"eventType\": \"string\",\n      \"eventNumber\": 7497,\n      \"streamId\": \"string\",\n      \"isJson\": true,\n      \"isMetaData\": false,\n      \"isLinkMetaData\": true,\n      \"positionEventNumber\": 1378,\n      \"positionStreamId\": \"string\",\n      \"title\": \"string\",\n      \"id\": \"string\",\n      \"updated\": \"1968-03-26T16:43:22.651Z\",\n      \"data\": {},\n      \"metaData\": {},\n      \"links\": [\n        {\n          \"uri\": \"string\",\n          \"relation\": \"string\"\n        },\n        {\n          \"uri\": \"string\",\n          \"relation\": \"string\"\n        }\n      ]\n    },\n    {\n      \"eventId\": \"fa613100-dfe0-7c62-a9a7-625d57c900b2\",\n      \"eventType\": \"string\",\n      \"eventNumber\": 7801,\n      \"streamId\": \"string\",\n      \"isJson\": false,\n      \"isMetaData\": false,\n      \"isLinkMetaData\": false,\n      \"positionEventNumber\": 5381,\n      \"positionStreamId\": \"string\",\n      \"title\": \"string\",\n      \"id\": \"string\",\n      \"updated\": \"1959-09-18T12:40:45.549Z\",\n      \"data\": {},\n      \"metaData\": {},\n      \"links\": [\n        {\n          \"uri\": \"string\",\n          \"relation\": \"string\"\n        },\n        {\n          \"uri\": \"string\",\n          \"relation\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cba35109-3e03-4cbb-9fd4-96e4a0959894",
+              "name": "Unauthorized — credentials were missing, invalid, or lacked ACL permission",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "streams",
+                    ":stream",
+                    ":event",
+                    "forward",
+                    ":count"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "stream",
+                      "description": "(Required) Name of the event stream"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "event",
+                      "description": "(Required) Event number within the stream, or \"head\" for the latest event"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "count",
+                      "description": "(Required) Number of events to return"
+                    },
+                    {
+                      "description": "Hostname of the KurrentDB node (the same host you use for the admin UI)",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "KurrentDB HTTP port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9ce2be0b-6f0a-4aa7-91c8-dd489fbaa98f",
+              "name": "Not Found — the stream, event, projection, subscription or user does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "streams",
+                    ":stream",
+                    ":event",
+                    "forward",
+                    ":count"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "stream",
+                      "description": "(Required) Name of the event stream"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "event",
+                      "description": "(Required) Event number within the stream, or \"head\" for the latest event"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "count",
+                      "description": "(Required) Number of events to return"
+                    },
+                    {
+                      "description": "Hostname of the KurrentDB node (the same host you use for the admin UI)",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "KurrentDB HTTP port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "74f1968c-2429-4e34-81d8-e1f3a1845f1b",
+          "name": "Read events from the $all stream",
+          "request": {
+            "name": "Read events from the $all stream",
+            "description": {},
+            "url": {
+              "path": [
+                "streams",
+                "$all"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname of the KurrentDB node (the same host you use for the admin UI)",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                },
+                {
+                  "description": "KurrentDB HTTP port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Require that the request is served by the leader node rather than a follower",
+                "key": "Kurrent-RequireLeader",
+                "value": "<boolean>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7b3aed28-2725-40cb-b617-84063e31c93c",
+              "name": "OK — an AtomPub feed of events",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "streams",
+                    "$all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname of the KurrentDB node (the same host you use for the admin UI)",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "KurrentDB HTTP port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Require that the request is served by the leader node rather than a follower",
+                    "key": "Kurrent-RequireLeader",
+                    "value": "<boolean>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"title\": \"string\",\n  \"id\": \"string\",\n  \"updated\": \"1982-11-14T19:23:30.974Z\",\n  \"streamId\": \"string\",\n  \"author\": {\n    \"name\": \"string\"\n  },\n  \"headOfStream\": false,\n  \"links\": [\n    {\n      \"uri\": \"string\",\n      \"relation\": \"string\"\n    },\n    {\n      \"uri\": \"string\",\n      \"relation\": \"string\"\n    }\n  ],\n  \"entries\": [\n    {\n      \"eventId\": \"0205884e-60ae-499b-8f9e-aa0912eacd46\",\n      \"eventType\": \"string\",\n      \"eventNumber\": 7497,\n      \"streamId\": \"string\",\n      \"isJson\": true,\n      \"isMetaData\": false,\n      \"isLinkMetaData\": true,\n      \"positionEventNumber\": 1378,\n      \"positionStreamId\": \"string\",\n      \"title\": \"string\",\n      \"id\": \"string\",\n      \"updated\": \"1968-03-26T16:43:22.651Z\",\n      \"data\": {},\n      \"metaData\": {},\n      \"links\": [\n        {\n          \"uri\": \"string\",\n          \"relation\": \"string\"\n        },\n        {\n          \"uri\": \"string\",\n          \"relation\": \"string\"\n        }\n      ]\n    },\n    {\n      \"eventId\": \"fa613100-dfe0-7c62-a9a7-625d57c900b2\",\n      \"eventType\": \"string\",\n      \"eventNumber\": 7801,\n      \"streamId\": \"string\",\n      \"isJson\": false,\n      \"isMetaData\": false,\n      \"isLinkMetaData\": false,\n      \"positionEventNumber\": 5381,\n      \"positionStreamId\": \"string\",\n      \"title\": \"string\",\n      \"id\": \"string\",\n      \"updated\": \"1959-09-18T12:40:45.549Z\",\n      \"data\": {},\n      \"metaData\": {},\n      \"links\": [\n        {\n          \"uri\": \"string\",\n          \"relation\": \"string\"\n        },\n        {\n          \"uri\": \"string\",\n          \"relation\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "19e59e12-e52e-4234-8b4b-e98d5ba231b5",
+              "name": "Unauthorized — credentials were missing, invalid, or lacked ACL permission",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "streams",
+                    "$all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname of the KurrentDB node (the same host you use for the admin UI)",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "KurrentDB HTTP port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Require that the request is served by the leader node rather than a follower",
+                    "key": "Kurrent-RequireLeader",
+                    "value": "<boolean>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Hostname of the KurrentDB node (the same host you use for the admin UI)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "localhost",
+      "key": "host"
+    },
+    {
+      "description": {
+        "content": "KurrentDB HTTP port",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "2113",
+      "key": "port"
+    },
+    {
+      "type": "string",
+      "value": "https://{{host}}:{{port}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0a0b4cf6-d833-48d4-a900-5dace2ca21a0",
+    "name": "KurrentDB HTTP Admin Streams API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "KurrentDB (formerly EventStoreDB) exposes a native AtomPub-over-HTTP interface alongside its primary gRPC protocol. This OpenAPI description is an API Evangelist transcription of the provider's published HTTP API Reference at https://docs.kurrent.io/server/v26.1/http-api/api.html — Kurrent does not publish an OpenAPI document of its own. Paths, methods, custom headers, media types and status codes are taken from that reference; nothing has been invented. The base URL is the address of your own KurrentDB node or Kurrent Cloud cluster (the same URL you use for the admin UI), which listens on port 2113 by default.\n\nContact Support:\n Name: Kurrent",
+      "type": "text/plain"
+    }
+  }
+}

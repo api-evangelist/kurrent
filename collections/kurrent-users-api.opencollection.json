@@ -1,0 +1,196 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "KurrentDB HTTP Admin Users API",
+    "version": "v26.1"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/users/"
+          },
+          "docs": "List all users"
+        },
+        {
+          "info": {
+            "name": "Create a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/users/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a user"
+        },
+        {
+          "info": {
+            "name": "Get the details of a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/users/:login",
+            "params": [
+              {
+                "name": "login",
+                "value": "",
+                "type": "path",
+                "description": "Login name of the user"
+              }
+            ]
+          },
+          "docs": "Get the details of a user"
+        },
+        {
+          "info": {
+            "name": "Update a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{host}:{port}/users/:login",
+            "params": [
+              {
+                "name": "login",
+                "value": "",
+                "type": "path",
+                "description": "Login name of the user"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a user"
+        },
+        {
+          "info": {
+            "name": "Delete a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{host}:{port}/users/:login",
+            "params": [
+              {
+                "name": "login",
+                "value": "",
+                "type": "path",
+                "description": "Login name of the user"
+              }
+            ]
+          },
+          "docs": "Delete a user"
+        },
+        {
+          "info": {
+            "name": "Enable a user account",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{host}:{port}/users/:login/command/enable",
+            "params": [
+              {
+                "name": "login",
+                "value": "",
+                "type": "path",
+                "description": "Login name of the user"
+              }
+            ]
+          },
+          "docs": "Enable a user account"
+        },
+        {
+          "info": {
+            "name": "Disable a user account",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{host}:{port}/users/:login/command/disable",
+            "params": [
+              {
+                "name": "login",
+                "value": "",
+                "type": "path",
+                "description": "Login name of the user"
+              }
+            ]
+          },
+          "docs": "Disable a user account"
+        },
+        {
+          "info": {
+            "name": "Reset the password of a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/users/:login/command/reset-password",
+            "params": [
+              {
+                "name": "login",
+                "value": "",
+                "type": "path",
+                "description": "Login name of the user"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Reset the password of a user"
+        },
+        {
+          "info": {
+            "name": "Change the password of a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/users/:login/command/change-password",
+            "params": [
+              {
+                "name": "login",
+                "value": "",
+                "type": "path",
+                "description": "Login name of the user"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Change the password of a user"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

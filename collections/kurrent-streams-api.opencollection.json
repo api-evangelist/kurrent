@@ -1,0 +1,342 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "KurrentDB HTTP Admin Streams API",
+    "version": "v26.1"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Streams",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Read events from a stream",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/streams/:stream",
+            "headers": [
+              {
+                "name": "Kurrent-RequireLeader",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "stream",
+                "value": "",
+                "type": "path",
+                "description": "Name of the event stream"
+              }
+            ]
+          },
+          "docs": "Read events from a stream"
+        },
+        {
+          "info": {
+            "name": "Append one or more events to a stream",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/streams/:stream",
+            "headers": [
+              {
+                "name": "Kurrent-ExpectedVersion",
+                "value": ""
+              },
+              {
+                "name": "Kurrent-EventType",
+                "value": ""
+              },
+              {
+                "name": "Kurrent-EventId",
+                "value": ""
+              },
+              {
+                "name": "Kurrent-RequireLeader",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "stream",
+                "value": "",
+                "type": "path",
+                "description": "Name of the event stream"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Append one or more events to a stream"
+        },
+        {
+          "info": {
+            "name": "Delete a stream",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{host}:{port}/streams/:stream",
+            "headers": [
+              {
+                "name": "Kurrent-ExpectedVersion",
+                "value": ""
+              },
+              {
+                "name": "Kurrent-RequireLeader",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "stream",
+                "value": "",
+                "type": "path",
+                "description": "Name of the event stream"
+              }
+            ]
+          },
+          "docs": "Delete a stream"
+        },
+        {
+          "info": {
+            "name": "Append a single event using a client-supplied event id (idempotent append URL)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/streams/:stream/incoming/:guid",
+            "headers": [
+              {
+                "name": "Kurrent-ExpectedVersion",
+                "value": ""
+              },
+              {
+                "name": "Kurrent-EventType",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "stream",
+                "value": "",
+                "type": "path",
+                "description": "Name of the event stream"
+              },
+              {
+                "name": "guid",
+                "value": "",
+                "type": "path",
+                "description": "Client-generated event id, used as the idempotency key for this append"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Append a single event using a client-supplied event id (idempotent append URL)"
+        },
+        {
+          "info": {
+            "name": "Read the metadata of a stream",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/streams/:stream/metadata",
+            "params": [
+              {
+                "name": "stream",
+                "value": "",
+                "type": "path",
+                "description": "Name of the event stream"
+              }
+            ]
+          },
+          "docs": "Read the metadata of a stream"
+        },
+        {
+          "info": {
+            "name": "Update the metadata of a stream",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/streams/:stream/metadata",
+            "headers": [
+              {
+                "name": "Kurrent-ExpectedVersion",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "stream",
+                "value": "",
+                "type": "path",
+                "description": "Name of the event stream"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the metadata of a stream"
+        },
+        {
+          "info": {
+            "name": "Read a single event from a stream",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/streams/:stream/:event",
+            "params": [
+              {
+                "name": "stream",
+                "value": "",
+                "type": "path",
+                "description": "Name of the event stream"
+              },
+              {
+                "name": "event",
+                "value": "",
+                "type": "path",
+                "description": "Event number within the stream, or \"head\" for the latest event"
+              }
+            ]
+          },
+          "docs": "Read a single event from a stream"
+        },
+        {
+          "info": {
+            "name": "Read a page of events from a stream starting at an event number",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/streams/:stream/:event/:count",
+            "params": [
+              {
+                "name": "stream",
+                "value": "",
+                "type": "path",
+                "description": "Name of the event stream"
+              },
+              {
+                "name": "event",
+                "value": "",
+                "type": "path",
+                "description": "Event number within the stream, or \"head\" for the latest event"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "path",
+                "description": "Number of events to return"
+              }
+            ]
+          },
+          "docs": "Read a page of events from a stream starting at an event number"
+        },
+        {
+          "info": {
+            "name": "Page backward through a stream from an event number",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/streams/:stream/:event/backward/:count",
+            "params": [
+              {
+                "name": "stream",
+                "value": "",
+                "type": "path",
+                "description": "Name of the event stream"
+              },
+              {
+                "name": "event",
+                "value": "",
+                "type": "path",
+                "description": "Event number within the stream, or \"head\" for the latest event"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "path",
+                "description": "Number of events to return"
+              }
+            ]
+          },
+          "docs": "Page backward through a stream from an event number"
+        },
+        {
+          "info": {
+            "name": "Page forward through a stream from an event number",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/streams/:stream/:event/forward/:count",
+            "params": [
+              {
+                "name": "stream",
+                "value": "",
+                "type": "path",
+                "description": "Name of the event stream"
+              },
+              {
+                "name": "event",
+                "value": "",
+                "type": "path",
+                "description": "Event number within the stream, or \"head\" for the latest event"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "path",
+                "description": "Number of events to return"
+              }
+            ]
+          },
+          "docs": "Page forward through a stream from an event number"
+        },
+        {
+          "info": {
+            "name": "Read events from the $all stream",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/streams/$all",
+            "headers": [
+              {
+                "name": "Kurrent-RequireLeader",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Read events from the $all stream"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "KurrentDB HTTP Admin Statistics API",
+    "version": "v26.1"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Statistics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all node statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/stats"
+          },
+          "docs": "Get all node statistics"
+        },
+        {
+          "info": {
+            "name": "Get a specific statistic",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/stats/:statPath",
+            "params": [
+              {
+                "name": "statPath",
+                "value": "",
+                "type": "path",
+                "description": "Path of the statistic to return"
+              }
+            ]
+          },
+          "docs": "Get a specific statistic"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

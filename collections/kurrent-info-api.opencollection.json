@@ -1,0 +1,47 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "KurrentDB HTTP Admin Info API",
+    "version": "v26.1"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Info",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get information about the node",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/info"
+          },
+          "docs": "Get information about the node"
+        },
+        {
+          "info": {
+            "name": "Get the configuration options of the node",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/info/options"
+          },
+          "docs": "Get the configuration options of the node"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

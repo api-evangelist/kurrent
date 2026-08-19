@@ -1,0 +1,380 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "KurrentDB HTTP Admin Subscriptions API",
+    "version": "v26.1"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Subscriptions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all persistent subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/subscriptions"
+          },
+          "docs": "List all persistent subscriptions"
+        },
+        {
+          "info": {
+            "name": "List the persistent subscriptions on a stream",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/subscriptions/:stream",
+            "params": [
+              {
+                "name": "stream",
+                "value": "",
+                "type": "path",
+                "description": "Name of the event stream"
+              }
+            ]
+          },
+          "docs": "List the persistent subscriptions on a stream"
+        },
+        {
+          "info": {
+            "name": "Read events from a persistent subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/subscriptions/:stream/:subscription",
+            "params": [
+              {
+                "name": "stream",
+                "value": "",
+                "type": "path",
+                "description": "Name of the event stream"
+              },
+              {
+                "name": "subscription",
+                "value": "",
+                "type": "path",
+                "description": "Name of the persistent subscription group"
+              }
+            ]
+          },
+          "docs": "Read events from a persistent subscription"
+        },
+        {
+          "info": {
+            "name": "Update a persistent subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/subscriptions/:stream/:subscription",
+            "params": [
+              {
+                "name": "stream",
+                "value": "",
+                "type": "path",
+                "description": "Name of the event stream"
+              },
+              {
+                "name": "subscription",
+                "value": "",
+                "type": "path",
+                "description": "Name of the persistent subscription group"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a persistent subscription"
+        },
+        {
+          "info": {
+            "name": "Create a persistent subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{host}:{port}/subscriptions/:stream/:subscription",
+            "params": [
+              {
+                "name": "stream",
+                "value": "",
+                "type": "path",
+                "description": "Name of the event stream"
+              },
+              {
+                "name": "subscription",
+                "value": "",
+                "type": "path",
+                "description": "Name of the persistent subscription group"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a persistent subscription"
+        },
+        {
+          "info": {
+            "name": "Delete a persistent subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{host}:{port}/subscriptions/:stream/:subscription",
+            "params": [
+              {
+                "name": "stream",
+                "value": "",
+                "type": "path",
+                "description": "Name of the event stream"
+              },
+              {
+                "name": "subscription",
+                "value": "",
+                "type": "path",
+                "description": "Name of the persistent subscription group"
+              }
+            ]
+          },
+          "docs": "Delete a persistent subscription"
+        },
+        {
+          "info": {
+            "name": "Get details of a persistent subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/subscriptions/:stream/:subscription/info",
+            "params": [
+              {
+                "name": "stream",
+                "value": "",
+                "type": "path",
+                "description": "Name of the event stream"
+              },
+              {
+                "name": "subscription",
+                "value": "",
+                "type": "path",
+                "description": "Name of the persistent subscription group"
+              }
+            ]
+          },
+          "docs": "Get details of a persistent subscription"
+        },
+        {
+          "info": {
+            "name": "Read a number of events from a persistent subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/subscriptions/:stream/:subscription/:count",
+            "params": [
+              {
+                "name": "stream",
+                "value": "",
+                "type": "path",
+                "description": "Name of the event stream"
+              },
+              {
+                "name": "subscription",
+                "value": "",
+                "type": "path",
+                "description": "Name of the persistent subscription group"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "path",
+                "description": "Number of events to return"
+              }
+            ]
+          },
+          "docs": "Read a number of events from a persistent subscription"
+        },
+        {
+          "info": {
+            "name": "Acknowledge a set of messages",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/subscriptions/:stream/:subscription/ack",
+            "params": [
+              {
+                "name": "stream",
+                "value": "",
+                "type": "path",
+                "description": "Name of the event stream"
+              },
+              {
+                "name": "subscription",
+                "value": "",
+                "type": "path",
+                "description": "Name of the persistent subscription group"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of message ids to acknowledge"
+              }
+            ]
+          },
+          "docs": "Acknowledge a set of messages"
+        },
+        {
+          "info": {
+            "name": "Acknowledge a single message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/subscriptions/:stream/:subscription/ack/:messageid",
+            "params": [
+              {
+                "name": "stream",
+                "value": "",
+                "type": "path",
+                "description": "Name of the event stream"
+              },
+              {
+                "name": "subscription",
+                "value": "",
+                "type": "path",
+                "description": "Name of the persistent subscription group"
+              },
+              {
+                "name": "messageid",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the message to acknowledge"
+              }
+            ]
+          },
+          "docs": "Acknowledge a single message"
+        },
+        {
+          "info": {
+            "name": "Negatively acknowledge a set of messages",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/subscriptions/:stream/:subscription/nack",
+            "params": [
+              {
+                "name": "stream",
+                "value": "",
+                "type": "path",
+                "description": "Name of the event stream"
+              },
+              {
+                "name": "subscription",
+                "value": "",
+                "type": "path",
+                "description": "Name of the persistent subscription group"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of message ids to negatively acknowledge"
+              },
+              {
+                "name": "action",
+                "value": "",
+                "type": "query",
+                "description": "What the server should do with the negatively acknowledged message"
+              }
+            ]
+          },
+          "docs": "Negatively acknowledge a set of messages"
+        },
+        {
+          "info": {
+            "name": "Negatively acknowledge a single message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/subscriptions/:stream/:subscription/nack/:messageid",
+            "params": [
+              {
+                "name": "stream",
+                "value": "",
+                "type": "path",
+                "description": "Name of the event stream"
+              },
+              {
+                "name": "subscription",
+                "value": "",
+                "type": "path",
+                "description": "Name of the persistent subscription group"
+              },
+              {
+                "name": "messageid",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the message to acknowledge"
+              },
+              {
+                "name": "action",
+                "value": "",
+                "type": "query",
+                "description": "What the server should do with the negatively acknowledged message"
+              }
+            ]
+          },
+          "docs": "Negatively acknowledge a single message"
+        },
+        {
+          "info": {
+            "name": "Replay the parked messages of a persistent subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/subscriptions/:stream/:subscription/replayParked",
+            "params": [
+              {
+                "name": "stream",
+                "value": "",
+                "type": "path",
+                "description": "Name of the event stream"
+              },
+              {
+                "name": "subscription",
+                "value": "",
+                "type": "path",
+                "description": "Name of the persistent subscription group"
+              }
+            ]
+          },
+          "docs": "Replay the parked messages of a persistent subscription"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
