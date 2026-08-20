@@ -39,6 +39,19 @@ tags:
 - Database
 - Event Sourcing
 - Event Streaming
+- Event-Driven Architecture
+- CQRS
+- Data Infrastructure
+- Developer Tools
+- Cloud
+- Open-Source
+- gRPC
+- Agentic AI
+tags_raw:
+- Company
+- Database
+- Event Sourcing
+- Event Streaming
 - Event Driven Architecture
 - CQRS
 - Data Infrastructure
@@ -172,6 +185,8 @@ apis:
   humanURL: https://docs.kurrent.io/server/v26.1/http-api/introduction.html
   baseURL: https://docs.kurrent.io/server/v26.1/http-api/api.html
   tags:
+  - Subscription
+  tags_raw:
   - Subscriptions
   properties:
   - type: OpenAPI
@@ -188,6 +203,8 @@ apis:
   humanURL: https://docs.kurrent.io/server/v26.1/http-api/introduction.html
   baseURL: https://docs.kurrent.io/server/v26.1/http-api/api.html
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
