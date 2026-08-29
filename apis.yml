@@ -13,6 +13,18 @@ description: >-
   API. Connectors move events in and out of Kafka, MongoDB, Elasticsearch, RabbitMQ, Pulsar, SQL and
   HTTP endpoints. KurrentDB is widely used for event sourcing, CQRS, event-driven microservices,
   change data capture and, increasingly, as durable memory for AI agents.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
