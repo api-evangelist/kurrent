@@ -1,9 +1,9 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: KurrentDB HTTP Admin Users API
+  title: KurrentDB HTTP Users API
   version: v26.1
   summary: AtomPub-over-HTTP interface to KurrentDB streams, subscriptions, projections, users and node administration.
-  description: KurrentDB (formerly EventStoreDB) exposes a native AtomPub-over-HTTP interface alongside its primary gRPC protocol. This OpenAPI description is an API Evangelist transcription of the provider's published HTTP API Reference at https://docs.kurrent.io/server/v26.1/http-api/api.html — Kurrent does not publish an OpenAPI document of its own. Paths, methods, custom headers, media types and status codes are taken from that reference; nothing has been invented. The base URL is the address of your own KurrentDB node or Kurrent Cloud cluster (the same URL you use for the admin UI), which listens on port 2113 by default.
+  description: KurrentDB (formerly EventStoreDB) exposes a native AtomPub-over-HTTP interface alongside its primary gRPC protocol.
   contact:
     name: Kurrent
     url: https://www.kurrent.io/
@@ -192,19 +192,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   responses:
-    Created:
-      description: Created
-      headers:
-        Location:
-          description: URI of the created resource
-          schema:
-            type: string
-    NotFound:
-      description: Not Found — the stream, event, projection, subscription or user does not exist
-      content:
-        text/plain:
-          schema:
-            type: string
     BadRequest:
       description: Bad Request — the request was malformed or violated an expected version
       content:
@@ -223,6 +210,19 @@ components:
         application/json:
           schema:
             type: object
+    NotFound:
+      description: Not Found — the stream, event, projection, subscription or user does not exist
+      content:
+        text/plain:
+          schema:
+            type: string
+    Created:
+      description: Created
+      headers:
+        Location:
+          description: URI of the created resource
+          schema:
+            type: string
   schemas:
     UserUpdate:
       type: object
