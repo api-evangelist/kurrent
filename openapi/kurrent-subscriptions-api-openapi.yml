@@ -243,6 +243,20 @@ components:
       schema:
         type: string
         format: uuid
+    Stream:
+      name: stream
+      in: path
+      required: true
+      description: Name of the event stream
+      schema:
+        type: string
+    Count:
+      name: count
+      in: path
+      required: true
+      description: Number of events to return
+      schema:
+        type: integer
     NackAction:
       name: action
       in: query
@@ -254,13 +268,6 @@ components:
         - Retry
         - Skip
         - Stop
-    Count:
-      name: count
-      in: path
-      required: true
-      description: Number of events to return
-      schema:
-        type: integer
     Subscription:
       name: subscription
       in: path
@@ -268,32 +275,25 @@ components:
       description: Name of the persistent subscription group
       schema:
         type: string
-    Stream:
-      name: stream
-      in: path
-      required: true
-      description: Name of the event stream
-      schema:
-        type: string
   responses:
-    BadRequest:
-      description: Bad Request — the request was malformed or violated an expected version
-      content:
-        text/plain:
-          schema:
-            type: string
-    Unauthorized:
-      description: Unauthorized — credentials were missing, invalid, or lacked ACL permission
-      content:
-        text/plain:
-          schema:
-            type: string
     JsonOk:
       description: OK
       content:
         application/json:
           schema:
             type: object
+    Unauthorized:
+      description: Unauthorized — credentials were missing, invalid, or lacked ACL permission
+      content:
+        text/plain:
+          schema:
+            type: string
+    BadRequest:
+      description: Bad Request — the request was malformed or violated an expected version
+      content:
+        text/plain:
+          schema:
+            type: string
     Created:
       description: Created
       headers:

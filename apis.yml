@@ -59,9 +59,9 @@ tags:
 - Data Infrastructure
 - Developer Tools
 - Cloud
-- Open-Source
+- Open Source
 - gRPC
-- Agentic AI
+- AI Agents
 tags_raw:
 - Company
 - Database
@@ -75,6 +75,7 @@ tags_raw:
 - Open Source
 - gRPC
 - Agentic AI
+- Open-Source
 apis:
 - aid: kurrent:kurrentdb-grpc-api
   name: KurrentDB gRPC API

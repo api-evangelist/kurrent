@@ -355,58 +355,14 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    BadRequest:
-      description: Bad Request — the request was malformed or violated an expected version
-      content:
-        text/plain:
-          schema:
-            type: string
-    Unauthorized:
-      description: Unauthorized — credentials were missing, invalid, or lacked ACL permission
-      content:
-        text/plain:
-          schema:
-            type: string
-    JsonOk:
-      description: OK
+  requestBodies:
+    ProjectionQuery:
+      required: true
+      description: The projection definition, as JavaScript
       content:
         application/json:
           schema:
-            type: object
-    NotFound:
-      description: Not Found — the stream, event, projection, subscription or user does not exist
-      content:
-        text/plain:
-          schema:
             type: string
-    Created:
-      description: Created
-      headers:
-        Location:
-          description: URI of the created resource
-          schema:
-            type: string
-  parameters:
-    ProjectionName:
-      name: name
-      in: query
-      description: Name to give the projection
-      schema:
-        type: string
-    Partition:
-      name: partition
-      in: query
-      description: Partition of a partitioned projection to read
-      schema:
-        type: string
-    Name:
-      name: name
-      in: path
-      required: true
-      description: Name of the projection
-      schema:
-        type: string
   schemas:
     ProjectionConfig:
       type: object
@@ -426,14 +382,58 @@ components:
           type: integer
         maxWriteBatchLength:
           type: integer
-  requestBodies:
-    ProjectionQuery:
-      required: true
-      description: The projection definition, as JavaScript
+  responses:
+    NotFound:
+      description: Not Found — the stream, event, projection, subscription or user does not exist
+      content:
+        text/plain:
+          schema:
+            type: string
+    JsonOk:
+      description: OK
       content:
         application/json:
           schema:
+            type: object
+    BadRequest:
+      description: Bad Request — the request was malformed or violated an expected version
+      content:
+        text/plain:
+          schema:
             type: string
+    Unauthorized:
+      description: Unauthorized — credentials were missing, invalid, or lacked ACL permission
+      content:
+        text/plain:
+          schema:
+            type: string
+    Created:
+      description: Created
+      headers:
+        Location:
+          description: URI of the created resource
+          schema:
+            type: string
+  parameters:
+    Partition:
+      name: partition
+      in: query
+      description: Partition of a partitioned projection to read
+      schema:
+        type: string
+    ProjectionName:
+      name: name
+      in: query
+      description: Name to give the projection
+      schema:
+        type: string
+    Name:
+      name: name
+      in: path
+      required: true
+      description: Name of the projection
+      schema:
+        type: string
   securitySchemes:
     basicAuth:
       type: http

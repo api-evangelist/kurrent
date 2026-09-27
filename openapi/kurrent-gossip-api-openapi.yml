@@ -60,18 +60,18 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   responses:
-    NotFound:
-      description: Not Found — the stream, event, projection, subscription or user does not exist
-      content:
-        text/plain:
-          schema:
-            type: string
     JsonOk:
       description: OK
       content:
         application/json:
           schema:
             type: object
+    NotFound:
+      description: Not Found — the stream, event, projection, subscription or user does not exist
+      content:
+        text/plain:
+          schema:
+            type: string
   securitySchemes:
     basicAuth:
       type: http

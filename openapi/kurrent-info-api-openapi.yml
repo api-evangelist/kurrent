@@ -55,18 +55,18 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   responses:
-    Unauthorized:
-      description: Unauthorized — credentials were missing, invalid, or lacked ACL permission
-      content:
-        text/plain:
-          schema:
-            type: string
     JsonOk:
       description: OK
       content:
         application/json:
           schema:
             type: object
+    Unauthorized:
+      description: Unauthorized — credentials were missing, invalid, or lacked ACL permission
+      content:
+        text/plain:
+          schema:
+            type: string
   securitySchemes:
     basicAuth:
       type: http
