@@ -234,47 +234,6 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  parameters:
-    MessageId:
-      name: messageid
-      in: path
-      required: true
-      description: Identifier of the message to acknowledge
-      schema:
-        type: string
-        format: uuid
-    Stream:
-      name: stream
-      in: path
-      required: true
-      description: Name of the event stream
-      schema:
-        type: string
-    Count:
-      name: count
-      in: path
-      required: true
-      description: Number of events to return
-      schema:
-        type: integer
-    NackAction:
-      name: action
-      in: query
-      description: What the server should do with the negatively acknowledged message
-      schema:
-        type: string
-        enum:
-        - Park
-        - Retry
-        - Skip
-        - Stop
-    Subscription:
-      name: subscription
-      in: path
-      required: true
-      description: Name of the persistent subscription group
-      schema:
-        type: string
   responses:
     JsonOk:
       description: OK
@@ -288,17 +247,17 @@ components:
         text/plain:
           schema:
             type: string
-    BadRequest:
-      description: Bad Request — the request was malformed or violated an expected version
-      content:
-        text/plain:
-          schema:
-            type: string
     Created:
       description: Created
       headers:
         Location:
           description: URI of the created resource
+          schema:
+            type: string
+    BadRequest:
+      description: Bad Request — the request was malformed or violated an expected version
+      content:
+        text/plain:
           schema:
             type: string
   schemas:
@@ -332,6 +291,47 @@ components:
           type: integer
         namedConsumerStrategy:
           type: string
+  parameters:
+    Subscription:
+      name: subscription
+      in: path
+      required: true
+      description: Name of the persistent subscription group
+      schema:
+        type: string
+    Stream:
+      name: stream
+      in: path
+      required: true
+      description: Name of the event stream
+      schema:
+        type: string
+    MessageId:
+      name: messageid
+      in: path
+      required: true
+      description: Identifier of the message to acknowledge
+      schema:
+        type: string
+        format: uuid
+    Count:
+      name: count
+      in: path
+      required: true
+      description: Number of events to return
+      schema:
+        type: integer
+    NackAction:
+      name: action
+      in: query
+      description: What the server should do with the negatively acknowledged message
+      schema:
+        type: string
+        enum:
+        - Park
+        - Retry
+        - Skip
+        - Stop
   securitySchemes:
     basicAuth:
       type: http

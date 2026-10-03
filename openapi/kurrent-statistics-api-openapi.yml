@@ -66,18 +66,18 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   responses:
-    JsonOk:
-      description: OK
-      content:
-        application/json:
-          schema:
-            type: object
     NotFound:
       description: Not Found — the stream, event, projection, subscription or user does not exist
       content:
         text/plain:
           schema:
             type: string
+    JsonOk:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
     Unauthorized:
       description: Unauthorized — credentials were missing, invalid, or lacked ACL permission
       content:

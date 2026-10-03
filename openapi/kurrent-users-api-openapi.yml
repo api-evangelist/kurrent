@@ -191,57 +191,7 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  parameters:
-    Login:
-      name: login
-      in: path
-      required: true
-      description: Login name of the user
-      schema:
-        type: string
-  responses:
-    NotFound:
-      description: Not Found — the stream, event, projection, subscription or user does not exist
-      content:
-        text/plain:
-          schema:
-            type: string
-    JsonOk:
-      description: OK
-      content:
-        application/json:
-          schema:
-            type: object
-    Unauthorized:
-      description: Unauthorized — credentials were missing, invalid, or lacked ACL permission
-      content:
-        text/plain:
-          schema:
-            type: string
-    BadRequest:
-      description: Bad Request — the request was malformed or violated an expected version
-      content:
-        text/plain:
-          schema:
-            type: string
-    Created:
-      description: Created
-      headers:
-        Location:
-          description: URI of the created resource
-          schema:
-            type: string
   schemas:
-    UserUpdate:
-      type: object
-      description: Updated details of a user account
-      properties:
-        fullName:
-          type: string
-        groups:
-          type: array
-          items:
-            type: string
     NewUser:
       type: object
       description: A user account to create
@@ -260,6 +210,56 @@ components:
       - loginName
       - fullName
       - password
+    UserUpdate:
+      type: object
+      description: Updated details of a user account
+      properties:
+        fullName:
+          type: string
+        groups:
+          type: array
+          items:
+            type: string
+  responses:
+    JsonOk:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+    Unauthorized:
+      description: Unauthorized — credentials were missing, invalid, or lacked ACL permission
+      content:
+        text/plain:
+          schema:
+            type: string
+    Created:
+      description: Created
+      headers:
+        Location:
+          description: URI of the created resource
+          schema:
+            type: string
+    BadRequest:
+      description: Bad Request — the request was malformed or violated an expected version
+      content:
+        text/plain:
+          schema:
+            type: string
+    NotFound:
+      description: Not Found — the stream, event, projection, subscription or user does not exist
+      content:
+        text/plain:
+          schema:
+            type: string
+  parameters:
+    Login:
+      name: login
+      in: path
+      required: true
+      description: Login name of the user
+      schema:
+        type: string
   securitySchemes:
     basicAuth:
       type: http

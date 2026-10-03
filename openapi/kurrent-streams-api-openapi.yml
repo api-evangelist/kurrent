@@ -242,93 +242,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    AtomLink:
-      type: object
-      description: A navigation link in an AtomPub feed (first, last, previous, next, metadata)
-      properties:
-        uri:
-          type: string
-        relation:
-          type: string
-    StreamMetadata:
-      type: object
-      description: Metadata controlling the retention and access of a stream
-      properties:
-        $maxCount:
-          type: integer
-          description: Maximum number of events retained in the stream
-        $maxAge:
-          type: integer
-          description: Maximum age in seconds of events retained in the stream
-        $cacheControl:
-          type: integer
-          description: Cache control in seconds for the stream head
-        $tb:
-          type: integer
-          description: Truncate-before event number
-        $acl:
-          $ref: '#/components/schemas/StreamAcl'
-    AtomFeed:
-      type: object
-      description: An AtomPub feed of events from a stream
-      properties:
-        title:
-          type: string
-        id:
-          type: string
-        updated:
-          type: string
-          format: date-time
-        streamId:
-          type: string
-        author:
-          type: object
-          properties:
-            name:
-              type: string
-        headOfStream:
-          type: boolean
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/AtomLink'
-        entries:
-          type: array
-          items:
-            $ref: '#/components/schemas/AtomEntry'
-    StreamAcl:
-      type: object
-      description: Access control list applied to a stream
-      properties:
-        $r:
-          description: Users or groups allowed to read
-        $w:
-          description: Users or groups allowed to write
-        $d:
-          description: Users or groups allowed to delete
-        $mr:
-          description: Users or groups allowed to read metadata
-        $mw:
-          description: Users or groups allowed to write metadata
-    Event:
-      type: object
-      description: A single event written to a KurrentDB stream
-      properties:
-        eventId:
-          type: string
-          format: uuid
-          description: Client-generated unique identifier for the event; makes the append idempotent
-        eventType:
-          type: string
-          description: The type name of the event
-        data:
-          description: The event payload
-        metadata:
-          description: Optional event metadata
-      required:
-      - eventId
-      - eventType
-      - data
     AtomEntry:
       type: object
       description: A single event entry in an AtomPub feed
@@ -367,33 +280,101 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AtomLink'
+    AtomFeed:
+      type: object
+      description: An AtomPub feed of events from a stream
+      properties:
+        title:
+          type: string
+        id:
+          type: string
+        updated:
+          type: string
+          format: date-time
+        streamId:
+          type: string
+        author:
+          type: object
+          properties:
+            name:
+              type: string
+        headOfStream:
+          type: boolean
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/AtomLink'
+        entries:
+          type: array
+          items:
+            $ref: '#/components/schemas/AtomEntry'
+    StreamMetadata:
+      type: object
+      description: Metadata controlling the retention and access of a stream
+      properties:
+        $maxCount:
+          type: integer
+          description: Maximum number of events retained in the stream
+        $maxAge:
+          type: integer
+          description: Maximum age in seconds of events retained in the stream
+        $cacheControl:
+          type: integer
+          description: Cache control in seconds for the stream head
+        $tb:
+          type: integer
+          description: Truncate-before event number
+        $acl:
+          $ref: '#/components/schemas/StreamAcl'
+    AtomLink:
+      type: object
+      description: A navigation link in an AtomPub feed (first, last, previous, next, metadata)
+      properties:
+        uri:
+          type: string
+        relation:
+          type: string
+    StreamAcl:
+      type: object
+      description: Access control list applied to a stream
+      properties:
+        $r:
+          description: Users or groups allowed to read
+        $w:
+          description: Users or groups allowed to write
+        $d:
+          description: Users or groups allowed to delete
+        $mr:
+          description: Users or groups allowed to read metadata
+        $mw:
+          description: Users or groups allowed to write metadata
     EventBatch:
       type: array
       description: One or more events to append to a stream
       items:
         $ref: '#/components/schemas/Event'
+    Event:
+      type: object
+      description: A single event written to a KurrentDB stream
+      properties:
+        eventId:
+          type: string
+          format: uuid
+          description: Client-generated unique identifier for the event; makes the append idempotent
+        eventType:
+          type: string
+          description: The type name of the event
+        data:
+          description: The event payload
+        metadata:
+          description: Optional event metadata
+      required:
+      - eventId
+      - eventType
+      - data
   responses:
     BadRequest:
       description: Bad Request — the request was malformed or violated an expected version
-      content:
-        text/plain:
-          schema:
-            type: string
-    Created:
-      description: Created
-      headers:
-        Location:
-          description: URI of the created resource
-          schema:
-            type: string
-    JsonOk:
-      description: OK
-      content:
-        application/json:
-          schema:
-            type: object
-    Unauthorized:
-      description: Unauthorized — credentials were missing, invalid, or lacked ACL permission
       content:
         text/plain:
           schema:
@@ -404,6 +385,12 @@ components:
         text/plain:
           schema:
             type: string
+    JsonOk:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
     StreamFeed:
       description: OK — an AtomPub feed of events
       content:
@@ -416,13 +403,20 @@ components:
         application/xml:
           schema:
             type: string
+    Unauthorized:
+      description: Unauthorized — credentials were missing, invalid, or lacked ACL permission
+      content:
+        text/plain:
+          schema:
+            type: string
+    Created:
+      description: Created
+      headers:
+        Location:
+          description: URI of the created resource
+          schema:
+            type: string
   parameters:
-    EventType:
-      name: Kurrent-EventType
-      in: header
-      description: The event type of the posted body
-      schema:
-        type: string
     EventId:
       name: Kurrent-EventId
       in: header
@@ -430,12 +424,31 @@ components:
       schema:
         type: string
         format: uuid
+    ExpectedVersion:
+      name: Kurrent-ExpectedVersion
+      in: header
+      description: The version the stream is expected to be at, used for optimistic concurrency control
+      schema:
+        type: integer
+    Stream:
+      name: stream
+      in: path
+      required: true
+      description: Name of the event stream
+      schema:
+        type: string
     RequireLeader:
       name: Kurrent-RequireLeader
       in: header
       description: Require that the request is served by the leader node rather than a follower
       schema:
         type: boolean
+    EventType:
+      name: Kurrent-EventType
+      in: header
+      description: The event type of the posted body
+      schema:
+        type: string
     Count:
       name: count
       in: path
@@ -443,24 +456,11 @@ components:
       description: Number of events to return
       schema:
         type: integer
-    ExpectedVersion:
-      name: Kurrent-ExpectedVersion
-      in: header
-      description: The version the stream is expected to be at, used for optimistic concurrency control
-      schema:
-        type: integer
     EventNumber:
       name: event
       in: path
       required: true
       description: Event number within the stream, or "head" for the latest event
-      schema:
-        type: string
-    Stream:
-      name: stream
-      in: path
-      required: true
-      description: Name of the event stream
       schema:
         type: string
   securitySchemes:
