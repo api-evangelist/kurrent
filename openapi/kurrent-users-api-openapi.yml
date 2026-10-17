@@ -191,35 +191,14 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  schemas:
-    UserUpdate:
-      type: object
-      description: Updated details of a user account
-      properties:
-        fullName:
-          type: string
-        groups:
-          type: array
-          items:
-            type: string
-    NewUser:
-      type: object
-      description: A user account to create
-      properties:
-        loginName:
-          type: string
-        fullName:
-          type: string
-        password:
-          type: string
-        groups:
-          type: array
-          items:
-            type: string
-      required:
-      - loginName
-      - fullName
-      - password
+  parameters:
+    Login:
+      name: login
+      in: path
+      required: true
+      description: Login name of the user
+      schema:
+        type: string
   responses:
     Unauthorized:
       description: Unauthorized — credentials were missing, invalid, or lacked ACL permission
@@ -252,14 +231,35 @@ components:
         application/json:
           schema:
             type: object
-  parameters:
-    Login:
-      name: login
-      in: path
-      required: true
-      description: Login name of the user
-      schema:
-        type: string
+  schemas:
+    NewUser:
+      type: object
+      description: A user account to create
+      properties:
+        loginName:
+          type: string
+        fullName:
+          type: string
+        password:
+          type: string
+        groups:
+          type: array
+          items:
+            type: string
+      required:
+      - loginName
+      - fullName
+      - password
+    UserUpdate:
+      type: object
+      description: Updated details of a user account
+      properties:
+        fullName:
+          type: string
+        groups:
+          type: array
+          items:
+            type: string
   securitySchemes:
     basicAuth:
       type: http

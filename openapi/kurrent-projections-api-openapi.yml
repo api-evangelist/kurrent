@@ -355,26 +355,6 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  parameters:
-    ProjectionName:
-      name: name
-      in: query
-      description: Name to give the projection
-      schema:
-        type: string
-    Name:
-      name: name
-      in: path
-      required: true
-      description: Name of the projection
-      schema:
-        type: string
-    Partition:
-      name: partition
-      in: query
-      description: Partition of a partitioned projection to read
-      schema:
-        type: string
   responses:
     Unauthorized:
       description: Unauthorized — credentials were missing, invalid, or lacked ACL permission
@@ -407,6 +387,34 @@ components:
         application/json:
           schema:
             type: object
+  requestBodies:
+    ProjectionQuery:
+      required: true
+      description: The projection definition, as JavaScript
+      content:
+        application/json:
+          schema:
+            type: string
+  parameters:
+    ProjectionName:
+      name: name
+      in: query
+      description: Name to give the projection
+      schema:
+        type: string
+    Name:
+      name: name
+      in: path
+      required: true
+      description: Name of the projection
+      schema:
+        type: string
+    Partition:
+      name: partition
+      in: query
+      description: Partition of a partitioned projection to read
+      schema:
+        type: string
   schemas:
     ProjectionConfig:
       type: object
@@ -426,14 +434,6 @@ components:
           type: integer
         maxWriteBatchLength:
           type: integer
-  requestBodies:
-    ProjectionQuery:
-      required: true
-      description: The projection definition, as JavaScript
-      content:
-        application/json:
-          schema:
-            type: string
   securitySchemes:
     basicAuth:
       type: http

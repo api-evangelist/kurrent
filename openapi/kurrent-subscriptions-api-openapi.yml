@@ -234,6 +234,47 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  parameters:
+    MessageId:
+      name: messageid
+      in: path
+      required: true
+      description: Identifier of the message to acknowledge
+      schema:
+        type: string
+        format: uuid
+    Count:
+      name: count
+      in: path
+      required: true
+      description: Number of events to return
+      schema:
+        type: integer
+    Subscription:
+      name: subscription
+      in: path
+      required: true
+      description: Name of the persistent subscription group
+      schema:
+        type: string
+    NackAction:
+      name: action
+      in: query
+      description: What the server should do with the negatively acknowledged message
+      schema:
+        type: string
+        enum:
+        - Park
+        - Retry
+        - Skip
+        - Stop
+    Stream:
+      name: stream
+      in: path
+      required: true
+      description: Name of the event stream
+      schema:
+        type: string
   responses:
     Unauthorized:
       description: Unauthorized — credentials were missing, invalid, or lacked ACL permission
@@ -260,47 +301,6 @@ components:
         application/json:
           schema:
             type: object
-  parameters:
-    MessageId:
-      name: messageid
-      in: path
-      required: true
-      description: Identifier of the message to acknowledge
-      schema:
-        type: string
-        format: uuid
-    Subscription:
-      name: subscription
-      in: path
-      required: true
-      description: Name of the persistent subscription group
-      schema:
-        type: string
-    Stream:
-      name: stream
-      in: path
-      required: true
-      description: Name of the event stream
-      schema:
-        type: string
-    NackAction:
-      name: action
-      in: query
-      description: What the server should do with the negatively acknowledged message
-      schema:
-        type: string
-        enum:
-        - Park
-        - Retry
-        - Skip
-        - Stop
-    Count:
-      name: count
-      in: path
-      required: true
-      description: Number of events to return
-      schema:
-        type: integer
   schemas:
     PersistentSubscriptionSettings:
       type: object
