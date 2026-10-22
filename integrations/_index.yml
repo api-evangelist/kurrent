@@ -185,3 +185,84 @@
   relationship: platform-app
   status: not-a-workflow
   arazzo: null
+- slug: kurrent-flathub
+  label: Flathub
+  partner_name: Flathub
+  category: Linux desktop app (Flathub)
+  type: marketplace
+  marketplace: flathub
+  channel: partner-built
+  evidence: https://flathub.org/apps/io.kurrent.navigator
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: 'Flathub (flathub.org/api/v2/appstream/<app-id>: developer_name, urls.homepage, flathub::verification::*)'
+    spec_file: null
+    role: flathub-verified-publisher
+    registered_name: Kurrent, Inc.
+    register_id: https://flathub.org/api/v2/appstream/io.kurrent.navigator
+    matched_domain: kurrent.io
+    matched_by: domain
+    matched_name: Kurrent, Inc.
+    verification_method: website
+    verified_website: kurrent.io
+    app_id_domain: kurrent.io
+    signal_note: ONE edge per provider for the store; listing alone = participation. Only apps whose Flathub verification
+      is a domain proof (website / dns) on the provider's own domain, with the reverse-DNS app id agreeing; app
+      counts are context, never counted. Unverified (community repackage) and account-verified apps are held. No
+      Flathub repo in all/*, so no platform-side edge exists to mirror.
+    detected_by: sweep-flathub-linux-app-publishers.py
+    detected: '2026-10-22'
+  status: not-a-workflow
+  arazzo: null
+- slug: kurrent-red-hat-ecosystem-catalog-certified-partners
+  label: Red Hat Ecosystem Catalog (certified partners)
+  partner: red-hat
+  partner_name: Red Hat Ecosystem Catalog (certified partners)
+  category: Red Hat OpenShift / RHEL software certification
+  type: register
+  channel: standard-directory
+  evidence: https://catalog.redhat.com/software/containers/search?p=1&vendor_name=Kurrent%2C%20Inc.
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: 'Red Hat Ecosystem Catalog (catalog.redhat.com/api/containers/v1: repositories, vendors, certified
+      operator bundles)'
+    standard: Red Hat Container Certification (Red Hat Ecosystem Catalog, registry.connect.redhat.com)
+    spec_file: null
+    role: red-hat-certified-partner
+    registered_name: Kurrent, Inc.
+    register_id: kurrent-io
+    matched_domain: kurrent.io
+    matched_by: domain
+    identity_source: the register's own company_url for the vendor (no lookup)
+    certified_products:
+    - product: Red Hat certified container image
+      product_type: container-image
+      standard: Red Hat Container Certification (Red Hat Ecosystem Catalog, registry.connect.redhat.com)
+      lapsed: false
+      repositories_listed: 4
+      products_sample:
+      - kurrent-io/dns
+      - kurrent-io/kurrentdb
+      - kurrent-io/kurrentdb-operator
+      - kurrent-io/kurrentdb-operator-bundle
+    - product: Red Hat certified OpenShift operator
+      product_type: openshift-operator
+      standard: Red Hat OpenShift Operator Certification (certified-operator-index)
+      lapsed: true
+      operator_packages: 1
+      products_sample:
+      - kurrentdb-operator
+      ocp_versions:
+      - '4.20'
+      - '4.21'
+      - '4.22'
+    signal_note: 'certified_products = one entry per certified product TYPE (container image, OpenShift operator),
+      standard named on each; lapsed: true when no certified item of that type is current (containers: all Deprecated
+      / past EOL / unpublished; operators: absent from the three newest certified-operator indexes); repository
+      and package counts are context, never counted'
+    detected_by: sweep-red-hat-certified-ecosystem.py
+    detected: '2026-10-22'
+  status: not-a-workflow
+  arazzo: null
